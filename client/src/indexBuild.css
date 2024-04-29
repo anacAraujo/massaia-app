@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Akzidenz-Grotesk-Next-Light";
+  src: local("Akzidenz-Grotesk-Next-Light"),
+    url("../public/assets/font/Akzidenz-Grotesk-Next-Light.otf")
+      format("opentype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Akzidenz-Grotesk-Next-Regular";
+  src: local("Akzidenz-Grotesk-Next-Regular"),
+    url("../public/assets/font/Akzidenz-Grotesk-Next-Regular.otf")
+      format("opentype");
+  font-weight: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Akzidenz-Grotesk-Next-Light";
+}
+
+@media only screen and (min-width: 0px) {
+  .videoPlayer {
+    width: 100%;
+    height: 100vh;
+  }
+
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .img-eyes {
+    display: none;
+  }
+
+  .construction-notice {
+    position: absolute;
+    top: 0;
+    display: flex;
+    margin-left: 5%;
+    margin-top: 15%;
+    height: auto;
+    color: white;
+  }
+
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    color: white;
+
+    h1 {
+      margin: 5%;
+      font-size: 10vw;
+    }
+    p {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 590px) {
+  .construction-notice {
+    font-size: 4vw;
+  }
+  .content {
+    h1 {
+      font-size: 10vw;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .construction-notice {
+    font-size: 2vw;
+    margin-top: 9%;
+  }
+  .content {
+    h1 {
+      font-size: 4vw;
+      margin: 5% auto 2% 5%;
+    }
+  }
+}
