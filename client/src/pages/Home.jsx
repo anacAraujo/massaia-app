@@ -8,11 +8,11 @@ export function Home() {
       <img className="img-eyes" src="../assets/images/olhos.png" />
       <div className="content">
         <h1>MASSAIÁ</h1>
-        {/*<p>espaços da voz, do som e do olhar</p>*/}
+        <p>espaços da voz, do som e do olhar</p>
       </div>
-      <div className="construction-notice">
+      {/* <div className="construction-notice">
         <p>em costrução</p>
-      </div>
+      </div> */}
     </div>
   );
 }
