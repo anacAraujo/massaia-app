@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { HomeMenu } from "../components/HomeMenu";
 
 export function Home() {
   const [isLandingCompVisible, setLandingCompVisible] = useState(true);
@@ -18,11 +19,12 @@ export function Home() {
             <h1>MASSAIÁ</h1>
             <p>espaços da voz, do som e do olhar</p>
           </div>
+          {/* <div className="construction-notice">
+            <p>em costrução</p>
+          </div> */}
         </>
       )}
-      {/* <div className="construction-notice">
-        <p>em costrução</p>
-      </div> */}
+      {!isLandingCompVisible && <HomeMenu />}
     </div>
   );
 }
