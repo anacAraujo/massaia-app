@@ -1,0 +1,41 @@
+.massaia {
+  position: absolute;
+  top: 0;
+  display: flex;
+  margin: 2%;
+  color: white;
+  p {
+    font-size: 3vw;
+  }
+}
+
+.album-cover {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.credits {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  margin: 2%;
+  p {
+    font-size: 1vw;
+  }
+}
+
+.song-info {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  margin: 2%;
+  p {
+    font-size: 1vw;
+  }
+}
