@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { HomeMenu } from "../components/HomeMenu";
+import "../styles/landingPage.css";
 
 export function Home() {
   const [isLandingCompVisible, setLandingCompVisible] = useState(true);
@@ -14,7 +15,11 @@ export function Home() {
       <video src="../upload/massaiaBuild.mp4" autoPlay loop muted />
       {isLandingCompVisible && (
         <>
-          <img className="img-eyes" src="../assets/images/olhos.png" />
+          <img
+            className="img-eyes"
+            src="../assets/images/olhos.png"
+            alt="eyes"
+          />
           <div className="content">
             <h1>MASSAIÁ</h1>
             <p>espaços da voz, do som e do olhar</p>
