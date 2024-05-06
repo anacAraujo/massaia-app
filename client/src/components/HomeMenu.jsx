@@ -6,8 +6,11 @@ export function HomeMenu() {
       <div className="massaia">
         <p>MASSAIÁ</p>
       </div>
+      <div className="menu">
+        <img src="../assets/icons/menu-white.svg" />
+      </div>
       <div className="album-cover">
-        <img src="../assets/images/olhos.png" alt="album cover" />
+        <img src="../upload/coverAlbum1.png" alt="album cover" />
       </div>
       <div className="credits">
         <p>créditos</p>
