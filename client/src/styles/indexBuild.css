@@ -34,12 +34,9 @@
     justify-content: left;
     color: white;
 
-    h1 {
-      margin: 10%;
-      font-size: 10vw;
-    }
     p {
-      display: none;
+      margin: 9.5%;
+      font-size: 10vw;
     }
   }
 }
@@ -49,8 +46,8 @@
     font-size: 4vw;
   }
   .content {
-    h1 {
-      font-size: 10vw;
+    p {
+      font-size: 9vw;
     }
   }
 }
@@ -62,7 +59,7 @@
     margin-left: 5%;
   }
   .content {
-    h1 {
+    p {
       font-size: 4vw;
       margin: 4% auto 2% 5%;
     }
