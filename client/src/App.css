@@ -1,6 +1,5 @@
 @font-face {
   font-family: "akzidenz-grotesk-next";
   src: local("akzidenz-grotesk-next"),
-    url(./fonts/akzidenz-grotesk-next/Akzidenz-Grotesk-Next-Light.otf)
-      format("opentype");
+    url(./fonts/akzidenz-grotesk-next/AkzidGroLigOsF.ttf) format("opentype");
 }

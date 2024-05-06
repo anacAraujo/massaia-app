@@ -1,21 +1,19 @@
 @font-face {
-  font-family: "Akzidenz-Grotesk-Next-Light";
-  src: local("Akzidenz-Grotesk-Next-Light"),
-    url("../public/assets/font/Akzidenz-Grotesk-Next-Light.otf")
-      format("opentype");
+  font-family: "AkzidGroLigOsF";
+  src: local("AkzidGroLigOsF"),
+    url("../public/assets/font/AkzidGroLigOsF.ttf") format("opentype");
   font-weight: normal;
 }
 
 @font-face {
-  font-family: "Akzidenz-Grotesk-Next-Regular";
-  src: local("Akzidenz-Grotesk-Next-Regular"),
-    url("../public/assets/font/Akzidenz-Grotesk-Next-Regular.otf")
-      format("opentype");
+  font-family: "AkzidGroReg";
+  src: local("AkzidGroReg"),
+    url("../public/assets/font/AkzidGroReg.ttf") format("opentype");
   font-weight: normal;
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "Akzidenz-Grotesk-Next-Light";
+  font-family: "AkzidGroLigOsF";
 }
