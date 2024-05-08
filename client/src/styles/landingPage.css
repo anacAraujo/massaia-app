@@ -1,3 +1,14 @@
+.loagingPage {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (min-width: 0px) {
   .videoPlayer {
     width: 100%;
