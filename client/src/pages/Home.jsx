@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HomeMenu } from "../components/HomeMenu";
-import "../styles/indexBuild.css";
+import "../styles/landingPage.css";
+import "../styles/homeMenu.css";
 
 export function Home() {
   const [isLandingCompVisible, setLandingCompVisible] = useState(true);
@@ -13,20 +14,26 @@ export function Home() {
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
       <div className="overlay"></div>
       <video src="../upload/massaiaBuild.mp4" autoPlay loop muted />
-      <>
-        <img className="img-eyes" src="../assets/images/olhos.png" alt="eyes" />
-        <div className="content">
-          <p>MASSAIÁ</p>
-          {/* <p>espaços da voz, do som e do olhar</p> */}
-        </div>
-        <div className="construction-notice">
-          <p>em construção</p>
-        </div>
-      </>
-      {/* {isLandingCompVisible && (
-       
+
+      {isLandingCompVisible && (
+        <>
+          <div className="eyes">
+            <img
+              className="img-eyes"
+              src="../assets/images/olhos.png"
+              alt="eyes"
+            />
+          </div>
+          <div className="content">
+            <h1>MASSAIÁ</h1>
+            <p>espaços da voz, do som e do olhar</p>
+          </div>
+          <div className="construction-notice">
+            <p>em construção</p>
+          </div>
+        </>
       )}
-      {!isLandingCompVisible && <HomeMenu />} */}
+      {!isLandingCompVisible && <HomeMenu />}
     </div>
   );
 }
