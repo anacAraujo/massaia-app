@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .massaia {
   position: absolute;
   top: 0;
@@ -15,6 +19,7 @@
   top: 0;
   right: 0;
   margin: 2%;
+  z-index: 1;
   img {
     height: auto;
     width: 2.8vw;
