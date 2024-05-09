@@ -1,0 +1,76 @@
+@media only screen and (min-width: 0px) {
+  .menu-massaia {
+    display: none;
+  }
+
+  .menu-exit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 7%;
+    width: 10vw;
+    height: auto;
+  }
+
+  .menu-options {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .menu-option {
+      font-size: 10vw;
+      font-family: "AkzidGroReg";
+    }
+  }
+}
+
+@media only screen and (min-width: 590px) {
+  .menu-massaia {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 6%;
+    font-family: "AkzidGroLigOsF";
+    font-size: 6vw;
+    font-weight: normal;
+  }
+
+  .menu-exit {
+    margin: 6%;
+    width: 7vw;
+  }
+
+  .menu-options {
+    .menu-option {
+      font-size: 8vw;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .menu-massaia {
+    margin-top: 2%;
+    margin-left: 4%;
+    font-size: 3vw;
+  }
+
+  .menu-exit {
+    margin-top: 2%;
+    margin-right: 4%;
+    width: 3vw;
+  }
+
+  .menu-options {
+    align-items: start;
+    margin-left: 4%;
+    .menu-option {
+      font-size: 2.8vw;
+    }
+  }
+}
