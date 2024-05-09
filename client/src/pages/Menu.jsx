@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import "../styles/menu.css";
 
 export function Menu() {
@@ -12,7 +14,14 @@ export function Menu() {
     <div>
       <div>
         <h1 className="menu-massaia">MASSAIÁ</h1>
-        <img className="menu-exit" src="../assets/icons/exit.svg" alt="exit" />
+        <Link to="/">
+          {" "}
+          <img
+            className="menu-exit"
+            src="../assets/icons/exit.svg"
+            alt="exit"
+          />
+        </Link>
       </div>
 
       <div>

@@ -1,4 +1,5 @@
 import "../styles/homeMenu.css";
+import { Link } from "react-router-dom";
 
 export function HomeMenu() {
   return (
@@ -6,9 +7,9 @@ export function HomeMenu() {
       <div className="massaia">
         <p>MASSAIÁ</p>
       </div>
-      <div className="menu">
+      <Link className="menu" to="/menu">
         <img src="../assets/icons/menu-white.svg" />
-      </div>
+      </Link>
       <div className="album-cover">
         <img src="../upload/coverAlbum1.png" alt="album cover" />
       </div>
