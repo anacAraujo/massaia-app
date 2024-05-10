@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { ViewLandingContext } from "../context/viewLandingContext";
 import { HomeMenu } from "../components/HomeMenu";
 import "../styles/landingPage.css";
 import "../styles/homeMenu.css";
 
 export function Home() {
-  const [isLandingCompVisible, setLandingCompVisible] = useState(true);
+  const viewLandingContext = React.useContext(ViewLandingContext);
 
   const handleVideoPlayerClick = () => {
-    setLandingCompVisible(false);
+    viewLandingContext.setHasViewedLandingPage(true);
   };
 
   return (
@@ -15,7 +16,7 @@ export function Home() {
       <div className="overlay"></div>
       <video src="../upload/massaiaBuild.mp4" autoPlay loop muted />
 
-      {isLandingCompVisible && (
+      {!viewLandingContext.hasViewedLandingPage && (
         <>
           <div className="eyes">
             <img
@@ -33,7 +34,7 @@ export function Home() {
           </div>
         </>
       )}
-      {!isLandingCompVisible && <HomeMenu />}
+      {viewLandingContext.hasViewedLandingPage && <HomeMenu />}
     </div>
   );
 }
