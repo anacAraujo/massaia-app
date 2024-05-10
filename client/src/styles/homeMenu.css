@@ -2,65 +2,131 @@ body {
   overflow: hidden;
 }
 
-.massaia {
-  position: absolute;
-  top: 0;
-  display: flex;
-  margin: 2%;
-  color: white;
-  font-family: "AkzidGroLigOsF";
-  p {
-    font-size: 2.8vw;
+@media only screen and (min-width: 0px) {
+  .massaia {
+    display: none;
+  }
+
+  .menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 7%;
+    z-index: 1;
+    img {
+      height: auto;
+      width: 10vw;
+    }
+  }
+
+  .album-cover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 2px solid black;
+    }
+  }
+
+  .credits {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: white;
+    margin: 7%;
+    font-family: "AkzidGroLigOsF";
+    p {
+      font-size: 5vw;
+      text-shadow: 0 0 3px black, 0 0 5px black;
+    }
+  }
+
+  .song-info {
+    position: absolute;
+    bottom: 0;
+    color: white;
+    margin: 7%;
+    font-family: "AkzidGroLigOsF";
+    p {
+      font-size: 5vw;
+      text-shadow: 0 0 3px black, 0 0 5px black;
+    }
   }
 }
 
-.menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 2%;
-  z-index: 1;
-  img {
-    height: auto;
-    width: 2.8vw;
+@media only screen and (min-width: 590px) {
+  .massaia {
+    position: absolute;
+    top: 0;
+    display: flex;
+    margin: 7%;
+    color: white;
+    font-family: "AkzidGroLigOsF";
+    p {
+      font-size: 6vw;
+      text-shadow: 0 0 3px black, 0 0 5px black;
+    }
+  }
+
+  .album-cover {
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .menu {
+    img {
+      width: 6vw;
+    }
+  }
+
+  .credits {
+    p {
+      font-size: 4vw;
+    }
+  }
+
+  .song-info {
+    p {
+      font-size: 4vw;
+    }
   }
 }
 
-.album-cover {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 2px solid black;
+@media only screen and (min-width: 1024px) {
+  .massaia {
+    margin: 2%;
+    p {
+      font-size: 2.8vw;
+    }
   }
-}
 
-.credits {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: white;
-  margin: 2%;
-  font-family: "AkzidGroLigOsF";
-  p {
-    font-size: 1vw;
+  .menu {
+    margin: 2%;
+    img {
+      width: 2.8vw;
+    }
   }
-}
 
-.song-info {
-  position: absolute;
-  bottom: 0;
-  color: white;
-  margin: 2%;
-  font-family: "AkzidGroLigOsF";
-  p {
-    font-size: 1vw;
+  .credits {
+    margin: 2%;
+    p {
+      font-size: 1.5vw;
+    }
+  }
+
+  .song-info {
+    margin: 2%;
+    p {
+      font-size: 1.5vw;
+    }
   }
 }
