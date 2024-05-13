@@ -13,9 +13,9 @@ export function HomeMenu() {
       <div className="album-cover">
         <img src="../upload/coverAlbum1.png" alt="album cover" />
       </div>
-      <div className="credits">
+      <Link className="credits" to="/credits">
         <p>créditos</p>
-      </div>
+      </Link>
       <div className="song-info">
         <p>1:30 nome</p>
       </div>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 import { Home } from "./pages/Home";
 import { Menu } from "./pages/Menu";
+import { Credits } from "./pages/Credits";
 import { ViewLandingContext } from "./context/viewLandingContext";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route>
             <Route path="/" index element={<Home></Home>}></Route>
             <Route path="/menu" element={<Menu></Menu>}></Route>
+            <Route path="/credits" element={<Credits></Credits>}></Route>
             {/* <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/profile" element={<Profile></Profile>}></Route>
