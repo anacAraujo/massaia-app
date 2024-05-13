@@ -31,7 +31,6 @@ body {
       width: 100px;
       height: 100px;
       object-fit: cover;
-      border: 2px solid black;
     }
   }
 
@@ -44,7 +43,6 @@ body {
     font-family: "AkzidGroLigOsF";
     p {
       font-size: 5vw;
-      text-shadow: 0 0 3px black, 0 0 5px black;
     }
   }
 
@@ -56,7 +54,6 @@ body {
     font-family: "AkzidGroLigOsF";
     p {
       font-size: 5vw;
-      text-shadow: 0 0 3px black, 0 0 5px black;
     }
   }
 }
@@ -71,7 +68,6 @@ body {
     font-family: "AkzidGroLigOsF";
     p {
       font-size: 6vw;
-      text-shadow: 0 0 3px black, 0 0 5px black;
     }
   }
 

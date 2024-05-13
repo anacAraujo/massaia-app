@@ -8,7 +8,7 @@ export function HomeMenu() {
         <p>MASSAIÁ</p>
       </div>
       <Link className="menu" to="/menu">
-        <img src="../assets/icons/menu.svg" />
+        <img src="../assets/icons/menu-white.svg" />
       </Link>
       <div className="album-cover">
         <img src="../upload/coverAlbum1.png" alt="album cover" />
