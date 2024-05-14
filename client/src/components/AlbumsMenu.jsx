@@ -1,1 +1,7 @@
-export function AlbumsMenu() {}
+export function AlbumsMenu() {
+  return (
+    <div>
+      <p>AlbumsMenu</p>
+    </div>
+  );
+}
