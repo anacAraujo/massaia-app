@@ -49,7 +49,7 @@ export function Home() {
           </div>
         </>
       )}
-      {viewLandingContext.hasViewedLandingPage && <HomeMenu />}
+      {viewLandingContext.hasViewedLandingPage && <HomeMenu songId={song.id} />}
     </div>
   );
 }
