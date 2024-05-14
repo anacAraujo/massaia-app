@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ViewLandingContext } from "../context/viewLandingContext";
 import { HomeMenu } from "../components/HomeMenu";
 import "../styles/landingPage.css";
 import "../styles/homeMenu.css";
+import axios from "../lib/axiosConfig.js";
 
 export function Home() {
+  const [song, setSong] = useState([]);
+
   const viewLandingContext = React.useContext(ViewLandingContext);
 
   const handleVideoPlayerClick = () => {
     viewLandingContext.setHasViewedLandingPage(true);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/songs/1`);
+        setSong(res.data[0]);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
       <div className="overlay"></div>
-      <video src="../upload/massaiaBuild.mp4" autoPlay loop muted />
+      <video src={`../upload/${song.video}`} autoPlay loop muted />
 
       {!viewLandingContext.hasViewedLandingPage && (
         <>
