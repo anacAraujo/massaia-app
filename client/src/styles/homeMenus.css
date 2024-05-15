@@ -67,14 +67,25 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    img {
+    .menu-albums-cover {
       width: 100px;
       height: 100px;
       object-fit: cover;
+      display: inline-block;
     }
 
     .menu-albums-song {
+      margin: 0 1rem;
+      width: 150px;
+      height: 100px;
+      object-fit: cover;
+      display: inline-block;
     }
+  }
+
+  .scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
   }
 }
 
@@ -117,9 +128,14 @@ body {
   }
 
   /* menu albums */
-  .menu-album-cover {
-    img {
+  .menu-albums {
+    .menu-albums-cover {
       width: 150px;
+      height: 150px;
+    }
+
+    .menu-albums-song {
+      width: 200px;
       height: 150px;
     }
   }
