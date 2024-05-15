@@ -4,7 +4,7 @@ import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
 import { HomeMenu } from "../components/HomeMenu";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import "../styles/landingPage.css";
-import "../styles/homeMenu.css";
+import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
 
 export function Home() {

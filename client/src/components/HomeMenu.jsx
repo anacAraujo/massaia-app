@@ -1,4 +1,4 @@
-import "../styles/homeMenu.css";
+import "../styles/homeMenus.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../lib/axiosConfig.js";
@@ -41,8 +41,12 @@ export function HomeMenu({ songId }) {
       <Link className="menu" to="/menu">
         <img src="../assets/icons/menu-white.svg" alt="menu" />
       </Link>
-      <div className="album-cover" onClick={handleIsViewingAlbumsMenu}>
-        <img src="../upload/coverAlbum1.png" alt="album cover" />
+      <div className="album-cover">
+        <img
+          src="../upload/coverAlbum1.png"
+          alt="album cover"
+          onClick={handleIsViewingAlbumsMenu}
+        />
       </div>
       <Link className="credits" to="/credits">
         <p>créditos</p>
