@@ -19,7 +19,7 @@ export function ViewAlbumsMenuProvider({ children }) {
 
   return (
     <ViewAlbumsMenu.Provider
-      value={{ isViewingAlbumsMenu, handleIsViewingAlbumsMenu }}
+      value={{ isViewingAlbumsMenu, setIsViewingAlbumsMenu }}
     >
       {children}
     </ViewAlbumsMenu.Provider>
