@@ -1,5 +1,5 @@
 body {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 0px) {
@@ -67,11 +67,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: auto;
+
     .menu-albums-cover {
       width: 100px;
       height: 100px;
       object-fit: cover;
       display: inline-block;
+      margin-left: 500%;
+    }
+
+    .menu-albums-songs {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
 
     .menu-albums-song {
@@ -86,6 +96,7 @@ body {
   .scrollmenu {
     overflow: auto;
     white-space: nowrap;
+    scroll-behavior: smooth;
   }
 }
 

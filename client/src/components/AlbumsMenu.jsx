@@ -21,29 +21,40 @@ export function AlbumsMenu() {
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   const scrollMenu = document.querySelector(".scrollmenu");
+  //   if (scrollMenu) {
+  //     const scrollMenuWidth = scrollMenu.offsetWidth;
+  //     const firstImage = document.querySelector(".menu-albums-cover");
+  //     if (firstImage) {
+  //       firstImage.style.marginLeft = `${
+  //         scrollMenuWidth + scrollMenuWidth / 2 - 125
+  //       }px`;
+  //     }
+  //   }
+  // }, [albums]);
+
   return (
     <div>
-      <h1>Albums</h1>
-      <div>
-        {albums.map((album) => (
-          <div key={album.id} className="menu-albums scrollmenu">
-            <img
-              className="menu-albums-cover"
-              src={`../upload/${album.cover}`}
-              alt="album cover"
-            />
-            {album.songs.map((song) => (
-              <div key={song.id}>
-                <img
-                  className="menu-albums-song"
-                  src={`../upload/${song.cover}`}
-                  alt="song cover"
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+      {albums.map((album) => (
+        <div key={album.id} className="menu-albums scrollmenu">
+          <img
+            className="menu-albums-cover"
+            src={`../upload/${album.cover}`}
+            alt="album cover"
+          />
+
+          {album.songs.map((song) => (
+            <div key={song.id}>
+              <img
+                className="menu-albums-song"
+                src={`../upload/${song.cover}`}
+                alt="song cover"
+              />
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
