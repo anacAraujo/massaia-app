@@ -16,3 +16,59 @@
   margin: 0;
   padding: 0;
 }
+
+@media only screen and (min-width: 0px) {
+  .navbar {
+    width: 100%;
+    background-color: white;
+    color: black;
+
+    .navbar-massaia {
+      display: none;
+    }
+
+    .navbar-menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 7%;
+      width: 10vw;
+      height: auto;
+      z-index: 1;
+    }
+  }
+}
+
+@media only screen and (min-width: 590px) {
+  .navbar {
+    .navbar-massaia {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 6%;
+      font-family: "AkzidGroLigOsF";
+      font-size: 6vw;
+      font-weight: normal;
+    }
+
+    .navbar-menu {
+      margin: 6%;
+      width: 7vw;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .navbar {
+    .navbar-massaia {
+      margin: 2%;
+      font-size: 2.8vw;
+    }
+
+    .navbar-menu {
+      margin: 2%;
+      width: 2.8vw;
+    }
+  }
+}
