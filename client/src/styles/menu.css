@@ -31,8 +31,18 @@ body {
       font-size: 10vw;
       font-family: "AkzidGroReg";
 
+      a {
+        text-decoration: none;
+        color: black;
+      }
+
       .menu-option {
         font-family: "AkzidGroLigOsF";
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
       }
     }
   }

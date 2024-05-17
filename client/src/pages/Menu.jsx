@@ -35,8 +35,12 @@ export function Menu() {
               className="menu-option"
               style={{ display: selectedMenu === "videos" ? "block" : "none" }}
             >
-              <p>volume I</p>
-              <p>volume II</p>
+              <p>
+                <Link>volume I</Link>
+              </p>
+              <p>
+                <Link>volume II</Link>
+              </p>
             </div>
           </div>
           <div
@@ -48,8 +52,12 @@ export function Menu() {
               className="menu-option"
               style={{ display: selectedMenu === "galeria" ? "block" : "none" }}
             >
-              <p>volume I</p>
-              <p>volume II</p>
+              <p>
+                <Link>volume I</Link>
+              </p>
+              <p>
+                <Link>volume II</Link>
+              </p>
             </div>
           </div>
           <div
@@ -61,17 +69,27 @@ export function Menu() {
               className="menu-option"
               style={{ display: selectedMenu === "sobre" ? "block" : "none" }}
             >
-              <p>projetos</p>
-              <p>autores</p>
-              <p>artistas</p>
-              <p>site</p>
+              <p>
+                <Link>projetos</Link>
+              </p>
+              <p>
+                <Link>autores</Link>
+              </p>
+              <p>
+                <Link>artistas</Link>
+              </p>
+              <p>
+                <Link>site</Link>
+              </p>
             </div>
           </div>
           <div
             className="menu-main-option"
             onClick={() => handleMenuClick("momentos")}
           >
-            <p>momentos</p>
+            <p>
+              <Link to="/momentos">momentos</Link>
+            </p>
           </div>
         </div>
       </div>
