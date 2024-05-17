@@ -8,7 +8,7 @@ export function AlbumsMenu() {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/albums`);
-        const albumsData = res.data;
+        const albumsData = res.data.reverse();
         for (let album of albumsData) {
           const res = await axios.get(`/albums/${album.id}/songs`);
           album.songs = res.data;
@@ -35,24 +35,25 @@ export function AlbumsMenu() {
   // }, [albums]);
 
   return (
-    <div>
+    <div className="menu-albums scrollmenu">
       {albums.map((album) => (
-        <div key={album.id} className="menu-albums scrollmenu">
+        <div key={album.id}>
           <img
             className="menu-albums-cover"
             src={`../upload/${album.cover}`}
             alt="album cover"
           />
-
-          {album.songs.map((song) => (
-            <div key={song.id}>
-              <img
-                className="menu-albums-song"
-                src={`../upload/${song.cover}`}
-                alt="song cover"
-              />
-            </div>
-          ))}
+          <div className="menu-albums-songs">
+            {album.songs.map((song) => (
+              <div key={song.id}>
+                <img
+                  className="menu-albums-song"
+                  src={`../upload/${song.cover}`}
+                  alt="song cover"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>
