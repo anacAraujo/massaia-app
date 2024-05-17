@@ -8,7 +8,7 @@ export function Moments() {
     <div>
       <div className="navbar">
         <h1 className="navbar-massaia">MASSAIÁ</h1>
-        <Link to="/">
+        <Link to="/menu">
           {" "}
           <img
             className="navbar-menu"
