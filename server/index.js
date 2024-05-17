@@ -5,6 +5,7 @@ import multer from "multer";
 
 import albumsRoutes from "./resources/albums/albumsRoutes.js";
 import songsRoutes from "./resources/songs/songsRoutes.js";
+import creditsRoutes from "./resources/credits/creditsRoutes.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.js";
 
 const port = process.env.PORT || 3000;
@@ -33,6 +34,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 
 app.use("/api/albums", albumsRoutes);
 app.use("/api/songs", songsRoutes);
+app.use("/api/credits", creditsRoutes);
 
 app.use(function (req, res, next) {
   res.status(404).json({ message: "Not found" });
