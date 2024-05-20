@@ -8,11 +8,12 @@ import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
 
 export function Home() {
-  const [song, setSong] = useState([]);
+  const [song, setSong] = useState({});
+
+  // TODO use uesState instead of useContext
 
   const { hasViewedLandingPage, handleHasViewedLandingPage } =
     React.useContext(ViewLandingContext);
-
   const viewAlbumsMenu = React.useContext(ViewAlbumsMenu);
 
   const handleVideoPlayerClick = () => {
@@ -23,7 +24,7 @@ export function Home() {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/songs/1`);
-        setSong(res.data[0]);
+        setSong(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -38,6 +39,7 @@ export function Home() {
 
       {!hasViewedLandingPage && (
         <>
+          {/* TODO - create component */}
           <div className="eyes">
             <img
               className="img-eyes"
@@ -55,6 +57,7 @@ export function Home() {
         </>
       )}
       {hasViewedLandingPage && !viewAlbumsMenu.isViewingAlbumsMenu && (
+        // TODO remove compnent and add here the code
         <HomeMenu songId={song.id} />
       )}
       {hasViewedLandingPage && viewAlbumsMenu.isViewingAlbumsMenu && (
