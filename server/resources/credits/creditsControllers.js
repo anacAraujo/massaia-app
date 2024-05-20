@@ -1,8 +1,8 @@
 import { db } from "../../db/db.js";
 
-import { idSchema } from "./albumsSchemas.js";
+import { idSchema } from "./creditsSchemas.js";
 
-export async function getSongsCredits(req, res, next) {
+export async function getSongCredits(req, res, next) {
   try {
     const params = await idSchema.validateAsync(req.params);
 
