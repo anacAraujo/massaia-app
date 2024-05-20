@@ -1,9 +1,25 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import axios from "../lib/axiosConfig.js";
 
 import "../styles/credits.css";
 
 export function Credits() {
+  const [albums, setAlbums] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/credits`);
+        const albumsData = res.data.reverse();
+        setAlbums(albumsData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div className="credits-eyes"></div>
