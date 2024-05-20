@@ -13,7 +13,7 @@ export function HomeMenu({ songId }) {
   };
 
   console.log("songId: ", songId);
-  const [song, setSong] = useState([]);
+  const [song, setSong] = useState({});
 
   const { setIsViewingAlbumsMenu } = React.useContext(ViewAlbumsMenu);
 
@@ -25,7 +25,7 @@ export function HomeMenu({ songId }) {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/songs/${songId}`);
-        setSong(res.data[0]);
+        setSong(res.data);
       } catch (err) {
         console.log(err);
       }
