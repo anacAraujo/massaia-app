@@ -32,6 +32,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
   res.status(200).json({ filename: file.filename });
 });
 
+app.use("/api/albums/:album_id/songs", songsRoutes);
 app.use("/api/albums", albumsRoutes);
 app.use("/api/songs", songsRoutes);
 app.use("/api/credits", creditsRoutes);
