@@ -7,9 +7,8 @@ export async function getSongs(req, res, next) {
   try {
     const params = await albumIddSchema.validateAsync(req.query);
 
-    //TODO
     let query =
-      "SELECT s.*, a.name AS album_name FROM songs s JOIN albums a ON a.id = s.album_id ORDER BY a.id ASC, s.position ASC";
+      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id ORDER BY a.id ASC, s.position ASC";
 
     if (params.album_id) {
       query += " WHERE songs.album_id=:album_id";
