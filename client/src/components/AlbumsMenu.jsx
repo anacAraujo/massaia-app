@@ -20,18 +20,22 @@ export function AlbumsMenu() {
 
   return (
     <div>
+      <div className="menu-albuns-line">
+        <img src="../assets/images/line.png" />
+      </div>
+
       {songs.length > 0 && (
         <div className="menu-albums scrollmenu" key={songs[0].id}>
           <img
             className="menu-albums-cover"
-            src={`../upload/${songs[0].album_cover}`}
+            src={`${process.env.REACT_APP_UPLOAD_FOLDER}${songs[0].album_cover}`}
             alt="album cover"
           />
           {songs.map((song) => (
             <div key={song.id}>
               <img
                 className="menu-albums-song"
-                src={`../upload/${song.image}`}
+                src={`${process.env.REACT_APP_UPLOAD_FOLDER}${song.image}`}
                 alt="song cover"
               />
             </div>
