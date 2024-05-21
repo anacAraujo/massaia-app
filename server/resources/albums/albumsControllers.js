@@ -1,6 +1,6 @@
 import { db } from "../../db/db.js";
 
-import { idSchema } from "./albumsSchemas.js";
+import { idSchema, updateAlbumSchema } from "./albumsSchemas.js";
 
 export async function getAlbums(req, res, next) {
   try {
@@ -57,3 +57,24 @@ export async function getAlbum(req, res, next) {
 //     next(error);
 //   }
 // }
+
+export const updateAlbum = async (req, res, next) => {
+  try {
+    const params = await updateAlbumSchema.validateAsync(req.body);
+
+    const query =
+      "UPDATE albums SET `name` = ?, `cover` = ?, `date` = ? WHERE `id`= ?";
+
+    const queryParams = [params.name, params.cover, params.date, params.id];
+
+    const [results] = await db.execute(query, queryParams);
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Album was not updated!" });
+    }
+
+    return res.status(200).json({ message: "Album updated" });
+  } catch (error) {
+    next(error);
+  }
+};
