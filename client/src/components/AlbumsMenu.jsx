@@ -2,18 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from "../lib/axiosConfig.js";
 
 export function AlbumsMenu() {
-  const [albums, setAlbums] = useState([]);
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/albums`);
-        const albumsData = res.data.reverse();
-        for (let album of albumsData) {
-          const res = await axios.get(`/albums/${album.id}/songs`);
-          album.songs = res.data;
-        }
-        setAlbums(albumsData);
+        const res = await axios.get(`/songs?album_id=1`);
+        const songsData = res.data;
+        // for (let album of albumsData) {
+        //   const res = await axios.get(`/albums/${album.id}/songs`);
+        //   album.songs = res.data;
+        // }
+        setSongs(songsData);
       } catch (err) {
         console.log(err);
       }
@@ -36,26 +36,24 @@ export function AlbumsMenu() {
 
   return (
     <div className="menu-albums scrollmenu">
-      {albums.map((album) => (
-        <div key={album.id}>
+      {songs.length > 0 && (
+        <div key={songs[0].id}>
           <img
             className="menu-albums-cover"
-            src={`../upload/${album.cover}`}
+            src={`../upload/${songs[0].album_cover}`}
             alt="album cover"
           />
-          <div className="menu-albums-songs">
-            {album.songs.map((song) => (
-              <div key={song.id}>
-                <img
-                  className="menu-albums-song"
-                  src={`../upload/${song.cover}`}
-                  alt="song cover"
-                />
-              </div>
-            ))}
-          </div>
+          {songs.map((song) => (
+            <div key={song.id}>
+              <img
+                className="menu-albums-song"
+                src={`../upload/${song.image}`}
+                alt="song cover"
+              />
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 }
