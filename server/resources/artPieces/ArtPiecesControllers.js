@@ -11,7 +11,7 @@ export const getArtPieces = async (req, res, next) => {
     const params = await songIddSchema.validateAsync(req.query);
 
     let query =
-      "SELECT ap.*, au.name AS author, s.name AS song FROM massaia.art_pieces ap JOIN massaia.authors au ON ap.author_id=au.id JOIN massaia.songs s ON ap.song_id=s.id";
+      "SELECT ap.*, au.name AS author_name, s.name AS song_name FROM massaia.art_pieces ap JOIN massaia.authors au ON ap.author_id=au.id JOIN massaia.songs s ON ap.song_id=s.id";
 
     if (params.song_id) {
       query += " WHERE ap.song_id=:song_id";
