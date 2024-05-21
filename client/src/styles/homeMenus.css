@@ -59,6 +59,15 @@ body {
   }
 
   /* menu albums */
+  .menu-albuns-line {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
   .menu-albums {
     position: absolute;
     top: 0;
