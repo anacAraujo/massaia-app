@@ -2,9 +2,9 @@ import express from "express";
 import { getArtPiece, getArtPieces } from "./ArtPiecesControllers.js";
 import { authMiddleware } from "../../middlewares/auth.js";
 
-const app = express.Router();
+const router = express.Router();
 
-app.get("/", getArtPieces);
-app.get("/:id", getArtPiece);
+router.get("/", getArtPieces);
+router.get("/:id", getArtPiece);
 
 export default app;
