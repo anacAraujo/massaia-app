@@ -35,7 +35,12 @@ export function Home() {
   return (
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
       <div className="overlay"></div>
-      <video src={`../upload/${song.video}`} autoPlay loop muted />
+      <video
+        src={process.env.REACT_APP_UPLOAD_FOLDER + song.video}
+        autoPlay
+        loop
+        muted
+      />
 
       {!hasViewedLandingPage && (
         <>

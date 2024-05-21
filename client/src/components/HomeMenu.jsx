@@ -43,7 +43,7 @@ export function HomeMenu({ songId }) {
       </Link>
       <div className="album-cover">
         <img
-          src="../upload/coverAlbum1.png"
+          src={`${process.env.REACT_APP_UPLOAD_FOLDER}/coverAlbum1.png`}
           alt="album cover"
           onClick={handleIsViewingAlbumsMenu}
         />
