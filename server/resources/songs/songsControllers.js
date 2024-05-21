@@ -1,7 +1,12 @@
 import { query } from "express";
 import { db } from "../../db/db.js";
 
-import { idSchema, albumIddSchema } from "./songsSchemas.js";
+import {
+  idSchema,
+  albumIddSchema,
+  addSongSchema,
+  updateSongSchema,
+} from "./songsSchemas.js";
 
 export async function getSongs(req, res, next) {
   try {
