@@ -8,11 +8,13 @@ export async function getSongs(req, res, next) {
     const params = await albumIddSchema.validateAsync(req.query);
 
     let query =
-      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id ORDER BY a.id ASC, s.position ASC";
+      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id";
 
     if (params.album_id) {
-      query += " WHERE songs.album_id=:album_id";
+      query += " WHERE s.album_id=:album_id";
     }
+
+    query += " ORDER BY a.id ASC, s.position ASC";
 
     const [results] = await db.execute(query, params);
 
@@ -31,7 +33,7 @@ export async function getSong(req, res, next) {
     const params = await idSchema.validateAsync(req.params);
 
     let query =
-      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id WHERE s.id = ?  ORDER BY a.id ASC, s.position ASC";
+      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id WHERE s.id = ? ORDER BY a.id ASC, s.position ASC";
 
     const [results] = await db.execute(query, [params.id]);
 
