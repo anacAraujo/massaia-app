@@ -1,5 +1,5 @@
 import express from "express";
-import { getSongCredits } from "./creditsControllers.js";
+import { getSongCredits } from "./artistsControllers.js";
 
 const router = express.Router();
 
