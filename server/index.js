@@ -42,8 +42,8 @@ app.use("/api/albums", albumsRoutes);
 app.use("/api/songs", songsRoutes);
 app.use("/api/artists", artistsRoutes);
 app.use("/api/art_pieces", artPiecesRoutes);
-app.use("api/users", usersRoutes);
-app.use("api/moments", momentsRoutes);
+app.use("/api/users", usersRoutes);
+app.use("/api/moments", momentsRoutes);
 
 app.use(function (req, res, next) {
   res.status(404).json({ message: "Not found" });
