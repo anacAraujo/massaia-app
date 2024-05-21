@@ -6,6 +6,7 @@ export async function getArtists(req, res, next) {
   try {
     const params = await idSchema.validateAsync(req.params);
 
+    //TODO
     let query = `
         SELECT massaia.authors.name, massaia.roles.name 
         FROM massaia.songs_has_authors_has_roles 
