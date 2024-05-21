@@ -7,6 +7,10 @@ export const getMoments = async (req, res, next) => {
 
     const [results] = await db.execute(query);
 
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Moments not found!" });
+    }
+
     res.status(200).json(results);
   } catch (error) {
     next(error);
