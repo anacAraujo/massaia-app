@@ -18,21 +18,8 @@ export function AlbumsMenu() {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   const scrollMenu = document.querySelector(".scrollmenu");
-  //   if (scrollMenu) {
-  //     const scrollMenuWidth = scrollMenu.offsetWidth;
-  //     const firstImage = document.querySelector(".menu-albums-cover");
-  //     if (firstImage) {
-  //       firstImage.style.marginLeft = `${
-  //         scrollMenuWidth + scrollMenuWidth / 2 - 125
-  //       }px`;
-  //     }
-  //   }
-  // }, [albums]);
-
   return (
-    <div className="">
+    <div>
       {songs.length > 0 && (
         <div className="menu-albums scrollmenu" key={songs[0].id}>
           <img
