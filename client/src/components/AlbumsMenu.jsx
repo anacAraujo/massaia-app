@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../lib/axiosConfig.js";
+import "../styles/homeMenus.css";
 
 export function AlbumsMenu() {
   const [songs, setSongs] = useState([]);
@@ -9,10 +10,6 @@ export function AlbumsMenu() {
       try {
         const res = await axios.get(`/songs?album_id=1`);
         const songsData = res.data;
-        // for (let album of albumsData) {
-        //   const res = await axios.get(`/albums/${album.id}/songs`);
-        //   album.songs = res.data;
-        // }
         setSongs(songsData);
       } catch (err) {
         console.log(err);
@@ -35,9 +32,9 @@ export function AlbumsMenu() {
   // }, [albums]);
 
   return (
-    <div className="menu-albums scrollmenu">
+    <div className="">
       {songs.length > 0 && (
-        <div key={songs[0].id}>
+        <div className="menu-albums scrollmenu" key={songs[0].id}>
           <img
             className="menu-albums-cover"
             src={`../upload/${songs[0].album_cover}`}
