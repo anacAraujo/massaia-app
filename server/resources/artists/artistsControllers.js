@@ -2,7 +2,7 @@ import { db } from "../../db/db.js";
 
 import { idSchema } from "./artistsSchemas.js";
 
-export async function getSongCredits(req, res, next) {
+export async function getArtists(req, res, next) {
   try {
     const params = await idSchema.validateAsync(req.params);
 

@@ -1,8 +1,8 @@
 import express from "express";
-import { getSongCredits } from "./artistsControllers.js";
+import { getArtists } from "./artistsControllers.js";
 
 const router = express.Router();
 
-router.get("/:id", getSongCredits);
+router.get("/:id", getArtists);
 
 export default router;
