@@ -38,7 +38,7 @@ export async function getSong(req, res, next) {
     const params = await idSchema.validateAsync(req.params);
 
     let query =
-      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id WHERE s.id = ? ORDER BY a.id ASC, s.position ASC";
+      "SELECT s.*, a.name AS album_name, a.cover AS album_cover FROM songs s JOIN albums a ON a.id = s.album_id WHERE s.id = ?";
 
     const [results] = await db.execute(query, [params.id]);
 
