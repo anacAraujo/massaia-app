@@ -3,10 +3,13 @@ import logger from "pino-http";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 
+import authRoutes from "./resources/auth/authRoutes.js";
 import albumsRoutes from "./resources/albums/albumsRoutes.js";
 import songsRoutes from "./resources/songs/songsRoutes.js";
 import artistsRoutes from "./resources/artists/artistsRoutes.js";
-import artPiecesRoutes from "./resources/artPieces/ArtPiecesRoutes.js";
+import artPiecesRoutes from "./resources/artPieces/artPiecesRoutes.js";
+import usersRoutes from "./resources/users/usersRoutes.js";
+import momentsRoutes from "./resources/moments/momentsRoutes.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.js";
 
 const port = process.env.PORT || 3000;
@@ -33,11 +36,14 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
   res.status(200).json({ filename: file.filename });
 });
 
+app.use("api/auth", authRoutes);
 app.use("/api/albums/:album_id/songs", songsRoutes);
 app.use("/api/albums", albumsRoutes);
 app.use("/api/songs", songsRoutes);
 app.use("/api/artists", artistsRoutes);
 app.use("/api/art_pieces", artPiecesRoutes);
+app.use("api/users", usersRoutes);
+app.use("api/moments", momentsRoutes);
 
 app.use(function (req, res, next) {
   res.status(404).json({ message: "Not found" });
