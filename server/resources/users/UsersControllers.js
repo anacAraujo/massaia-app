@@ -1,6 +1,6 @@
 import { db } from "../../db/db.js";
 import bcrypt from "bcryptjs";
-import { idSchema, updateUserSchema } from "./UsersSchemas.js";
+import { idSchema, updateUserSchema } from "./usersSchemas.js";
 
 export const getUsers = async (req, res, next) => {
   try {

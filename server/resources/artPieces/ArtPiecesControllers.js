@@ -4,7 +4,7 @@ import {
   songIddSchema,
   addArtPieceSchema,
   updateArtPieceSchema,
-} from "./ArtPiecesSchemas.js";
+} from "./artPiecesSchemas.js";
 
 export const getArtPieces = async (req, res, next) => {
   try {
