@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ViewLandingContext } from "../context/viewLandingContext";
 import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
 import { HomeMenu } from "../components/HomeMenu";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
@@ -9,16 +8,17 @@ import axios from "../lib/axiosConfig.js";
 
 export function Home() {
   const [song, setSong] = useState({});
+  const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
 
-  // TODO use uesState instead of useContext
-
-  const { hasViewedLandingPage, handleHasViewedLandingPage } =
-    React.useContext(ViewLandingContext);
   const viewAlbumsMenu = React.useContext(ViewAlbumsMenu);
 
   const handleVideoPlayerClick = () => {
     handleHasViewedLandingPage(true);
   };
+
+  function handleHasViewedLandingPage(hasViewedLandingPage) {
+    setHasViewedLandingPage(hasViewedLandingPage);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
