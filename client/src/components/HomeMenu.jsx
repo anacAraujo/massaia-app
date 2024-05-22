@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../lib/axiosConfig.js";
 import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
-import { ViewLandingContext } from "../context/viewLandingContext.js"; // Add this line
 import React from "react";
 
 export function HomeMenu({ songId }) {
-  const { handleHasViewedLandingPage } = React.useContext(ViewLandingContext); // Now this line should work
   const handleVideoPlayerClick = () => {
     handleHasViewedLandingPage(true);
   };
