@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
-import { HomeMenu } from "../components/HomeMenu";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
-import "../styles/landingPage.css";
+import { LandingPage } from "../components/LandingPage.jsx";
+
 import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
 
@@ -10,7 +11,12 @@ export function Home() {
   const [song, setSong] = useState({});
   const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
 
-  const viewAlbumsMenu = React.useContext(ViewAlbumsMenu);
+  const { isViewingAlbumsMenu, setIsViewingAlbumsMenu } =
+    React.useContext(ViewAlbumsMenu);
+
+  const handleIsViewingAlbumsMenu = () => {
+    setIsViewingAlbumsMenu(true);
+  };
 
   const handleVideoPlayerClick = () => {
     handleHasViewedLandingPage(true);
@@ -42,32 +48,31 @@ export function Home() {
         muted
       />
 
-      {!hasViewedLandingPage && (
-        <>
-          {/* TODO - create component */}
-          <div className="eyes">
+      {!hasViewedLandingPage && <LandingPage></LandingPage>}
+      {hasViewedLandingPage && !isViewingAlbumsMenu && (
+        <div>
+          <div className="massaia">
+            <p>MASSAIÁ</p>
+          </div>
+          <Link className="menu" to="/menu">
+            <img src="../assets/icons/menu-white.svg" alt="menu" />
+          </Link>
+          <div className="album-cover">
             <img
-              className="img-eyes"
-              src="../assets/images/olhos.png"
-              alt="eyes"
+              src={`${process.env.REACT_APP_UPLOAD_FOLDER}/coverAlbum1.png`}
+              alt="album cover"
+              onClick={handleIsViewingAlbumsMenu}
             />
           </div>
-          <div className="content">
-            <h1>MASSAIÁ</h1>
-            <p>espaços da voz, do som e do olhar</p>
+          <Link className="credits" to="/credits">
+            <p>créditos</p>
+          </Link>
+          <div className="song-info">
+            <p>1:30 {song.name}</p>
           </div>
-          <div className="construction-notice">
-            <p>em construção</p>
-          </div>
-        </>
+        </div>
       )}
-      {hasViewedLandingPage && !viewAlbumsMenu.isViewingAlbumsMenu && (
-        // TODO remove compnent and add here the code
-        <HomeMenu songId={song.id} />
-      )}
-      {hasViewedLandingPage && viewAlbumsMenu.isViewingAlbumsMenu && (
-        <AlbumsMenu />
-      )}
+      {hasViewedLandingPage && isViewingAlbumsMenu && <AlbumsMenu />}
     </div>
   );
 }
