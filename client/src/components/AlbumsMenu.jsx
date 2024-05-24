@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
 import axios from "../lib/axiosConfig.js";
 import "../styles/homeMenus.css";
 
 export function AlbumsMenu() {
+  const { setIsViewingAlbumsMenu } = React.useContext(ViewAlbumsMenu);
+
+  const handleIsViewingAlbumsMenu = () => {
+    setIsViewingAlbumsMenu(false);
+  };
+
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
@@ -25,7 +32,11 @@ export function AlbumsMenu() {
       </div>
 
       {songs.length > 0 && (
-        <div className="menu-albums scrollmenu" key={songs[0].id}>
+        <div
+          className="menu-albums scrollmenu"
+          key={songs[0].id}
+          onClick={handleIsViewingAlbumsMenu}
+        >
           <img
             className="menu-albums-cover"
             src={`${process.env.REACT_APP_UPLOAD_FOLDER}${songs[0].album_cover}`}
