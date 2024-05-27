@@ -11,6 +11,11 @@ export function Home() {
   const [song, setSong] = useState({});
   const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
 
+  const [songId, setSongId] = useState(1);
+  const handleSongChange = (id) => {
+    setSongId(id);
+  };
+
   const { isViewingAlbumsMenu, setIsViewingAlbumsMenu } =
     React.useContext(ViewAlbumsMenu);
 
@@ -29,14 +34,14 @@ export function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/songs/1`);
+        const res = await axios.get(`/songs/${songId}`);
         setSong(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, []);
+  }, [songId]);
 
   return (
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
@@ -72,7 +77,9 @@ export function Home() {
           </div>
         </div>
       )}
-      {hasViewedLandingPage && isViewingAlbumsMenu && <AlbumsMenu />}
+      {hasViewedLandingPage && isViewingAlbumsMenu && (
+        <AlbumsMenu onSongChange={handleSongChange} />
+      )}
     </div>
   );
 }

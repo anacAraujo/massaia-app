@@ -3,7 +3,7 @@ import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
 import axios from "../lib/axiosConfig.js";
 import "../styles/homeMenus.css";
 
-export function AlbumsMenu() {
+export function AlbumsMenu({ onSongChange }) {
   const { setIsViewingAlbumsMenu } = React.useContext(ViewAlbumsMenu);
 
   const handleIsViewingAlbumsMenu = () => {
@@ -25,6 +25,11 @@ export function AlbumsMenu() {
     fetchData();
   }, []);
 
+  const handleSongClick = (id) => {
+    handleIsViewingAlbumsMenu();
+    onSongChange(id);
+  };
+
   return (
     <div>
       <div className="menu-albuns-line">
@@ -35,7 +40,7 @@ export function AlbumsMenu() {
         <div
           className="menu-albums scrollmenu"
           key={songs[0].id}
-          onClick={handleIsViewingAlbumsMenu}
+          onClick={() => handleSongClick(songs[0].id)}
         >
           <img
             className="menu-albums-cover"
@@ -48,6 +53,7 @@ export function AlbumsMenu() {
                 className="menu-albums-song"
                 src={`${process.env.REACT_APP_UPLOAD_FOLDER}${song.image}`}
                 alt="song cover"
+                onClick={() => handleSongClick(song.id)}
               />
             </div>
           ))}
