@@ -30,7 +30,7 @@ export function Menu() {
             className="menu-main-option"
             onClick={() => handleMenuClick("videos")}
           >
-            <p>vídeos</p>
+            <p>temas</p>
             <div
               className="menu-option"
               style={{ display: selectedMenu === "videos" ? "block" : "none" }}
