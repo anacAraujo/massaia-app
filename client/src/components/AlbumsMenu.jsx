@@ -31,8 +31,8 @@ export function AlbumsMenu({ onSongChange }) {
   };
 
   return (
-    <div>
-      <div className="menu-albuns-line">
+    <div className="menu-albuns">
+      <div className="menu-albums-line">
         <img src="../assets/images/line.png" />
       </div>
 
