@@ -64,7 +64,7 @@ export default function Home() {
           </Link>
           <div className="album-cover">
             <img
-              src={`${process.env.REACT_APP_UPLOAD_FOLDER}/coverAlbum1.png`}
+              src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${song.album_cover}`}
               alt="album cover"
               onClick={handleIsViewingAlbumsMenu}
             />
