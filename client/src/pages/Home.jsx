@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
+import CurrentState from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
 
@@ -18,7 +18,7 @@ export default function Home() {
   };
 
   const { isViewingAlbumsMenu, setIsViewingAlbumsMenu } =
-    React.useContext(ViewAlbumsMenu);
+    React.useContext(CurrentState);
 
   const handleIsViewingAlbumsMenu = () => {
     setIsViewingAlbumsMenu(true);

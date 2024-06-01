@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
+import CurrentState from "../context/currentState.js";
 import "../styles/homeMenus.css";
 
 export function AlbumsMenu({ onSongChange, songsInfo }) {
-  const { setIsViewingAlbumsMenu } = React.useContext(ViewAlbumsMenu);
+  const { setIsViewingAlbumsMenu } = React.useContext(CurrentState);
 
   const handleIsViewingAlbumsMenu = () => {
     setIsViewingAlbumsMenu(false);

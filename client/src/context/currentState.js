@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-export const ViewAlbumsMenu = React.createContext();
+export const CurrentState = React.createContext();
 
-//TODO change name of context CurrentStateProvider
-
-export function ViewAlbumsMenuProvider({ children }) {
+export default function CurrentStateProvider({ children }) {
   const [isViewingAlbumsMenu, setIsViewingAlbumsMenu] = useState(false);
   const [currentSong, setCurrentSong] = useState("1");
 
@@ -13,7 +11,7 @@ export function ViewAlbumsMenuProvider({ children }) {
   }, []);
 
   return (
-    <ViewAlbumsMenu.Provider
+    <CurrentState.Provider
       value={{
         isViewingAlbumsMenu,
         setIsViewingAlbumsMenu,
@@ -22,6 +20,6 @@ export function ViewAlbumsMenuProvider({ children }) {
       }}
     >
       {children}
-    </ViewAlbumsMenu.Provider>
+    </CurrentState.Provider>
   );
 }
