@@ -10,6 +10,7 @@ import axios from "../lib/axiosConfig.js";
 export default function Home() {
   const [song, setSong] = useState({});
   const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
+  const [songsByAlbum, setSongsByAlbum] = useState({});
 
   const [songId, setSongId] = useState(1);
   const handleSongChange = (id) => {
@@ -34,14 +35,27 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/songs/${songId}`);
-        setSong(res.data);
+        const res = await axios.get(`/songs`);
+
+        let songsByAlbumObj = {};
+
+        for (const song of res.data) {
+          if (!Array.isArray(songsByAlbumObj[song.album_id])) {
+            songsByAlbumObj[song.album_id] = [];
+          }
+
+          songsByAlbumObj[song.album_id].push(song);
+        }
+
+        setSongsByAlbum(songsByAlbumObj);
+        setSong(res.data[0]);
       } catch (err) {
         console.log(err);
       }
     };
+
     fetchData();
-  }, [songId]);
+  }, []);
 
   return (
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
@@ -78,7 +92,10 @@ export default function Home() {
         </div>
       )}
       {hasViewedLandingPage && isViewingAlbumsMenu && (
-        <AlbumsMenu onSongChange={handleSongChange} />
+        <AlbumsMenu
+          onSongChange={handleSongChange}
+          songsInfo={songsByAlbum[1]}
+        />
       )}
     </div>
   );
