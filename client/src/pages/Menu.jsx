@@ -53,7 +53,7 @@ export default function Menu() {
               style={{ display: selectedMenu === "galeria" ? "block" : "none" }}
             >
               <p>
-                <Link>volume I</Link>
+                <Link to="/gallery/1">volume I</Link>
               </p>
               <p>
                 <Link>volume II</Link>
