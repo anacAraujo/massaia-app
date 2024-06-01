@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 export const ViewAlbumsMenu = React.createContext();
 
 //TODO change name of context CurrentStateProvider
-//TODO add current song
+
 export function ViewAlbumsMenuProvider({ children }) {
   const [isViewingAlbumsMenu, setIsViewingAlbumsMenu] = useState(false);
+  const [currentSong, setCurrentSong] = useState("1");
 
   useEffect(() => {
     setIsViewingAlbumsMenu(false);
@@ -13,7 +14,12 @@ export function ViewAlbumsMenuProvider({ children }) {
 
   return (
     <ViewAlbumsMenu.Provider
-      value={{ isViewingAlbumsMenu, setIsViewingAlbumsMenu }}
+      value={{
+        isViewingAlbumsMenu,
+        setIsViewingAlbumsMenu,
+        currentSong,
+        setCurrentSong,
+      }}
     >
       {children}
     </ViewAlbumsMenu.Provider>
