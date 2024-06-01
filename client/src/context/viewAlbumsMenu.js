@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export const ViewAlbumsMenu = React.createContext();
 
+// CurrentStateProvider
 export function ViewAlbumsMenuProvider({ children }) {
   const [isViewingAlbumsMenu, setIsViewingAlbumsMenu] = useState(false);
 
