@@ -1,29 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ViewAlbumsMenu } from "../context/viewAlbumsMenu.js";
-import axios from "../lib/axiosConfig.js";
 import "../styles/homeMenus.css";
 
-export function AlbumsMenu({ onSongChange }) {
+export function AlbumsMenu({ onSongChange, songsInfo }) {
   const { setIsViewingAlbumsMenu } = React.useContext(ViewAlbumsMenu);
 
   const handleIsViewingAlbumsMenu = () => {
     setIsViewingAlbumsMenu(false);
   };
-
-  const [songs, setSongs] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/songs?album_id=1`);
-        const songsData = res.data;
-        setSongs(songsData);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
 
   const handleSongClick = (id) => {
     handleIsViewingAlbumsMenu();
@@ -36,18 +20,18 @@ export function AlbumsMenu({ onSongChange }) {
         <img src="../assets/images/line.png" />
       </div>
 
-      {songs.length > 0 && (
+      {songsInfo.length > 0 && (
         <div
           className="menu-albums scrollmenu"
-          key={songs[0].id}
-          onClick={() => handleSongClick(songs[0].id)}
+          key={songsInfo[0].id}
+          onClick={() => handleSongClick(songsInfo[0].id)}
         >
           <img
             className="menu-albums-cover"
-            src={`${process.env.REACT_APP_UPLOAD_FOLDER}${songs[0].album_cover}`}
+            src={`${process.env.REACT_APP_UPLOAD_FOLDER}${songsInfo[0].album_cover}`}
             alt="album cover"
           />
-          {songs.map((song) => (
+          {songsInfo.map((song) => (
             <div key={song.id}>
               <img
                 className="menu-albums-song"
