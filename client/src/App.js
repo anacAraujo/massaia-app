@@ -6,6 +6,7 @@ import Gallery  from "./pages/Gallery";
 import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
 import { ViewAlbumsMenuProvider } from "./context/viewAlbumsMenu";
+import cacheApiProvider from "./context/cacheApi";
 
 function App() {
   return (
