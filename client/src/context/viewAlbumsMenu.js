@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 export const ViewAlbumsMenu = React.createContext();
 
-// CurrentStateProvider
+//TODO change name of context CurrentStateProvider
+//TODO add current song
 export function ViewAlbumsMenuProvider({ children }) {
   const [isViewingAlbumsMenu, setIsViewingAlbumsMenu] = useState(false);
 
