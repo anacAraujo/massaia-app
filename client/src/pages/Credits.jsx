@@ -4,7 +4,7 @@ import axios from "../lib/axiosConfig.js";
 
 import "../styles/credits.css";
 
-export function Credits() {
+export default function Credits() {
   const [albums, setAlbums] = useState([]);
 
   useEffect(() => {

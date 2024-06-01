@@ -7,7 +7,7 @@ import { LandingPage } from "../components/LandingPage.jsx";
 import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
 
-export function Home() {
+export default function Home() {
   const [song, setSong] = useState({});
   const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../index.css";
 
-export function Moments() {
+export default function Moments() {
   return (
     <div>
       <div className="navbar">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../styles/menu.css";
 
-export function Menu() {
+export default function Menu() {
   const [selectedMenu, setSelectedMenu] = useState(null);
 
   const handleMenuClick = (menu) => {
