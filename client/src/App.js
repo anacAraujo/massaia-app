@@ -6,7 +6,7 @@ import Gallery from "./pages/Gallery";
 import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
 import CurrentStateProvider from "./context/currentState";
-import cacheApiProvider from "./context/cacheApi";
+import CacheApiProvider from "./context/cacheApi";
 
 function App() {
   return (
