@@ -5,27 +5,29 @@ import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
-import CurrentStateProvider from "./context/currentState";
-import CacheApiProvider from "./context/cacheApi";
+import { CurrentStateProvider } from "./context/currentState";
+import { CacheApiProvider } from "./context/cacheApi";
 
 function App() {
   return (
-    <CurrentStateProvider>
-      <HashRouter>
-        <Routes>
-          <Route>
-            <Route path="/" index element={<Home></Home>}></Route>
-            <Route path="/menu" element={<Menu></Menu>}></Route>
-            <Route
-              path="/gallery/:volume"
-              element={<Gallery></Gallery>}
-            ></Route>
-            <Route path="/credits" element={<Credits></Credits>}></Route>
-            <Route path="/momentos" element={<Moments></Moments>}></Route>
-          </Route>
-        </Routes>
-      </HashRouter>
-    </CurrentStateProvider>
+    <CacheApiProvider>
+      <CurrentStateProvider>
+        <HashRouter>
+          <Routes>
+            <Route>
+              <Route path="/" index element={<Home></Home>}></Route>
+              <Route path="/menu" element={<Menu></Menu>}></Route>
+              <Route
+                path="/gallery/:volume"
+                element={<Gallery></Gallery>}
+              ></Route>
+              <Route path="/credits" element={<Credits></Credits>}></Route>
+              <Route path="/momentos" element={<Moments></Moments>}></Route>
+            </Route>
+          </Routes>
+        </HashRouter>
+      </CurrentStateProvider>
+    </CacheApiProvider>
   );
 }
 
