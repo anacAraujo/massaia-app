@@ -39,7 +39,14 @@ body {
       .menu-option {
         font-family: "AkzidGroLigOsF";
 
-        a {
+        button {
+          background: none;
+          color: inherit;
+          border: none;
+          padding: 0;
+          font: inherit;
+          cursor: pointer;
+          outline: inherit;
           text-decoration: none;
           color: black;
         }
