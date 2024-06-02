@@ -4,21 +4,26 @@ import { CurrentState } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
 import { CacheApi } from "../context/cacheApi.js";
-
+import { useParams } from "react-router-dom";
 import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
 
 export default function Home() {
-  const [song, setSong] = useState({});
   const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
 
+  const { volume } = useParams();
   const [songId, setSongId] = useState(1);
+
   const handleSongChange = (id) => {
     setSongId(id);
   };
 
-  const { isViewingAlbumsMenu, setIsViewingAlbumsMenu } =
-    React.useContext(CurrentState);
+  const {
+    isViewingAlbumsMenu,
+    setIsViewingAlbumsMenu,
+    currentSong,
+    setCurrentSong,
+  } = React.useContext(CurrentState);
 
   const { songsByAlbum, setSongsByAlbum } = React.useContext(CacheApi);
 
@@ -50,13 +55,16 @@ export default function Home() {
           }
 
           setSongsByAlbum(songsByAlbumObj);
-          setSong(res.data[0]);
+          setCurrentSong(res.data[0]);
         } catch (err) {
           console.log(err);
         }
       };
 
       fetchData();
+    } else if (volume != null) {
+      let currentSong = songsByAlbum[volume][songId - 1];
+      setCurrentSong(currentSong);
     }
   }, []);
 
@@ -64,7 +72,7 @@ export default function Home() {
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
       <div className="overlay"></div>
       <video
-        src={process.env.REACT_APP_UPLOAD_FOLDER + song.video}
+        src={process.env.REACT_APP_UPLOAD_FOLDER + currentSong.video}
         autoPlay
         loop
         muted
@@ -81,7 +89,7 @@ export default function Home() {
           </Link>
           <div className="album-cover">
             <img
-              src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${song.album_cover}`}
+              src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${currentSong.album_cover}`}
               alt="album cover"
               onClick={handleIsViewingAlbumsMenu}
             />
@@ -90,7 +98,7 @@ export default function Home() {
             <p>créditos</p>
           </Link>
           <div className="song-info">
-            <p>1:30 {song.name}</p>
+            <p>1:30 {currentSong.name}</p>
           </div>
         </div>
       )}
