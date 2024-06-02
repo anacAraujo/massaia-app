@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export const CurrentState = React.createContext();
 
-export default function CurrentStateProvider({ children }) {
+export function CurrentStateProvider({ children }) {
   const [isViewingAlbumsMenu, setIsViewingAlbumsMenu] = useState(false);
   const [currentSong, setCurrentSong] = useState("1");
 
