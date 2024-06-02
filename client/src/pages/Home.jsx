@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import CurrentState from "../context/currentState.js";
+import { CurrentState } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
+import { CacheApi } from "../context/cacheApi.js";
 
 import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
@@ -10,7 +11,6 @@ import axios from "../lib/axiosConfig.js";
 export default function Home() {
   const [song, setSong] = useState({});
   const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
-  const [songsByAlbum, setSongsByAlbum] = useState({});
 
   const [songId, setSongId] = useState(1);
   const handleSongChange = (id) => {
@@ -19,6 +19,8 @@ export default function Home() {
 
   const { isViewingAlbumsMenu, setIsViewingAlbumsMenu } =
     React.useContext(CurrentState);
+
+  const { songsByAlbum, setSongsByAlbum } = React.useContext(CacheApi);
 
   const handleIsViewingAlbumsMenu = () => {
     setIsViewingAlbumsMenu(true);
@@ -33,28 +35,29 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/songs`);
+    if (Object.keys(songsByAlbum).length <= 0) {
+      const fetchData = async () => {
+        try {
+          const res = await axios.get(`/songs`);
 
-        let songsByAlbumObj = {};
+          let songsByAlbumObj = {};
 
-        for (const song of res.data) {
-          if (!Array.isArray(songsByAlbumObj[song.album_id])) {
-            songsByAlbumObj[song.album_id] = [];
+          for (const song of res.data) {
+            if (!Array.isArray(songsByAlbumObj[song.album_id])) {
+              songsByAlbumObj[song.album_id] = [];
+            }
+            songsByAlbumObj[song.album_id].push(song);
           }
 
-          songsByAlbumObj[song.album_id].push(song);
+          setSongsByAlbum(songsByAlbumObj);
+          setSong(res.data[0]);
+        } catch (err) {
+          console.log(err);
         }
+      };
 
-        setSongsByAlbum(songsByAlbumObj);
-        setSong(res.data[0]);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchData();
+      fetchData();
+    }
   }, []);
 
   return (
