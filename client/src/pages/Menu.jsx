@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { CurrentState } from "../context/currentState.js";
+import { CacheApi } from "../context/cacheApi.js";
 import "../styles/menu.css";
 
 export default function Menu() {
@@ -9,6 +11,14 @@ export default function Menu() {
   const handleMenuClick = (menu) => {
     setSelectedMenu(selectedMenu === menu ? null : menu);
   };
+
+  const { setCurrentSong } = React.useContext(CurrentState);
+  const { songsByAlbum } = React.useContext(CacheApi);
+
+  function handleChangeCurrentSong(volume) {
+    setCurrentSong(songsByAlbum[volume]["0"]);
+    window.location.href = "/";
+  }
 
   return (
     <div>
@@ -35,11 +45,15 @@ export default function Menu() {
               className="menu-option"
               style={{ display: selectedMenu === "videos" ? "block" : "none" }}
             >
+              {/* TODO  change to  button - set current song to first song of each volume and then redirect*/}
               <p>
-                <Link>volume I</Link>
+                <button onClick={handleChangeCurrentSong("1")}>volume I</button>
               </p>
+
               <p>
-                <Link>volume II</Link>
+                <button onClick={handleChangeCurrentSong("2")}>
+                  volume II
+                </button>
               </p>
             </div>
           </div>
