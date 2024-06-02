@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CurrentState from "../context/currentState.js";
+import { CurrentState } from "../context/currentState.js";
 import "../styles/homeMenus.css";
 
 export function AlbumsMenu({ onSongChange, songsInfo }) {
