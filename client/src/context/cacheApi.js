@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export const CacheApi = React.createContext();
 
 // TODO change name to cacheApi
-export default function CacheApiProvider({ children }) {
-  const [cacheApi, setCacheApi] = useState({});
-
-  useEffect(() => {
-    setCacheApi();
-  }, []);
+export function CacheApiProvider({ children }) {
+  const [songsByAlbum, setSongsByAlbum] = useState({});
 
   return (
-    <CacheApi.Provider value={{ cacheApi, setCacheApi }}>
+    <CacheApi.Provider value={{ songsByAlbum, setSongsByAlbum }}>
       {children}
     </CacheApi.Provider>
   );
