@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CurrentState } from "../context/currentState.js";
+import { USER_STATES } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
 import { CacheApi } from "../context/cacheApi.js";
@@ -9,8 +10,6 @@ import "../styles/homeMenus.css";
 import axios from "../lib/axiosConfig.js";
 
 export default function Home() {
-  const [hasViewedLandingPage, setHasViewedLandingPage] = useState(false);
-
   const { volume } = useParams();
   const [songId, setSongId] = useState(1);
 
@@ -18,26 +17,18 @@ export default function Home() {
     setSongId(id);
   };
 
-  const {
-    isViewingAlbumsMenu,
-    setIsViewingAlbumsMenu,
-    currentSong,
-    setCurrentSong,
-  } = React.useContext(CurrentState);
+  const { currentSong, setCurrentSong, userState, setUserState } =
+    React.useContext(CurrentState);
 
   const { songsByAlbum, setSongsByAlbum } = React.useContext(CacheApi);
 
-  const handleIsViewingAlbumsMenu = () => {
-    setIsViewingAlbumsMenu(true);
+  const handleAlbumCoverClick = () => {
+    setUserState(USER_STATES.ALBUMS_MENU);
   };
 
   const handleVideoPlayerClick = () => {
-    handleHasViewedLandingPage(true);
+    setUserState(USER_STATES.SONG_MENU);
   };
-
-  function handleHasViewedLandingPage(hasViewedLandingPage) {
-    setHasViewedLandingPage(hasViewedLandingPage);
-  }
 
   useEffect(() => {
     if (Object.keys(songsByAlbum).length <= 0) {
@@ -66,7 +57,7 @@ export default function Home() {
       let currentSong = songsByAlbum[volume][songId - 1];
       setCurrentSong(currentSong);
     }
-  }, []);
+  }, [userState]);
 
   return (
     <div className="videoPlayer" onClick={handleVideoPlayerClick}>
@@ -78,8 +69,8 @@ export default function Home() {
         muted
       />
 
-      {!hasViewedLandingPage && <LandingPage></LandingPage>}
-      {hasViewedLandingPage && !isViewingAlbumsMenu && (
+      {userState === USER_STATES.LANDING_PAGE && <LandingPage></LandingPage>}
+      {userState === USER_STATES.SONG_MENU && (
         <div>
           <div className="massaia">
             <p>MASSAIÁ</p>
@@ -91,7 +82,7 @@ export default function Home() {
             <img
               src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${currentSong.album_cover}`}
               alt="album cover"
-              onClick={handleIsViewingAlbumsMenu}
+              onClick={handleAlbumCoverClick}
             />
           </div>
           <Link className="credits" to="/credits">
@@ -102,7 +93,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      {hasViewedLandingPage && isViewingAlbumsMenu && (
+      {userState === USER_STATES.ALBUMS_MENU && (
         <AlbumsMenu
           onSongChange={handleSongChange}
           songsInfo={songsByAlbum[1]}
