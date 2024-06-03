@@ -17,7 +17,7 @@ export default function Menu() {
 
   function handleChangeCurrentSong(volume) {
     setCurrentSong(songsByAlbum[volume]["0"]);
-    window.location.href = "/";
+    //  window.location.href = "/";
   }
 
   return (
@@ -33,7 +33,6 @@ export default function Menu() {
           />
         </Link>
       </div>
-
       <div>
         <div className="menu-options">
           <div
