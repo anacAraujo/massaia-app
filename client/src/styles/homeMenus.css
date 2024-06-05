@@ -164,23 +164,22 @@ body {
     }
   }
 
-  .menu-albuns{
+  .menu-albuns {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-  .menu-albums-line{
+  .menu-albums-line {
     position: absolute;
     top: 0;
     margin-top: 10%;
 
-    img{
+    img {
       width: 150px;
       height: auto;
     }
-  
   }
 }
 
