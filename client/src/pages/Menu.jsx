@@ -69,7 +69,11 @@ export default function Menu() {
                 <Link to="/gallery/1">volume I</Link>
               </p>
               <p>
-                <Link>volume II</Link>
+                <Link
+                // to="/gallery/2"
+                >
+                  volume II
+                </Link>
               </p>
             </div>
           </div>
