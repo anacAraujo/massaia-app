@@ -1,0 +1,31 @@
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header-container {
+  flex: 0 0 10vh;
+}
+
+.carousel-container {
+  flex: 1 0 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-controllers-container {
+  flex: 0 0 20vh;
+}
+
+.display_art_pieces {
+  width: 100%;
+  height: 100%;
+}
+
+.art_piece img {
+  width: 100vw;
+  height: 85vh;
+  object-fit: contain;
+}

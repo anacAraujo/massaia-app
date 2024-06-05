@@ -1,60 +1,83 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "../lib/axiosConfig.js";
+import Carousel from "react-bootstrap/Carousel";
 
 import Header from "../components/Header";
 import MusicControllers from "../components/MusicControllers";
-
 import { CacheApi } from "../context/cacheApi.js";
+import "../styles/gallery.css";
 
 export default function Gallery() {
   const { volume } = useParams();
-  const { artPieces, setArtPieces } = useState("");
-
-  console.log("volume: ", volume);
+  const [artPieces, setArtPieces] = useState({});
 
   const { artPiecesByAlbum, setArtPiecesByAlbum } = React.useContext(CacheApi);
 
   useEffect(() => {
-    if (Object.keys(artPiecesByAlbum).length <= 0) {
-      const fetchData = async () => {
-        try {
-          const res = await axios.get(`/art_pieces`);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/art_pieces`);
 
-          let artPiecesByAlbumObj = {};
+        let artPiecesByAlbumObj = {};
 
-          for (const art_piece of res.data) {
-            if (!Array.isArray(artPiecesByAlbumObj[art_piece.album_id])) {
-              artPiecesByAlbumObj[art_piece.album_id] = [];
-            }
-            artPiecesByAlbumObj[art_piece.album_id].push(art_piece);
+        for (const art_piece of res.data) {
+          if (!Array.isArray(artPiecesByAlbumObj[art_piece.album_id])) {
+            artPiecesByAlbumObj[art_piece.album_id] = [];
           }
-
-          setArtPiecesByAlbum(artPiecesByAlbumObj);
-          if (volume === "1") {
-            setArtPieces(res.data[0]);
-          } else {
-            setArtPieces(res.data[1]);
-          }
-        } catch (err) {
-          console.log(err);
+          artPiecesByAlbumObj[art_piece.album_id].push(art_piece);
         }
-      };
 
+        setArtPiecesByAlbum(artPiecesByAlbumObj);
+
+        if (volume) {
+          setArtPieces(artPiecesByAlbumObj[volume] || []);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (Object.keys(artPiecesByAlbum).length <= 0) {
       fetchData();
-    } else if (volume != null) {
-      let artPieces = artPiecesByAlbum[volume];
-      setArtPieces(artPieces);
+    } else if (volume) {
+      setArtPieces(artPiecesByAlbum[volume] || []);
     }
-  }, []);
+  }, [volume, artPiecesByAlbum, setArtPiecesByAlbum]);
 
   return (
-    <di>
-      <Header></Header>
-      <div>
-        <img src={artPieces} />
+    <div className="gallery-container">
+      <div className="header-container">
+        <Header />
       </div>
-      <MusicControllers></MusicControllers>
-    </di>
+      <div className="carousel-container">
+        <Carousel className="display_art_pieces">
+          {artPieces && artPieces.length > 0 ? (
+            artPieces.map((artPiece) => (
+              <Carousel.Item className="art_piece" key={artPiece.id}>
+                <img
+                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
+                  alt={artPiece.song_name}
+                />
+                <Carousel.Caption>
+                  <h3>{artPiece.song_name}</h3>
+                  <p>{artPiece.author_name}</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            ))
+          ) : (
+            <Carousel.Item>
+              <img src="placeholder.jpg" alt="placeholder" />
+              <Carousel.Caption>
+                <h3>No Art Pieces Available</h3>
+              </Carousel.Caption>
+            </Carousel.Item>
+          )}
+        </Carousel>
+      </div>
+      <div className="music-controllers-container">
+        <MusicControllers />
+      </div>
+    </div>
   );
 }
