@@ -3,7 +3,7 @@ import "../styles/musicControllers.css";
 export default function MusicControllers() {
   return (
     <div className="musicControllers">
-      <div>
+      <div className="left-group">
         <button className="musicControllers-vol">vol. 1</button>
         <p className="musicControllers-song-name">nome da música</p>
         <img
@@ -13,11 +13,16 @@ export default function MusicControllers() {
         />
       </div>
 
-      <div>
-        <img src="" />
+      <div className="center-group">
+        <button className="control-button">Prev</button>
+        <button className="control-button">Play</button>
+        <button className="control-button">Next</button>
       </div>
 
-      <div></div>
+      <div className="right-group">
+        <button className="mute-button">Mute</button>
+        <input type="range" className="volume-slider" />
+      </div>
     </div>
   );
 }
