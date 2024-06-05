@@ -10,7 +10,7 @@ import "../styles/gallery.css";
 
 export default function Gallery() {
   const { volume } = useParams();
-  const [artPieces, setArtPieces] = useState({});
+  const [artPieces, setArtPieces] = useState([]);
 
   const { artPiecesByAlbum, setArtPiecesByAlbum } = React.useContext(CacheApi);
 
@@ -74,6 +74,29 @@ export default function Gallery() {
             </Carousel.Item>
           )}
         </Carousel>
+      </div>
+      <div className="grid-container">
+        {artPieces && artPieces.length > 0 ? (
+          artPieces.map((artPiece) => (
+            <div className="grid-item" key={artPiece.id}>
+              <img
+                src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
+                alt={artPiece.song_name}
+              />
+              <div className="art_info">
+                <h3>{artPiece.song_name}</h3>
+                <p>{artPiece.author_name}</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="grid-item">
+            <img src="placeholder.jpg" alt="placeholder" />
+            <div className="art_info">
+              <h3>No Art Pieces Available</h3>
+            </div>
+          </div>
+        )}
       </div>
       <div className="music-controllers-container">
         <MusicControllers />

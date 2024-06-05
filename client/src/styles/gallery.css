@@ -1,31 +1,61 @@
-.gallery-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
 .header-container {
-  flex: 0 0 10vh;
-}
-
-.carousel-container {
-  flex: 1 0 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1; /* Ensure the header is above other content */
 }
 
 .music-controllers-container {
-  flex: 0 0 20vh;
-}
-
-.display_art_pieces {
+  position: fixed;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  z-index: 1; /* Ensure the music controller is above other content */
+  background-color: bisque;
 }
 
-.art_piece img {
-  width: 100vw;
-  height: 85vh;
-  object-fit: contain;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* One image per row */
+  grid-auto-rows: auto; /* Automatically size rows to fit content */
+  gap: 10px;
+  width: 100%;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.art_info {
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  .carousel-container {
+    display: flex;
+  }
+
+  .grid-container {
+    display: none;
+  }
+
+  .display_art_pieces {
+    width: 100%;
+    height: 100%;
+  }
+
+  .art_piece img {
+    width: 100vw;
+    height: 85vh;
+    object-fit: contain;
+  }
 }
