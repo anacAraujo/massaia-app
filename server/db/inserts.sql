@@ -80,3 +80,12 @@ UPDATE `massaia`.`songs` SET `image` = 'o-pior-de-mim.jpg' WHERE (`id` = '7');
 UPDATE `massaia`.`songs` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '8');
 UPDATE `massaia`.`songs` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '9');
 
+UPDATE `massaia`.`art_pieces` SET `image` = 'Capa-Massaia-Voli.jpg' WHERE (`id` = '1');
+UPDATE `massaia`.`art_pieces` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '2');
+UPDATE `massaia`.`art_pieces` SET `image` = 'HomemMerda.jpg' WHERE (`id` = '3');
+UPDATE `massaia`.`art_pieces` SET `image` = 'fadoDesencontrado.jpeg' WHERE (`id` = '4');
+UPDATE `massaia`.`art_pieces` SET `image` = 'IMG_7206.jpeg' WHERE (`id` = '5');
+UPDATE `massaia`.`art_pieces` SET `image` = 'IMG_7203.jpeg' WHERE (`id` = '6');
+UPDATE `massaia`.`art_pieces` SET `image` = 'ficar-por-ai.jpg' WHERE (`id` = '7');
+UPDATE `massaia`.`art_pieces` SET `image` = 'o-pior-de-mim.jpg' WHERE (`id` = '8');
+UPDATE `massaia`.`art_pieces` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '9');
