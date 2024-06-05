@@ -8,12 +8,14 @@ export default function MusicControllers() {
         <p className="musicControllers-song-name">nome da música</p>
         <img
           className="musicControllers-more-songs"
-          src=""
+          src="../assets/icons/arrow-up.png"
           alt="view all songs"
         />
       </div>
 
-      <div></div>
+      <div>
+        <img src="" />
+      </div>
 
       <div></div>
     </div>
