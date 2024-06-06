@@ -6,6 +6,7 @@ export const CacheApi = React.createContext();
 export function CacheApiProvider({ children }) {
   const [songsByAlbum, setSongsByAlbum] = useState({});
   const [artPiecesByAlbum, setArtPiecesByAlbum] = useState({});
+  const [moments, setMoments] = useState([]);
 
   return (
     <CacheApi.Provider
@@ -14,6 +15,8 @@ export function CacheApiProvider({ children }) {
         setSongsByAlbum,
         artPiecesByAlbum,
         setArtPiecesByAlbum,
+        moments,
+        setMoments,
       }}
     >
       {children}
