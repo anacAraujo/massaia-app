@@ -59,7 +59,7 @@
 
   .art_piece img {
     width: 100vw;
-    height: 85vh;
+    height: 80vh;
     object-fit: cover;
   }
 
@@ -71,7 +71,7 @@
 
   .carousel-caption {
     position: absolute;
-    bottom: 2.8rem;
+    bottom: 3rem;
     left: 2rem;
     background-color: white;
     padding: 10px;
