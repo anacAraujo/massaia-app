@@ -8,6 +8,8 @@ export function CacheApiProvider({ children }) {
   const [artPiecesByAlbum, setArtPiecesByAlbum] = useState({});
   const [moments, setMoments] = useState([]);
 
+  //TODO move request here - verify if state has info - initializeSongsByAlbum
+
   return (
     <CacheApi.Provider
       value={{
