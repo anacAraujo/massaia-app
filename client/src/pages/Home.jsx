@@ -17,18 +17,10 @@ export default function Home() {
     setSongId(id);
   };
 
-  const { currentSong, setCurrentSong, userState, setUserState } =
+  const { currentSong, setCurrentSong, userState, handleUserStateChange } =
     React.useContext(CurrentState);
 
   const { songsByAlbum, setSongsByAlbum } = React.useContext(CacheApi);
-
-  const handleAlbumCoverClick = () => {
-    setUserState(USER_STATES.ALBUMS_MENU);
-  };
-
-  const handleVideoPlayerClick = () => {
-    setUserState(USER_STATES.SONG_MENU);
-  };
 
   useEffect(() => {
     if (Object.keys(songsByAlbum).length <= 0) {
@@ -60,7 +52,10 @@ export default function Home() {
   }, [userState]);
 
   return (
-    <div className="videoPlayer" onClick={handleVideoPlayerClick}>
+    <div
+      className="videoPlayer"
+      onClick={() => handleUserStateChange(USER_STATES.SONG_MENU)}
+    >
       <div className="overlay"></div>
       <video
         src={process.env.REACT_APP_UPLOAD_FOLDER + currentSong.video}
@@ -82,7 +77,7 @@ export default function Home() {
             <img
               src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${currentSong.album_cover}`}
               alt="album cover"
-              onClick={handleAlbumCoverClick}
+              onClick={() => handleUserStateChange(USER_STATES.ALBUMS_MENU)}
             />
           </div>
           <Link className="credits" to="/credits">
