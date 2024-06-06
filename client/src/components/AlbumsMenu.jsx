@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { CurrentState } from "../context/currentState.js";
+import { USER_STATES } from "../context/currentState.js";
 import "../styles/homeMenus.css";
 
 export function AlbumsMenu({ onSongChange, songsInfo }) {
-  const { setIsViewingAlbumsMenu } = React.useContext(CurrentState);
+  const { handleUserStateChange } = React.useContext(CurrentState);
 
   const handleIsViewingAlbumsMenu = () => {
-    setIsViewingAlbumsMenu(false);
+    handleUserStateChange(USER_STATES.SONG_MENU);
   };
 
   const handleSongClick = (id) => {
