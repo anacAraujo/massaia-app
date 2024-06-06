@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../lib/axiosConfig.js";
 
 import { CacheApi } from "../context/cacheApi.js";
 import "../index.css";
@@ -13,7 +13,7 @@ export default function Moments() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/moments`);
+        const res = await axios.get(`moments`);
         if (Array.isArray(res.data)) {
           setMoments(res.data);
           setLocalMoments(res.data);
