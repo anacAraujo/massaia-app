@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  background-color: bisque;
+  background-color: white;
 }
 
 .left-group,
@@ -23,15 +23,24 @@
 
 .musicControllers-vol {
   margin-right: 1rem;
+  padding: 0 0.5rem;
+  color: white;
+  background-color: black;
+  font-family: "AkzidGroReg";
 }
 
 .musicControllers-song-name {
   margin-right: 1rem;
+  margin-bottom: 0;
+  padding: 0.5rem 0;
 }
 
 .musicControllers-more-songs {
   width: 20px;
   height: auto;
+  margin-bottom: 0;
+  color: black;
+  font-family: "AkzidGroReg";
 }
 
 .center-group {
