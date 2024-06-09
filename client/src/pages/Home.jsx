@@ -5,50 +5,22 @@ import { USER_STATES } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
 import { CacheApi } from "../context/cacheApi.js";
-import { useParams } from "react-router-dom";
 import "../styles/homeMenus.css";
-import axios from "../lib/axiosConfig.js";
 
 export default function Home() {
-  const { volume } = useParams();
   const [songId, setSongId] = useState(1);
 
   const handleSongChange = (id) => {
     setSongId(id);
   };
 
-  const { currentSong, setCurrentSong, userState, handleUserStateChange } =
+  const { currentSong, userState, handleUserStateChange } =
     React.useContext(CurrentState);
 
-  const { songsByAlbum, setSongsByAlbum } = React.useContext(CacheApi);
+  const { songsByAlbum, initializeSongsByAlbum } = React.useContext(CacheApi);
 
   useEffect(() => {
-    if (Object.keys(songsByAlbum).length <= 0) {
-      const fetchData = async () => {
-        try {
-          const res = await axios.get(`/songs`);
-
-          let songsByAlbumObj = {};
-
-          for (const song of res.data) {
-            if (!Array.isArray(songsByAlbumObj[song.album_id])) {
-              songsByAlbumObj[song.album_id] = [];
-            }
-            songsByAlbumObj[song.album_id].push(song);
-          }
-
-          setSongsByAlbum(songsByAlbumObj);
-          setCurrentSong(res.data[0]);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-      fetchData();
-    } else if (volume != null) {
-      let currentSong = songsByAlbum[volume][songId - 1];
-      setCurrentSong(currentSong);
-    }
+    initializeSongsByAlbum();
   }, [userState]);
 
   return (
