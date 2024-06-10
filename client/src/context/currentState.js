@@ -6,7 +6,7 @@ export const USER_STATES = {
   LANDING_PAGE: "LANDING_PAGE",
   SONG_MENU: "SONG_MENU",
   ALBUMS_MENU: "ALBUMS_MENU",
-  //TODO add component
+  SONG: "SONG",
   SONG_VIDEO: "SONG_VIDEO",
 };
 
