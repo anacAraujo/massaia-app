@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 export const CurrentState = React.createContext();
 
 export const USER_STATES = {
+  LOADING_PAGE: "LOADING_PAGE",
   LANDING_PAGE: "LANDING_PAGE",
   SONG_MENU: "SONG_MENU",
   ALBUMS_MENU: "ALBUMS_MENU",
