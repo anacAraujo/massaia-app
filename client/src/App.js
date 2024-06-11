@@ -15,6 +15,7 @@ function App() {
         <HashRouter>
           <Routes>
             <Route>
+              {/* TODO create a specific link for each song to relate each one to a qr code */}
               <Route path="/" index element={<Home></Home>}></Route>
               <Route path="/menu" element={<Menu></Menu>}></Route>
               <Route
