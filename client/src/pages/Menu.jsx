@@ -90,7 +90,7 @@ export default function Menu() {
                 <Link>projetos</Link>
               </p>
               <p>
-                <Link>autores</Link>
+                <Link to="/autores">autores</Link>
               </p>
               <p>
                 <Link>artistas</Link>
