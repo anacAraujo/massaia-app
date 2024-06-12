@@ -5,6 +5,7 @@ import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
+import Authors from "./pages/Authors";
 import { CurrentStateProvider } from "./context/currentState";
 import { CacheApiProvider } from "./context/cacheApi";
 
@@ -24,6 +25,7 @@ function App() {
               ></Route>
               <Route path="/credits" element={<Credits></Credits>}></Route>
               <Route path="/momentos" element={<Moments></Moments>}></Route>
+              <Route path="/autores" element={<Authors></Authors>}></Route>
             </Route>
           </Routes>
         </HashRouter>
