@@ -89,3 +89,6 @@ UPDATE `massaia`.`art_pieces` SET `image` = 'IMG_7203.jpeg' WHERE (`id` = '6');
 UPDATE `massaia`.`art_pieces` SET `image` = 'ficar-por-ai.jpg' WHERE (`id` = '7');
 UPDATE `massaia`.`art_pieces` SET `image` = 'o-pior-de-mim.jpg' WHERE (`id` = '8');
 UPDATE `massaia`.`art_pieces` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '9');
+
+UPDATE `massaia`.`authors` SET `image` = 'pedro_almeida.jpg' WHERE (`id` = '2');
+UPDATE `massaia`.`authors` SET `image` = 'helena_caspurro.jpeg' WHERE (`id` = '1');
