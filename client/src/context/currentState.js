@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 export const CurrentState = React.createContext();
 
@@ -14,10 +14,13 @@ export const USER_STATES = {
 export function CurrentStateProvider({ children }) {
   const [currentSong, setCurrentSong] = useState({});
   const [userState, setUserState] = useState(USER_STATES.LANDING_PAGE);
-  console.log("----userState ", userState);
 
   function handleUserStateChange(newUserState) {
+    console.log(`Changing state to ${newUserState}`);
     if (newUserState === userState) {
+      return;
+    }
+    if (newUserState === "LOADING_PAGE") {
       return;
     }
     setUserState(newUserState);
