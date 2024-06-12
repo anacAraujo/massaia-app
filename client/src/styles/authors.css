@@ -1,0 +1,52 @@
+/* Authors.css */
+.container {
+  display: flex;
+  margin: 0;
+  position: relative;
+}
+
+.column {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.author-info {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  visibility: hidden; /* Initially hide the author information */
+}
+
+.author-info.active {
+  visibility: visible; /* Show the author information when active */
+}
+
+.author-name {
+  font-size: 24px;
+  font-family: "AkzidGroMed";
+}
+
+.author-image {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  width: 50vw;
+  height: 85vh;
+  object-fit: cover;
+  margin-top: 15vh;
+}
+
+.author-info button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
