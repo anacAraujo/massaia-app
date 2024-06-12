@@ -11,6 +11,12 @@
     url("../public/assets/font/AkzidGroReg.ttf") format("opentype");
   font-weight: normal;
 }
+@font-face {
+  font-family: "AkzidGroMed";
+  src: local("AkzidGroMed"),
+    url("../public/assets/font/AkzidGroMed.ttf") format("opentype");
+  font-weight: normal;
+}
 
 * {
   margin: 0;
