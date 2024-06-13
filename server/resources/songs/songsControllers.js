@@ -1,5 +1,6 @@
 import { query } from "express";
 import { db } from "../../db/db.js";
+import { sleep } from "../../utils/sleep.js";
 
 import {
   idSchema,
@@ -26,6 +27,8 @@ export async function getSongs(req, res, next) {
     if (results.length === 0) {
       return res.status(404).json({ message: "Songs not found!" });
     }
+
+    await sleep(1000);
 
     res.status(200).json(results);
   } catch (error) {
