@@ -1,37 +1,40 @@
 import React, { useState } from "react";
 import axios from "../lib/axiosConfig.js";
-import { CurrentState } from "./currentState.js";
 
 export const CacheApi = React.createContext();
 
 export function CacheApiProvider({ children }) {
   const [songsByAlbum, setSongsByAlbum] = useState({});
+  const [songsById, setSongsById] = useState({});
+
   const [artPiecesByAlbum, setArtPiecesByAlbum] = useState({});
   const [moments, setMoments] = useState([]);
-  const { setCurrentSong } = React.useContext(CurrentState);
 
-  function initializeSongsByAlbum() {
-    if (Object.keys(songsByAlbum).length <= 0) {
-      const fetchData = async () => {
-        try {
-          const res = await axios.get(`/songs`);
+  async function initSongsInfo() {
+    if (Object.keys(songsByAlbum).length > 0) {
+      return songsByAlbum;
+    }
+    try {
+      const res = await axios.get(`/songs`);
 
-          let songsByAlbumObj = {};
+      let songsByAlbumObj = {};
+      let songsByIdObj = {};
 
-          for (const song of res.data) {
-            if (!Array.isArray(songsByAlbumObj[song.album_id])) {
-              songsByAlbumObj[song.album_id] = [];
-            }
-            songsByAlbumObj[song.album_id].push(song);
-          }
-
-          setSongsByAlbum(songsByAlbumObj);
-          setCurrentSong(res.data[0]);
-        } catch (err) {
-          console.log(err);
+      for (const song of res.data) {
+        if (!Array.isArray(songsByAlbumObj[song.album_id])) {
+          songsByAlbumObj[song.album_id] = [];
         }
-      };
-      fetchData();
+        songsByAlbumObj[song.album_id].push(song);
+
+        songsByIdObj[song.id] = song;
+      }
+
+      setSongsByAlbum(songsByAlbumObj);
+
+      setSongsById(songsByIdObj);
+      return songsByAlbumObj;
+    } catch (err) {
+      console.error("Error getting songsByAlbum ", err);
     }
   }
 
@@ -39,7 +42,8 @@ export function CacheApiProvider({ children }) {
     <CacheApi.Provider
       value={{
         songsByAlbum,
-        initializeSongsByAlbum,
+        songsById,
+        initSongsInfo,
         artPiecesByAlbum,
         setArtPiecesByAlbum,
         moments,
