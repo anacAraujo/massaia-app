@@ -8,12 +8,6 @@ import { CacheApi } from "../context/cacheApi.js";
 import "../styles/homeMenus.css";
 
 export default function Home() {
-  const [songId, setSongId] = useState(1);
-
-  const handleSongChange = (id) => {
-    setSongId(id);
-  };
-
   const { currentSong, userState, handleUserStateChange } =
     React.useContext(CurrentState);
 
@@ -61,10 +55,7 @@ export default function Home() {
         </div>
       )}
       {userState === USER_STATES.ALBUMS_MENU && (
-        <AlbumsMenu
-          onSongChange={handleSongChange}
-          songsInfo={songsByAlbum[1]}
-        />
+        <AlbumsMenu songsInfo={songsByAlbum[1]} />
       )}
     </div>
   );
