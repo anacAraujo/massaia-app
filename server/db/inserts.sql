@@ -92,3 +92,4 @@ UPDATE `massaia`.`art_pieces` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '9'
 
 UPDATE `massaia`.`authors` SET `image` = 'pedro_almeida.jpg' WHERE (`id` = '2');
 UPDATE `massaia`.`authors` SET `image` = 'helena_caspurro.jpeg' WHERE (`id` = '1');
+UPDATE `massaia`.`songs` SET `video` = 'VIDA.mp4' WHERE (`id` = '8');
