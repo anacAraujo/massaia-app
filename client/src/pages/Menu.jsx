@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+//TODO make global component like header
+
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import { CurrentState } from "../context/currentState.js";
 import { CacheApi } from "../context/cacheApi.js";
@@ -13,12 +15,18 @@ export default function Menu() {
   };
 
   const { setCurrentSong } = React.useContext(CurrentState);
-  const { songsByAlbum } = React.useContext(CacheApi);
+  const { songsByAlbum, initSongsInfo } = React.useContext(CacheApi);
 
-  function handleChangeCurrentSong(volume) {
-    setCurrentSong(songsByAlbum[volume]["0"]);
-    //  window.location.href = "/";
+  const navigate = useNavigate();
+
+  function handleChangeCurrentSong(album_id, destination) {
+    setCurrentSong(songsByAlbum[album_id][0]);
+    navigate(destination);
   }
+
+  useEffect(() => {
+    initSongsInfo();
+  }, []);
 
   return (
     <div>
@@ -46,11 +54,13 @@ export default function Menu() {
             >
               {/* TODO  change to  button - set current song to first song of each volume and then redirect*/}
               <p>
-                <button onClick={handleChangeCurrentSong("1")}>volume I</button>
+                <button onClick={() => handleChangeCurrentSong("1", "/")}>
+                  volume I
+                </button>
               </p>
 
               <p>
-                <button onClick={handleChangeCurrentSong("2")}>
+                <button onClick={() => handleChangeCurrentSong("2", "/")}>
                   volume II
                 </button>
               </p>
