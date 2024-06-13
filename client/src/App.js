@@ -13,19 +13,23 @@ function App() {
   return (
     <CurrentStateProvider>
       <CacheApiProvider>
+        {/* TODO remove HashRouter */}
         <HashRouter>
           <Routes>
-            <Route>
+            <Route path="/">
+              {/* TODO add header as global component */}
               {/* TODO create a specific link for each song to relate each one to a qr code */}
-              <Route path="/" index element={<Home></Home>}></Route>
-              <Route path="/menu" element={<Menu></Menu>}></Route>
+              <Route index element={<Home></Home>}></Route>
+              <Route path="temas/:songId" element={<Home></Home>}></Route>
+              <Route path="menu" element={<Menu></Menu>}></Route>
               <Route
-                path="/gallery/:volume"
+                // TODO change volume to songId
+                path="gallery/:volume"
                 element={<Gallery></Gallery>}
               ></Route>
-              <Route path="/credits" element={<Credits></Credits>}></Route>
-              <Route path="/momentos" element={<Moments></Moments>}></Route>
-              <Route path="/autores" element={<Authors></Authors>}></Route>
+              <Route path="credits" element={<Credits></Credits>}></Route>
+              <Route path="momentos" element={<Moments></Moments>}></Route>
+              <Route path="autores" element={<Authors></Authors>}></Route>
             </Route>
           </Routes>
         </HashRouter>
