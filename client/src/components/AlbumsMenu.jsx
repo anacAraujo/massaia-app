@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CurrentState } from "../context/currentState.js";
-import { CacheApi } from "../context/cacheApi.js";
 import { USER_STATES } from "../context/currentState.js";
 import "../styles/homeMenus.css";
 
 export function AlbumsMenu({ songsInfo }) {
   const { setCurrentSong, handleUserStateChange } =
     React.useContext(CurrentState);
-
-  const { songsByAlbum } = React.useContext(CacheApi);
 
   const handleIsViewingAlbumsMenu = () => {
     handleUserStateChange(USER_STATES.SONG_MENU);
