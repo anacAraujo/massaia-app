@@ -1,31 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { CurrentState } from "../context/currentState.js";
+import { CacheApi } from "../context/cacheApi.js";
 import { USER_STATES } from "../context/currentState.js";
 import "../styles/homeMenus.css";
 
-export function AlbumsMenu({ onSongChange, songsInfo }) {
-  const { handleUserStateChange } = React.useContext(CurrentState);
+export function AlbumsMenu({ songsInfo }) {
+  const { setCurrentSong, handleUserStateChange } =
+    React.useContext(CurrentState);
+
+  const { songsByAlbum } = React.useContext(CacheApi);
 
   const handleIsViewingAlbumsMenu = () => {
     handleUserStateChange(USER_STATES.SONG_MENU);
   };
 
-  const handleSongClick = (id) => {
-    handleIsViewingAlbumsMenu();
-    onSongChange(id);
-  };
+  function handleChangeCurrentSong(id) {
+    let selectedSong = {};
+    songsInfo.forEach((song) => {
+      if (song.id === id) {
+        selectedSong = song;
+      }
+    });
+    setCurrentSong(selectedSong);
+  }
 
   return (
     <div className="menu-albuns">
-      <div className="menu-albums-line">
-        <img src="../assets/images/line.png" />
-      </div>
-
       {songsInfo.length > 0 && (
         <div
           className="menu-albums scrollmenu"
           key={songsInfo[0].id}
-          onClick={() => handleSongClick(songsInfo[0].id)}
+          onClick={() => handleIsViewingAlbumsMenu}
         >
           <img
             className="menu-albums-cover"
@@ -38,7 +43,10 @@ export function AlbumsMenu({ onSongChange, songsInfo }) {
                 className="menu-albums-song"
                 src={`${process.env.REACT_APP_UPLOAD_FOLDER}${song.image}`}
                 alt="song cover"
-                onClick={() => handleSongClick(song.id)}
+                onClick={() => {
+                  handleIsViewingAlbumsMenu();
+                  handleChangeCurrentSong(song.id);
+                }}
               />
             </div>
           ))}
