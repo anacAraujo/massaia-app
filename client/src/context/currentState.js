@@ -13,14 +13,11 @@ export const USER_STATES = {
 
 export function CurrentStateProvider({ children }) {
   const [currentSong, setCurrentSong] = useState({});
-  const [userState, setUserState] = useState(USER_STATES.LANDING_PAGE);
+  const [userState, setUserState] = useState(USER_STATES.LOADING_PAGE);
 
   function handleUserStateChange(newUserState) {
     console.log(`Changing state to ${newUserState}`);
     if (newUserState === userState) {
-      return;
-    }
-    if (newUserState === "LOADING_PAGE") {
       return;
     }
     setUserState(newUserState);
