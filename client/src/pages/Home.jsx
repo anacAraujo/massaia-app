@@ -23,13 +23,21 @@ export default function Home() {
       onClick={() => handleUserStateChange(USER_STATES.SONG_MENU)}
     >
       <div className="overlay"></div>
-      <video
-        src={process.env.REACT_APP_UPLOAD_FOLDER + currentSong.video}
-        autoPlay
-        loop
-        muted
-      />
-
+      {currentSong.video != null ? (
+        <video
+          className="menu-albums-song"
+          src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.video}`}
+          autoPlay
+          loop
+          muted
+        />
+      ) : (
+        <img
+          className="menu-albums-song"
+          src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.image}`}
+          alt="song cover"
+        />
+      )}
       {userState === USER_STATES.LANDING_PAGE && <LandingPage></LandingPage>}
       {userState === USER_STATES.SONG_MENU && (
         <div>
