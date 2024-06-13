@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CurrentState } from "../context/currentState.js";
 import { USER_STATES } from "../context/currentState.js";
@@ -13,8 +13,31 @@ export default function Home() {
 
   const { songsByAlbum, initializeSongsByAlbum } = React.useContext(CacheApi);
 
+  const [timeoutId, setTimeoutId] = useState(null);
+
   useEffect(() => {
     initializeSongsByAlbum();
+  }, [userState]);
+
+  useEffect(() => {
+    if (userState === USER_STATES.SONG_MENU) {
+      const id = setTimeout(() => {
+        handleUserStateChange(USER_STATES.VIEWING_SONG);
+      }, 1000);
+      setTimeoutId(id);
+
+      const handleMouseMove = () => {
+        clearTimeout(id);
+        handleUserStateChange(USER_STATES.SONG_MENU);
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        clearTimeout(id);
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    }
   }, [userState]);
 
   return (
@@ -38,7 +61,7 @@ export default function Home() {
           alt="song cover"
         />
       )}
-      {userState === USER_STATES.LANDING_PAGE && <LandingPage></LandingPage>}
+      {userState === USER_STATES.LANDING_PAGE && <LandingPage />}
       {userState === USER_STATES.SONG_MENU && (
         <div>
           <div className="massaia">
