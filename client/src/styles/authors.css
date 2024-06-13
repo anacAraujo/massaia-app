@@ -1,4 +1,3 @@
-/* Authors.css */
 .container {
   display: flex;
   margin: 0;
@@ -17,11 +16,11 @@
   left: 50%;
   transform: translateX(-50%);
   color: white;
-  visibility: hidden; /* Initially hide the author information */
+  visibility: hidden;
 }
 
 .author-info.active {
-  visibility: visible; /* Show the author information when active */
+  visibility: visible;
 }
 
 .author-name {
