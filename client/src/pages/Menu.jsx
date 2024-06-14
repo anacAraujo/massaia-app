@@ -101,16 +101,30 @@ export default function Menu() {
               style={{ display: selectedMenu === "sobre" ? "block" : "none" }}
             >
               <p>
-                <Link>projetos</Link>
+                <button
+                  onClick={() => handleChangeCurrentSong("1", "/projetos")}
+                >
+                  projetos
+                </button>
               </p>
               <p>
-                <Link to="/autores">autores</Link>
+                <button
+                  onClick={() => handleChangeCurrentSong("1", "/autores")}
+                >
+                  autores
+                </button>
               </p>
               <p>
-                <Link>artistas</Link>
+                <button
+                  onClick={() => handleChangeCurrentSong("1", "/artistas")}
+                >
+                  artistas
+                </button>
               </p>
               <p>
-                <Link>site</Link>
+                <button onClick={() => handleChangeCurrentSong("1", "/site")}>
+                  site
+                </button>
               </p>
             </div>
           </div>
