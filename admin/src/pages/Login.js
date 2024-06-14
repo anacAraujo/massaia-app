@@ -1,75 +1,90 @@
-import React from 'react'
-import { useState, useContext } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-import { CButton, CCard, CCardBody, CCardGroup, CCol, CContainer, CForm, CFormInput, CInputGroup, CInputGroupText, CRow } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
-import Joi from 'joi';
+import React from "react";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import {
+  CButton,
+  CCard,
+  CCardBody,
+  CCardGroup,
+  CCol,
+  CContainer,
+  CForm,
+  CFormInput,
+  CInputGroup,
+  CInputGroupText,
+  CRow,
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilLockLocked, cilUser } from "@coreui/icons";
+import Joi from "joi";
 
-const validTlds = ['com', 'pt', 'org', 'gov'];
+const validTlds = ["com", "pt", "org", "gov"];
 
 const loginSchema = Joi.object({
-  email: Joi.string().email({
-    tlds: { allow: validTlds }
-  }).required().label('email'),
-  password: Joi.string().min(8).required().label('password')
+  email: Joi.string()
+    .email({
+      tlds: { allow: validTlds },
+    })
+    .required()
+    .label("email"),
+  password: Joi.string().min(8).required().label("password"),
 });
 
 const Login = () => {
   const { login } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [validation, setValidation] = useState({});
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const HandleEmailInput = (event) => {
     setEmail(event.target.value);
-  }
+  };
 
   const HandlePasswordInput = (event) => {
     setPassword(event.target.value);
-  }
+  };
 
   const ValidateForm = () => {
     const body = {
       email,
-      password
-    }
+      password,
+    };
 
     const { error } = loginSchema.validate(body, { abortEarly: false });
     if (error) {
       const errors = {};
-      error.details.forEach(err => {
+      error.details.forEach((err) => {
         errors[err.path[0]] = err.message;
-      })
+      });
       setValidation(errors);
       return false;
     }
     setValidation({});
     return true;
-  }
+  };
 
   const handleLogin = async (event) => {
     event.preventDefault();
     if (!ValidateForm()) {
-      return
+      return;
     }
 
     const body = {
       email,
-      password
-    }
-    
+      password,
+    };
+
     try {
       await login(body);
-      navigate('/');
+      navigate("/");
     } catch (error) {
       setError(error.response);
       console.error(error);
     }
-  }
+  };
 
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
@@ -87,8 +102,8 @@ const Login = () => {
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
-                        name='email'
-                        type='text'
+                        name="email"
+                        type="text"
                         placeholder="Email"
                         onChange={HandleEmailInput}
                         required
@@ -102,7 +117,7 @@ const Login = () => {
                       <CFormInput
                         name="password"
                         type="password"
-                        placeholder='Password'
+                        placeholder="Password"
                         onChange={HandlePasswordInput}
                         required
                       />
@@ -110,8 +125,17 @@ const Login = () => {
                     {validation.password && <p>A password não está correta.</p>}
                     <CRow>
                       <CCol xs={6}>
-                        {error && <p>O email ou a password não estão corretos. Por favor volte a tentar!</p>}
-                        <CButton onClick={handleLogin} color="primary" className="px-4">
+                        {error && (
+                          <p>
+                            O email ou a password não estão corretos. Por favor
+                            volte a tentar!
+                          </p>
+                        )}
+                        <CButton
+                          onClick={handleLogin}
+                          color="primary"
+                          className="px-4"
+                        >
                           Entrar
                         </CButton>
                       </CCol>
@@ -119,27 +143,12 @@ const Login = () => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
-                  <div>
-                    <h2>Registo</h2>
-                    <p>
-                      Se ainda não tem uma conta, faça aqui o seu registo!
-                    </p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Registar!
-                      </CButton>
-                    </Link>
-                  </div>
-                </CCardBody>
-              </CCard>
             </CCardGroup>
           </CCol>
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
