@@ -53,6 +53,10 @@ body {
       .menu-option {
         font-family: "AkzidGroLigOsF";
 
+        p {
+          margin: 0;
+        }
+
         button {
           background: none;
           color: inherit;
