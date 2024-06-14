@@ -38,6 +38,28 @@ export function CacheApiProvider({ children }) {
     }
   }
 
+  async function initArtPieces() {
+    if (Object.keys(artPiecesByAlbum).length > 0) {
+      return songsByAlbum;
+    }
+    try {
+      const res = await axios.get(`/art_pieces`);
+
+      let artPiecesByAlbumObj = {};
+
+      for (const art_piece of res.data) {
+        if (!Array.isArray(artPiecesByAlbumObj[art_piece.album_id])) {
+          artPiecesByAlbumObj[art_piece.album_id] = [];
+        }
+        artPiecesByAlbumObj[art_piece.album_id].push(art_piece);
+      }
+
+      setArtPiecesByAlbum(artPiecesByAlbumObj);
+    } catch (err) {
+      console.error("Error getting art pieces ", err);
+    }
+  }
+
   async function initMoments() {
     if (moments.length > 0) {
       return;
@@ -59,6 +81,7 @@ export function CacheApiProvider({ children }) {
         songsById,
         initSongsInfo,
         artPiecesByAlbum,
+        initArtPieces,
         moments,
         initMoments,
       }}

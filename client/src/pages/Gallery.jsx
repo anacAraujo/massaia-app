@@ -12,38 +12,18 @@ export default function Gallery() {
   const { volume } = useParams();
   const [artPieces, setArtPieces] = useState([]);
 
-  const { artPiecesByAlbum, setArtPiecesByAlbum } = React.useContext(CacheApi);
+  const { artPiecesByAlbum, initArtPieces } = React.useContext(CacheApi);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/art_pieces`);
-
-        let artPiecesByAlbumObj = {};
-
-        for (const art_piece of res.data) {
-          if (!Array.isArray(artPiecesByAlbumObj[art_piece.album_id])) {
-            artPiecesByAlbumObj[art_piece.album_id] = [];
-          }
-          artPiecesByAlbumObj[art_piece.album_id].push(art_piece);
-        }
-
-        setArtPiecesByAlbum(artPiecesByAlbumObj);
-
-        if (volume) {
-          setArtPieces(artPiecesByAlbumObj[volume] || []);
-        }
-      } catch (err) {
-        console.error(err);
-      }
+    const init = async () => {
+      await initArtPieces();
+      console.log(artPiecesByAlbum);
     };
-
-    if (Object.keys(artPiecesByAlbum).length <= 0) {
-      fetchData();
-    } else if (volume) {
+    init();
+    if (volume) {
       setArtPieces(artPiecesByAlbum[volume] || []);
     }
-  }, [volume, artPiecesByAlbum, setArtPiecesByAlbum]);
+  }, [artPiecesByAlbum]);
 
   return (
     <div className="gallery-container">
