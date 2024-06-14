@@ -23,10 +23,10 @@ function App() {
               <Route path="menu" element={<Menu></Menu>}></Route>
               <Route
                 // TODO change volume to songId
-                path="gallery/:volume"
+                path="galeria/:volume"
                 element={<Gallery></Gallery>}
               ></Route>
-              <Route path="credits" element={<Credits></Credits>}></Route>
+              <Route path="creditos" element={<Credits></Credits>}></Route>
               <Route path="momentos" element={<Moments></Moments>}></Route>
               <Route path="autores" element={<Authors></Authors>}></Route>
             </Route>

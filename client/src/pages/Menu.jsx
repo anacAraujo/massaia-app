@@ -76,14 +76,18 @@ export default function Menu() {
               style={{ display: selectedMenu === "galeria" ? "block" : "none" }}
             >
               <p>
-                <Link to="/gallery/1">volume I</Link>
+                <button
+                  onClick={() => handleChangeCurrentSong("1", "/galeria/1")}
+                >
+                  volume I
+                </button>
               </p>
               <p>
-                <Link
-                // to="/gallery/2"
+                <button
+                  onClick={() => handleChangeCurrentSong("2", "/galeria")}
                 >
                   volume II
-                </Link>
+                </button>
               </p>
             </div>
           </div>
