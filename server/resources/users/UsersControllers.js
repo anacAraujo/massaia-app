@@ -36,13 +36,21 @@ export const deleteUser = async (req, res, next) => {
   try {
     const params = await idSchema.validateAsync(req.params);
 
-    const query = "DELETE FROM users WHERE `id` = ?";
+    const querySelect = "SELECT * FROM users WHERE id = ?";
+    const [data] = await db.execute(querySelect, [params.id]);
 
-    const queryParams = [params.id];
+    if (data.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    await db.execute(query, queryParams);
+    const queryDelete = "DELETE FROM users WHERE id = ?";
+    const [results] = await db.execute(queryDelete, [params.id]);
 
-    return res.json({ message: "User deleted!" });
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "User was not deleted!" });
+    }
+
+    return res.status(200).json({ message: "User deleted" });
   } catch (error) {
     next(error);
   }
@@ -52,14 +60,28 @@ export const updateUser = async (req, res, next) => {
   try {
     const params = await updateUserSchema.validateAsync(req.body);
 
+    const querySelect = "SELECT * FROM users WHERE id = ?";
+    const [data] = await db.execute(querySelect, [params.id]);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const validPassword = bcrypt.compareSync(params.password, data[0].password);
+
+    if (!validPassword) {
+      return res.status(400).json({ message: "Wrong email or password" });
+    }
+
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(params.password, salt);
+    const hash = bcrypt.hashSync(params.newPassword, salt);
 
-    const query = "UPDATE users SET `email` = ?, `password` = ? WHERE `id`= ?";
+    const queryUpdate =
+      "UPDATE users SET `email` = ?, `password` = ? WHERE `id`= ?";
 
-    const queryParams = [params.email, hash];
+    const queryParams = [params.email, hash, params.id];
 
-    const [results] = await db.execute(query, queryParams);
+    const [results] = await db.execute(queryUpdate, queryParams);
 
     if (results.affectedRows === 0) {
       return res.status(404).json({ message: "User was not updated!" });

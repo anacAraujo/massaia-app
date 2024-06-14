@@ -10,6 +10,7 @@ import artistsRoutes from "./resources/artists/artistsRoutes.js";
 import artPiecesRoutes from "./resources/artPieces/artPiecesRoutes.js";
 import usersRoutes from "./resources/users/usersRoutes.js";
 import momentsRoutes from "./resources/moments/momentsRoutes.js";
+import rolesRoutes from "./resources/roles/rolesRoutes.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.js";
 
 const port = process.env.PORT || 3000;
@@ -44,6 +45,7 @@ app.use("/api/artists", artistsRoutes);
 app.use("/api/art_pieces", artPiecesRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/moments", momentsRoutes);
+app.use("/api/roles", rolesRoutes);
 
 app.use(function (req, res, next) {
   res.status(404).json({ message: "Not found" });

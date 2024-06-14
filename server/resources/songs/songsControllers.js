@@ -1,7 +1,6 @@
 import { query } from "express";
 import { db } from "../../db/db.js";
 import { sleep } from "../../utils/sleep.js";
-
 import {
   idSchema,
   albumIddSchema,
@@ -54,3 +53,75 @@ export async function getSong(req, res, next) {
     next(error);
   }
 }
+
+export const addSong = async (req, res, next) => {
+  try {
+    const params = await addSongSchema.validateAsync(req.body);
+
+    const query =
+      "INSERT INTO songs(`album_id`, `name`, `position`, `lyrics`, `audio`, `video`, `image`, `date`) VALUES (?,?,?,?,?,?,?,?)";
+
+    const queryParams = [
+      params.album_id,
+      params.name,
+      params.position,
+      params.lyrics,
+      params.audio,
+      params.video,
+      params.image,
+      params.date,
+    ];
+
+    const [results] = await db.execute(query, queryParams);
+
+    return res.status(200).json({ message: "Song added!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateSong = async (req, res, next) => {
+  try {
+    const params = await updateSongSchema.validateAsync(req.body);
+
+    const query =
+      "UPDATE songs SET `album_id` = ?, `name` = ?, `position` = ?, `lyrics` = ?, `audio` = ?, `video` = ?, `image` = ?, `date` = ? WHERE `id`= ?";
+
+    const queryParams = [
+      params.album_id,
+      params.name,
+      params.position,
+      params.lyrics,
+      params.audio,
+      params.video,
+      params.image,
+      params.date,
+      params.id,
+    ];
+
+    const [results] = await db.execute(query, queryParams);
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: "Song was not updated!" });
+    }
+
+    return res.status(200).json({ message: "Song updated" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteSong = async (req, res, next) => {
+  try {
+    const params = await idSchema.validateAsync(req.params);
+
+    const query = "DELETE FROM songs WHERE `id` = ?";
+
+    const queryParams = [params.id];
+
+    await db.execute(query, queryParams);
+    return res.status(200).json({ message: "Song has been deleted." });
+  } catch (error) {
+    next(error);
+  }
+};

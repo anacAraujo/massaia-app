@@ -12,6 +12,6 @@ export const idSchema = Joi.object({
 export const updateAlbumSchema = Joi.object({
   id: id,
   name: name,
-  cover: cover,
+  cover: cover.allow(),
   date: date,
 });

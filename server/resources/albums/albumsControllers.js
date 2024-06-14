@@ -1,5 +1,4 @@
 import { db } from "../../db/db.js";
-
 import { idSchema, updateAlbumSchema } from "./albumsSchemas.js";
 
 export async function getAlbums(req, res, next) {
@@ -30,7 +29,7 @@ export async function getAlbum(req, res, next) {
       return res.status(404).json({ message: "Album not found!" });
     }
 
-    res.status(200).json(results);
+    res.status(200).json(results[0]);
   } catch (error) {
     next(error);
   }

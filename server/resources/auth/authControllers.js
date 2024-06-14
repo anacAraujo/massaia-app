@@ -7,7 +7,6 @@ export const login = async (req, res, next) => {
   try {
     const params = await loginSchema.validateAsync(req.body);
 
-    // Verify if the user's email is already in the database
     const query = "SELECT * FROM users WHERE email = ?";
 
     const [data] = await db.query(query, [params.email]);
@@ -15,7 +14,6 @@ export const login = async (req, res, next) => {
       return res.status(404).json({ message: "Email not found" });
     }
 
-    // Verify if the user's passoword is correct
     const validPassword = bcrypt.compareSync(
       req.body.password,
       data[0].password
@@ -43,7 +41,6 @@ export const register = async (req, res, next) => {
   try {
     const params = await registerSchema.validateAsync(req.body);
 
-    // Verify if the user is the database
     const querySelect = "SELECT * FROM users WHERE email = ?";
 
     const [data] = await db.execute(querySelect, [params.email]);
@@ -52,7 +49,6 @@ export const register = async (req, res, next) => {
       return res.status(409).json({ message: "User already exists!" });
     }
 
-    // Insert user in the database
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(params.password, salt);
 
