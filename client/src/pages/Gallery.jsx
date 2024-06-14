@@ -1,22 +1,34 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import axios from "../lib/axiosConfig.js";
 import Carousel from "react-bootstrap/Carousel";
 
 import Header from "../components/Header";
 import MusicControllers from "../components/MusicControllers";
 import { CacheApi } from "../context/cacheApi.js";
+import { CurrentState } from "../context/currentState.js";
 import "../styles/gallery.css";
 
 export default function Gallery() {
   const { songId } = useParams();
-  console.log(songId);
 
-  const { artPiecesBySong, initArtPieces } = React.useContext(CacheApi);
+  const { currentSong, setCurrentSong } = React.useContext(CurrentState);
+
+  const { artPiecesBySong, initArtPieces, initSongsInfo } =
+    React.useContext(CacheApi);
 
   useEffect(() => {
+    const init = async () => {
+      const songsInfo = await initSongsInfo();
+
+      const resSongsById = songsInfo.songsById;
+
+      setCurrentSong(resSongsById[songId]);
+    };
+    init();
     initArtPieces();
   }, [songId]);
+
+  //TODO add image in case song has not art pieces
 
   return (
     // TODO change render by screen size
@@ -26,8 +38,8 @@ export default function Gallery() {
       </div>
       <div className="carousel-container">
         <Carousel className="display_art_pieces">
-          {artPiecesBySong[songId]?.length > 0 ? (
-            artPiecesBySong[songId].map((artPiece) => (
+          {artPiecesBySong[currentSong.id]?.length > 0 ? (
+            artPiecesBySong[currentSong.id].map((artPiece) => (
               <Carousel.Item className="art_piece" key={artPiece.id}>
                 <img
                   src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
@@ -51,8 +63,8 @@ export default function Gallery() {
       </div>
 
       <div className="grid-container">
-        {artPiecesBySong[songId]?.length > 0 ? (
-          artPiecesBySong[songId].map((artPiece) => (
+        {artPiecesBySong[currentSong.id]?.length > 0 ? (
+          artPiecesBySong[currentSong.id].map((artPiece) => (
             <div className="grid-item" key={artPiece.id}>
               <img
                 src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
