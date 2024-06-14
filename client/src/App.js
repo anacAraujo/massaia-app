@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -13,8 +13,7 @@ function App() {
   return (
     <CurrentStateProvider>
       <CacheApiProvider>
-        {/* TODO remove HashRouter */}
-        <HashRouter>
+        <BrowserRouter>
           <Routes>
             <Route path="/">
               {/* TODO add header as global component */}
@@ -32,7 +31,7 @@ function App() {
               <Route path="autores" element={<Authors></Authors>}></Route>
             </Route>
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </CacheApiProvider>
     </CurrentStateProvider>
   );
