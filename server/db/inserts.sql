@@ -93,3 +93,4 @@ UPDATE `massaia`.`art_pieces` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '9'
 UPDATE `massaia`.`authors` SET `image` = 'pedro_almeida.jpg' WHERE (`id` = '2');
 UPDATE `massaia`.`authors` SET `image` = 'helena_caspurro.jpeg' WHERE (`id` = '1');
 UPDATE `massaia`.`songs` SET `video` = 'VIDA.mp4' WHERE (`id` = '8');
+INSERT INTO `massaia`.`art_pieces` (`id`, `song_id`, `author_id`, `image`) VALUES ('10', '2', '2', 'Lena_sRGB@800dpi_HIGH.jpg');

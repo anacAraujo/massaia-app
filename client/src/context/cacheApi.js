@@ -7,7 +7,7 @@ export function CacheApiProvider({ children }) {
   const [songsByAlbum, setSongsByAlbum] = useState({});
   const [songsById, setSongsById] = useState({});
 
-  const [artPiecesByAlbum, setArtPiecesByAlbum] = useState({});
+  const [artPiecesBySong, setArtPiecesBySong] = useState({});
   const [moments, setMoments] = useState([]);
 
   async function initSongsInfo() {
@@ -45,22 +45,24 @@ export function CacheApiProvider({ children }) {
   }
 
   async function initArtPieces() {
-    if (Object.keys(artPiecesByAlbum).length > 0) {
-      return songsByAlbum;
+    if (Object.keys(artPiecesBySong).length > 0) {
+      return artPiecesBySong;
     }
     try {
       const res = await axios.get(`/art_pieces`);
 
-      let artPiecesByAlbumObj = {};
+      let artPiecesBySongObj = {};
 
-      for (const art_piece of res.data) {
-        if (!Array.isArray(artPiecesByAlbumObj[art_piece.album_id])) {
-          artPiecesByAlbumObj[art_piece.album_id] = [];
+      for (const artPiece of res.data) {
+        if (!Array.isArray(artPiecesBySongObj[artPiece.song_id])) {
+          artPiecesBySongObj[artPiece.song_id] = [];
         }
-        artPiecesByAlbumObj[art_piece.album_id].push(art_piece);
+        artPiecesBySongObj[artPiece.song_id].push(artPiece);
       }
 
-      setArtPiecesByAlbum(artPiecesByAlbumObj);
+      console.log("artPiecesBySongObj: ", artPiecesBySongObj);
+      setArtPiecesBySong(artPiecesBySongObj);
+      return artPiecesBySongObj;
     } catch (err) {
       console.error("Error getting art pieces ", err);
     }
@@ -68,13 +70,13 @@ export function CacheApiProvider({ children }) {
 
   async function initMoments() {
     if (moments.length > 0) {
-      return;
+      return moments;
     }
     try {
       const res = await axios.get(`/moments`);
       setMoments(res.data);
 
-      return;
+      return res.data;
     } catch (err) {
       console.error("Error getting moments ", err);
     }
@@ -86,7 +88,7 @@ export function CacheApiProvider({ children }) {
         songsByAlbum,
         songsById,
         initSongsInfo,
-        artPiecesByAlbum,
+        artPiecesBySong,
         initArtPieces,
         moments,
         initMoments,

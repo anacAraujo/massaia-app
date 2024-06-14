@@ -10,30 +10,24 @@ import "../styles/gallery.css";
 
 export default function Gallery() {
   const { songId } = useParams();
-  const [artPieces, setArtPieces] = useState([]);
+  console.log(songId);
 
-  const { artPiecesByAlbum, initArtPieces } = React.useContext(CacheApi);
+  const { artPiecesBySong, initArtPieces } = React.useContext(CacheApi);
 
   useEffect(() => {
-    const init = async () => {
-      await initArtPieces();
-      console.log(artPiecesByAlbum);
-    };
-    init();
-    if (songId) {
-      setArtPieces(artPiecesByAlbum[songId] || []);
-    }
-  }, [artPiecesByAlbum]);
+    initArtPieces();
+  }, [songId]);
 
   return (
+    // TODO change render by screen size
     <div className="gallery-container">
       <div className="header-container">
         <Header />
       </div>
       <div className="carousel-container">
         <Carousel className="display_art_pieces">
-          {artPieces && artPieces.length > 0 ? (
-            artPieces.map((artPiece) => (
+          {artPiecesBySong[songId]?.length > 0 ? (
+            artPiecesBySong[songId].map((artPiece) => (
               <Carousel.Item className="art_piece" key={artPiece.id}>
                 <img
                   src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
@@ -55,9 +49,10 @@ export default function Gallery() {
           )}
         </Carousel>
       </div>
+
       <div className="grid-container">
-        {artPieces && artPieces.length > 0 ? (
-          artPieces.map((artPiece) => (
+        {artPiecesBySong[songId]?.length > 0 ? (
+          artPiecesBySong[songId].map((artPiece) => (
             <div className="grid-item" key={artPiece.id}>
               <img
                 src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
