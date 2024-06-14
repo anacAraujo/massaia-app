@@ -12,7 +12,8 @@ export default function Home() {
   const { currentSong, setCurrentSong, userState, handleUserStateChange } =
     React.useContext(CurrentState);
 
-  const { songsByAlbum, initSongsInfo } = React.useContext(CacheApi);
+  const { songsByAlbum, songsById, initSongsInfo } = React.useContext(CacheApi);
+  console.log("songsById", songsById);
 
   const { songId } = useParams();
   console.log("songId: ", songId);
@@ -21,20 +22,30 @@ export default function Home() {
 
   useEffect(() => {
     const init = async () => {
-      let resSongsByAlbum = await initSongsInfo();
+      const songsInfo = await initSongsInfo();
+      const resSongsByAlbum = songsInfo.songsByAlbum;
+      const resSongsById = songsInfo.songsById;
+      console.log("resSongsByAlbum: ", resSongsByAlbum);
 
       if (userState === USER_STATES.LOADING_PAGE) {
         console.log("songsByAlbum ", resSongsByAlbum);
-        setCurrentSong(resSongsByAlbum[1][0]);
-        handleUserStateChange(USER_STATES.LANDING_PAGE);
+
+        if (songId) {
+          setCurrentSong(resSongsById[songId]);
+          handleUserStateChange(USER_STATES.SONG_MENU);
+        } else {
+          setCurrentSong(resSongsByAlbum[1][0]);
+          handleUserStateChange(USER_STATES.LANDING_PAGE);
+        }
       }
     };
     init();
 
+    //TODO handleMouseMove
     if (userState === USER_STATES.SONG_MENU) {
       const id = setTimeout(() => {
         handleUserStateChange(USER_STATES.VIEWING_SONG);
-      }, 1000);
+      }, 5000);
       setTimeoutId(id);
 
       const handleMouseMove = () => {
@@ -48,9 +59,6 @@ export default function Home() {
         clearTimeout(id);
         window.removeEventListener("mousemove", handleMouseMove);
       };
-    }
-
-    if (songId) {
     }
   }, [userState]);
 
