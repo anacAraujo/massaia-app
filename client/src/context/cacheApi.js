@@ -12,7 +12,12 @@ export function CacheApiProvider({ children }) {
 
   async function initSongsInfo() {
     if (Object.keys(songsByAlbum).length > 0) {
-      return songsByAlbum;
+      const songsInfo = {
+        songsByAlbum: songsByAlbum,
+        songsById: songsById,
+      };
+
+      return songsInfo;
     }
     try {
       const res = await axios.get(`/songs`);
@@ -33,7 +38,7 @@ export function CacheApiProvider({ children }) {
 
       setSongsById(songsByIdObj);
 
-      let songsInfo = {
+      const songsInfo = {
         songsByAlbum: songsByAlbumObj,
         songsById: songsByIdObj,
       };
