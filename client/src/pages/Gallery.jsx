@@ -9,7 +9,7 @@ import { CacheApi } from "../context/cacheApi.js";
 import "../styles/gallery.css";
 
 export default function Gallery() {
-  const { volume } = useParams();
+  const { songId } = useParams();
   const [artPieces, setArtPieces] = useState([]);
 
   const { artPiecesByAlbum, initArtPieces } = React.useContext(CacheApi);
@@ -20,8 +20,8 @@ export default function Gallery() {
       console.log(artPiecesByAlbum);
     };
     init();
-    if (volume) {
-      setArtPieces(artPiecesByAlbum[volume] || []);
+    if (songId) {
+      setArtPieces(artPiecesByAlbum[songId] || []);
     }
   }, [artPiecesByAlbum]);
 
