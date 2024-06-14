@@ -1,0 +1,53 @@
+caption {
+    padding-bottom: 1rem;
+}
+
+.buttons {
+    display: grid;
+    margin-top: 1rem;
+
+    @media (min-width: 768px) {
+        display: flex;
+    }
+}
+
+
+.formMargin {
+    margin-right: 8rem !important;
+}
+
+.react-datepicker-wrapper {
+    display: block !important;
+}
+
+.tableButtons {
+    margin-left: 0.5rem !important;
+}
+
+.tableFormat:last-child {
+    width: 7rem !important;
+}
+
+.tableAlbums:last-child {
+    width: 1rem !important;
+}
+
+.editorContainer {
+    height: 18rem;
+    overflow: scroll;
+}
+
+.editor {
+    height: 100%;
+    border: none;
+}
+
+.ql-snow {
+    &.ql-container {
+        border: none !important;
+        border-bottom: none !important;
+    }
+    &.ql-toolbar {
+        border-bottom: 1px solid snow !important;
+    }
+}
