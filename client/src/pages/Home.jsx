@@ -12,8 +12,7 @@ export default function Home() {
   const { currentSong, setCurrentSong, userState, handleUserStateChange } =
     React.useContext(CurrentState);
 
-  const { songsByAlbum, songsById, initSongsInfo } = React.useContext(CacheApi);
-  console.log("songsById", songsById);
+  const { songsByAlbum, initSongsInfo } = React.useContext(CacheApi);
 
   const { songId } = useParams();
   console.log("songId: ", songId);
