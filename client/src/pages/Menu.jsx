@@ -84,7 +84,7 @@ export default function Menu() {
               </p>
               <p>
                 <button
-                  onClick={() => handleChangeCurrentSong("2", "/galeria")}
+                  onClick={() => handleChangeCurrentSong("2", "/galeria/10")}
                 >
                   volume II
                 </button>
