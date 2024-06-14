@@ -38,6 +38,20 @@ export function CacheApiProvider({ children }) {
     }
   }
 
+  async function initMoments() {
+    if (moments.length > 0) {
+      return;
+    }
+    try {
+      const res = await axios.get(`/moments`);
+      setMoments(res.data);
+
+      return;
+    } catch (err) {
+      console.error("Error getting moments ", err);
+    }
+  }
+
   return (
     <CacheApi.Provider
       value={{
@@ -45,9 +59,8 @@ export function CacheApiProvider({ children }) {
         songsById,
         initSongsInfo,
         artPiecesByAlbum,
-        setArtPiecesByAlbum,
         moments,
-        setMoments,
+        initMoments,
       }}
     >
       {children}
