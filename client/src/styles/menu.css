@@ -50,12 +50,13 @@ body {
         color: black;
       }
 
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
       .menu-option {
         font-family: "AkzidGroLigOsF";
-
-        p {
-          margin: 0;
-        }
 
         button {
           background: none;
