@@ -95,7 +95,7 @@ export default function Home() {
                   onClick={() => handleUserStateChange(USER_STATES.ALBUMS_MENU)}
                 />
               </div>
-              <Link className="credits" to="/credits">
+              <Link className="credits" to="/creditos">
                 <p>créditos</p>
               </Link>
               <div className="song-info">
