@@ -32,7 +32,13 @@ export function CacheApiProvider({ children }) {
       setSongsByAlbum(songsByAlbumObj);
 
       setSongsById(songsByIdObj);
-      return songsByAlbumObj;
+
+      let songsInfo = {
+        songsByAlbum: songsByAlbumObj,
+        songsById: songsByIdObj,
+      };
+
+      return songsInfo;
     } catch (err) {
       console.error("Error getting songsByAlbum ", err);
     }
