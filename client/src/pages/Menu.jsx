@@ -55,13 +55,17 @@ export default function Menu() {
             >
               {/* TODO  change to  button - set current song to first song of each volume and then redirect*/}
               <p>
-                <button onClick={() => handleChangeCurrentSong("1", "/")}>
+                <button
+                  onClick={() => handleChangeCurrentSong("1", "/temas/1")}
+                >
                   volume I
                 </button>
               </p>
 
               <p>
-                <button onClick={() => handleChangeCurrentSong("2", "/")}>
+                <button
+                  onClick={() => handleChangeCurrentSong("2", "/temas/10")}
+                >
                   volume II
                 </button>
               </p>
@@ -103,6 +107,7 @@ export default function Menu() {
             >
               <p>
                 <button
+                  // TODO DO NOT RESET STATE, JUST LINK TO OTHER PAGE
                   onClick={() => handleChangeCurrentSong("1", "/projetos")}
                 >
                   projetos
