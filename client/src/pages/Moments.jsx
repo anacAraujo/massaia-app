@@ -7,17 +7,16 @@ import "../index.css";
 
 export default function Moments() {
   const { moments, setMoments } = useContext(CacheApi);
-  console.log("moments: ", moments);
   const [localMoments, setLocalMoments] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // TODO use from cacheAPI
         const res = await axios.get(`moments`);
         if (Array.isArray(res.data)) {
           setMoments(res.data);
           setLocalMoments(res.data);
-          console.log("res.data: ", res.data);
         } else {
           console.error("Data fetched is not an array:", res.data);
         }
@@ -26,6 +25,7 @@ export default function Moments() {
       }
     };
 
+    // TODO use from cacheAPI
     if (moments.length <= 0) {
       fetchData();
     } else {

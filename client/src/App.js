@@ -11,8 +11,8 @@ import { CacheApiProvider } from "./context/cacheApi";
 
 function App() {
   return (
-    <CurrentStateProvider>
-      <CacheApiProvider>
+    <CacheApiProvider>
+      <CurrentStateProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/">
@@ -31,8 +31,8 @@ function App() {
             </Route>
           </Routes>
         </BrowserRouter>
-      </CacheApiProvider>
-    </CurrentStateProvider>
+      </CurrentStateProvider>
+    </CacheApiProvider>
   );
 }
 

@@ -65,7 +65,6 @@ export function CacheApiProvider({ children }) {
         artPiecesBySongObj[artPiece.song_id].push(artPiece);
       }
 
-      console.log("artPiecesBySongObj: ", artPiecesBySongObj);
       setArtPiecesBySong(artPiecesBySongObj);
       return artPiecesBySongObj;
     } catch (err) {

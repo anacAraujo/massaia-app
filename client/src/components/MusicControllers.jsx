@@ -11,6 +11,8 @@ export default function MusicControllers() {
   function handlePrevSong() {
     const keys = Object.keys(songsById);
     let newSongId = keys.at(keys.indexOf(currentSong.id.toString()) - 1);
+
+    // TODO use setCurrentSongById
     setCurrentSong(songsById[newSongId]);
   }
 
@@ -21,6 +23,8 @@ export default function MusicControllers() {
     if (newSongId === undefined) {
       newSongId = keys[0];
     }
+
+    // TODO use setCurrentSongById
     setCurrentSong(songsById[newSongId]);
   }
 

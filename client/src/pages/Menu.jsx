@@ -20,6 +20,7 @@ export default function Menu() {
   const navigate = useNavigate();
 
   function handleChangeCurrentSong(album_id, destination) {
+    // TODO use setCurrentSongByAlbum
     setCurrentSong(songsByAlbum[album_id][0]);
     navigate(destination);
   }

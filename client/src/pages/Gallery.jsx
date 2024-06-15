@@ -11,20 +11,13 @@ import "../styles/gallery.css";
 export default function Gallery() {
   const { songId } = useParams();
 
-  const { currentSong, setCurrentSong } = React.useContext(CurrentState);
+  const { currentSong, setCurrentSongById } = React.useContext(CurrentState);
 
   const { artPiecesBySong, initArtPieces, initSongsInfo } =
     React.useContext(CacheApi);
 
   useEffect(() => {
-    const init = async () => {
-      const songsInfo = await initSongsInfo();
-
-      const resSongsById = songsInfo.songsById;
-
-      setCurrentSong(resSongsById[songId]);
-    };
-    init();
+    setCurrentSongById(songId);
     initArtPieces();
   }, [songId]);
 
@@ -36,6 +29,8 @@ export default function Gallery() {
       <div className="header-container">
         <Header />
       </div>
+
+      {/* TODO check userState isLoading and show spinner */}
       <div className="carousel-container">
         <Carousel className="display_art_pieces">
           {artPiecesBySong[currentSong.id]?.length > 0 ? (

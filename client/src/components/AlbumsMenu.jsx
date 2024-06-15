@@ -18,6 +18,8 @@ export function AlbumsMenu({ songsInfo }) {
         selectedSong = song;
       }
     });
+
+    // TODO use setCurrentSongById
     setCurrentSong(selectedSong);
   }
 

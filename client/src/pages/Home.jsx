@@ -9,42 +9,36 @@ import { CacheApi } from "../context/cacheApi.js";
 import "../styles/homeMenus.css";
 
 export default function Home() {
-  const { currentSong, setCurrentSong, userState, handleUserStateChange } =
-    React.useContext(CurrentState);
+  const {
+    currentSong,
+    setCurrentSongById,
+    setCurrentSongByAlbum,
+    userState,
+    handleUserStateChange,
+  } = React.useContext(CurrentState);
 
-  const { songsByAlbum, initSongsInfo } = React.useContext(CacheApi);
+  const { songsByAlbum } = React.useContext(CacheApi);
 
   const { songId } = useParams();
-  console.log("songId: ", songId);
 
   const [timeoutId, setTimeoutId] = useState(null);
 
   useEffect(() => {
-    const init = async () => {
-      const songsInfo = await initSongsInfo();
-      const resSongsByAlbum = songsInfo.songsByAlbum;
-      const resSongsById = songsInfo.songsById;
-      console.log("resSongsByAlbum: ", resSongsByAlbum);
-
-      if (userState === USER_STATES.LOADING_PAGE) {
-        console.log("songsByAlbum ", resSongsByAlbum);
-
-        if (songId) {
-          setCurrentSong(resSongsById[songId]);
-          handleUserStateChange(USER_STATES.SONG_MENU);
-        } else {
-          setCurrentSong(resSongsByAlbum[1][0]);
-          handleUserStateChange(USER_STATES.LANDING_PAGE);
-        }
+    if (userState === USER_STATES.LOADING_PAGE) {
+      if (songId) {
+        setCurrentSongById(songId);
+      } else {
+        setCurrentSongByAlbum(1);
       }
-    };
-    init();
+    }
 
     //TODO handleMouseMove
     if (userState === USER_STATES.SONG_MENU) {
       const id = setTimeout(() => {
         handleUserStateChange(USER_STATES.VIEWING_SONG);
       }, 5000);
+
+      // TODO check timeout usage
       setTimeoutId(id);
 
       const handleMouseMove = () => {

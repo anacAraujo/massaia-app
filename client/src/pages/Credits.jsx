@@ -14,7 +14,7 @@ export default function Credits() {
         const albumsData = res.data.reverse();
         setAlbums(albumsData);
       } catch (err) {
-        console.log(err);
+        console.error("Error getting credits: ", err);
       }
     };
     fetchData();
