@@ -19,27 +19,30 @@ export default function Gallery() {
   const { artPiecesBySong, initArtPieces, initSongsInfo } =
     React.useContext(CacheApi);
 
+  let screenWidth = window.innerWidth;
+  console.log("screenWidth: ", screenWidth);
+
   useEffect(() => {
     setCurrentSongById(songId);
     initArtPieces();
-  }, [songId]);
+  }, [songId, screenWidth]);
 
-  //TODO add image in case song has not art pieces
+  //TODO add image in case song has no art pieces
 
   return (
-    // TODO change render by screen size
     <div className="gallery-container">
       <div className="header-container">
         <Header />
       </div>
-
-      {/* TODO check userState isLoading and show spinner */}
-      <div className="carousel-container">
-        {userState === USER_STATES.LOADING_PAGE ? (
+      {userState === USER_STATES.LOADING_PAGE && (
+        <div className="carousel-container">
           <div className="spinner-container">
             <Spinner animation="grow" variant="dark" />
           </div>
-        ) : (
+        </div>
+      )}
+      {userState != USER_STATES.LOADING_PAGE && screenWidth >= 769 ? (
+        <div className="carousel-container">
           <Carousel className="display_art_pieces">
             {artPiecesBySong[currentSong.id]?.length > 0 ? (
               artPiecesBySong[currentSong.id].map((artPiece) => (
@@ -63,32 +66,33 @@ export default function Gallery() {
               </Carousel.Item>
             )}
           </Carousel>
-        )}
-      </div>
-
-      <div className="grid-container">
-        {artPiecesBySong[currentSong.id]?.length > 0 ? (
-          artPiecesBySong[currentSong.id].map((artPiece) => (
-            <div className="grid-item" key={artPiece.id}>
-              <img
-                src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
-                alt={artPiece.song_name}
-              />
+        </div>
+      ) : (
+        <div className="grid-container">
+          {artPiecesBySong[currentSong.id]?.length > 0 ? (
+            artPiecesBySong[currentSong.id].map((artPiece) => (
+              <div className="grid-item" key={artPiece.id}>
+                <img
+                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
+                  alt={artPiece.song_name}
+                />
+                <div className="art_info">
+                  <h3>{artPiece.song_name}</h3>
+                  <p>{artPiece.author_name}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="grid-item">
+              <img src="placeholder.jpg" alt="placeholder" />
               <div className="art_info">
-                <h3>{artPiece.song_name}</h3>
-                <p>{artPiece.author_name}</p>
+                <h3>No Art Pieces Available</h3>
               </div>
             </div>
-          ))
-        ) : (
-          <div className="grid-item">
-            <img src="placeholder.jpg" alt="placeholder" />
-            <div className="art_info">
-              <h3>No Art Pieces Available</h3>
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
+
       <div className="music-controllers-container">
         <MusicControllers />
       </div>
