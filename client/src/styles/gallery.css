@@ -43,6 +43,14 @@
   text-align: center;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  width: 100vw;
+}
+
 @media (min-width: 769px) {
   .carousel-container {
     display: flex;

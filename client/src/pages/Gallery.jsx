@@ -1,17 +1,20 @@
 import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import Spinner from "react-bootstrap/Spinner";
 
 import Header from "../components/Header";
 import MusicControllers from "../components/MusicControllers";
 import { CacheApi } from "../context/cacheApi.js";
 import { CurrentState } from "../context/currentState.js";
+import { USER_STATES } from "../context/currentState.js";
 import "../styles/gallery.css";
 
 export default function Gallery() {
   const { songId } = useParams();
 
-  const { currentSong, setCurrentSongById } = React.useContext(CurrentState);
+  const { userState, currentSong, setCurrentSongById } =
+    React.useContext(CurrentState);
 
   const { artPiecesBySong, initArtPieces, initSongsInfo } =
     React.useContext(CacheApi);
@@ -32,29 +35,35 @@ export default function Gallery() {
 
       {/* TODO check userState isLoading and show spinner */}
       <div className="carousel-container">
-        <Carousel className="display_art_pieces">
-          {artPiecesBySong[currentSong.id]?.length > 0 ? (
-            artPiecesBySong[currentSong.id].map((artPiece) => (
-              <Carousel.Item className="art_piece" key={artPiece.id}>
-                <img
-                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
-                  alt={artPiece.song_name}
-                />
+        {userState === USER_STATES.LOADING_PAGE ? (
+          <div className="spinner-container">
+            <Spinner animation="grow" variant="dark" />
+          </div>
+        ) : (
+          <Carousel className="display_art_pieces">
+            {artPiecesBySong[currentSong.id]?.length > 0 ? (
+              artPiecesBySong[currentSong.id].map((artPiece) => (
+                <Carousel.Item className="art_piece" key={artPiece.id}>
+                  <img
+                    src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
+                    alt={artPiece.song_name}
+                  />
+                  <Carousel.Caption>
+                    <h3>{artPiece.song_name}</h3>
+                    <p>{artPiece.author_name}</p>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              ))
+            ) : (
+              <Carousel.Item>
+                <img src="placeholder.jpg" alt="placeholder" />
                 <Carousel.Caption>
-                  <h3>{artPiece.song_name}</h3>
-                  <p>{artPiece.author_name}</p>
+                  <h3>No Art Pieces Available</h3>
                 </Carousel.Caption>
               </Carousel.Item>
-            ))
-          ) : (
-            <Carousel.Item>
-              <img src="placeholder.jpg" alt="placeholder" />
-              <Carousel.Caption>
-                <h3>No Art Pieces Available</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
-          )}
-        </Carousel>
+            )}
+          </Carousel>
+        )}
       </div>
 
       <div className="grid-container">
