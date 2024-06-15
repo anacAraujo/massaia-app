@@ -33,7 +33,7 @@ export const getArtPiece = async (req, res, next) => {
   try {
     const params = await idSchema.validateAsync(req.params);
 
-    const query = "SELECT * FROM art_pieces WHERE id = ?";
+    const query = "SELECT ap.*, au.name AS author_name, s.album_id AS album_id, s.name AS song_name FROM massaia.art_pieces ap JOIN massaia.authors au ON ap.author_id=au.id JOIN massaia.songs s ON ap.song_id=s.id WHERE ap.id = ?";
 
     const [results] = await db.execute(query, [params.id]);
 

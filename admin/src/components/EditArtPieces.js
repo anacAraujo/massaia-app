@@ -22,11 +22,11 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
     const [imageName, setImageName] = useState(artPieceData.image.split('/').pop());
     const [song_id, setSong_id] = useState(artPieceData.song_id);
     console.log(song_id);
-    const [songName, setSongName] = useState(artPieceData.song);
+    const [songName, setSongName] = useState(artPieceData.song_name);
     console.log(songName);
     const [author_id, setAuthor_id] = useState(artPieceData.author_id);
     console.log(author_id);
-    const [authorName, setAuthorName] = useState(artPieceData.author);
+    const [authorName, setAuthorName] = useState(artPieceData.author_name);
     console.log(authorName);
     const [date, setDate] = useState(artPieceData.date || null);
     console.log(date);
@@ -41,9 +41,9 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
         setImage(artPieceData.image);
         setImageName(artPieceData.image.split('/').pop());
         setSong_id(artPieceData.song_id);
-        setSongName(artPieceData.song);
+        setSongName(artPieceData.song_name);
         setAuthor_id(artPieceData.author_id);
-        setAuthorName(artPieceData.author);
+        setAuthorName(artPieceData.author_name);
         setDate(artPieceData.date || null);
     }, [artPieceData]);
 
