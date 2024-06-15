@@ -58,7 +58,6 @@ export function CurrentStateProvider({ children }) {
     <CurrentState.Provider
       value={{
         currentSong,
-        setCurrentSong,
         userState,
         handleUserStateChange,
         setCurrentSongById,

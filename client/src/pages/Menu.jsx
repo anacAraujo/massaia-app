@@ -14,14 +14,13 @@ export default function Menu() {
     setSelectedMenu(selectedMenu === menu ? null : menu);
   };
 
-  const { setCurrentSong } = React.useContext(CurrentState);
+  const { setCurrentSongByAlbum } = React.useContext(CurrentState);
   const { songsByAlbum, initSongsInfo } = React.useContext(CacheApi);
 
   const navigate = useNavigate();
 
   function handleChangeCurrentSong(album_id, destination) {
-    // TODO use setCurrentSongByAlbum
-    setCurrentSong(songsByAlbum[album_id][0]);
+    setCurrentSongByAlbum(album_id);
     navigate(destination);
   }
 

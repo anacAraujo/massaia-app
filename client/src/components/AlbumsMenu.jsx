@@ -4,7 +4,7 @@ import { USER_STATES } from "../context/currentState.js";
 import "../styles/homeMenus.css";
 
 export function AlbumsMenu({ songsInfo }) {
-  const { setCurrentSong, handleUserStateChange } =
+  const { setCurrentSongById, handleUserStateChange } =
     React.useContext(CurrentState);
 
   const handleIsViewingAlbumsMenu = () => {
@@ -19,8 +19,7 @@ export function AlbumsMenu({ songsInfo }) {
       }
     });
 
-    // TODO use setCurrentSongById
-    setCurrentSong(selectedSong);
+    setCurrentSongById(selectedSong.id);
   }
 
   return (

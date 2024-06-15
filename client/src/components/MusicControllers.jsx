@@ -4,7 +4,8 @@ import { CacheApi } from "../context/cacheApi.js";
 import { CurrentState } from "../context/currentState.js";
 
 export default function MusicControllers() {
-  const { currentSong, setCurrentSong } = React.useContext(CurrentState);
+  const { currentSong, setCurrentSongById, setCurrentSong } =
+    React.useContext(CurrentState);
 
   const { songsById } = React.useContext(CacheApi);
 
@@ -12,8 +13,7 @@ export default function MusicControllers() {
     const keys = Object.keys(songsById);
     let newSongId = keys.at(keys.indexOf(currentSong.id.toString()) - 1);
 
-    // TODO use setCurrentSongById
-    setCurrentSong(songsById[newSongId]);
+    setCurrentSongById(newSongId);
   }
 
   function handleNextSong() {
@@ -24,8 +24,7 @@ export default function MusicControllers() {
       newSongId = keys[0];
     }
 
-    // TODO use setCurrentSongById
-    setCurrentSong(songsById[newSongId]);
+    setCurrentSongById(newSongId);
   }
 
   return (
