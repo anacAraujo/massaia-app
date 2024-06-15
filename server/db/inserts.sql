@@ -61,6 +61,11 @@ INSERT INTO `massaia`.`moments` (`id`, `name`, `image`) VALUES ('1', 'Concerto d
 INSERT INTO `massaia`.`moments` (`id`, `name`, `image`) VALUES ('2', 'Concerto de lançamento', 'moments2');
 
 
+
+INSERT INTO `massaia`.`art_pieces` (`id`, `song_id`, `author_id`, `image`) VALUES ('10', '2', '2', 'Lena_sRGB@800dpi_HIGH.jpg');
+
+
+
 INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('1', 'voz');
 INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('2', 'letra');
 INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('3', 'composição');
@@ -79,6 +84,7 @@ UPDATE `massaia`.`songs` SET `image` = 'ficar-por-ai.jpg' WHERE (`id` = '6');
 UPDATE `massaia`.`songs` SET `image` = 'o-pior-de-mim.jpg' WHERE (`id` = '7');
 UPDATE `massaia`.`songs` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '8');
 UPDATE `massaia`.`songs` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '9');
+UPDATE `massaia`.`songs` SET `video` = 'VIDA.mp4' WHERE (`id` = '8');
 
 UPDATE `massaia`.`art_pieces` SET `image` = 'Capa-Massaia-Voli.jpg' WHERE (`id` = '1');
 UPDATE `massaia`.`art_pieces` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '2');
@@ -92,5 +98,6 @@ UPDATE `massaia`.`art_pieces` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '9'
 
 UPDATE `massaia`.`authors` SET `image` = 'pedro_almeida.jpg' WHERE (`id` = '2');
 UPDATE `massaia`.`authors` SET `image` = 'helena_caspurro.jpeg' WHERE (`id` = '1');
-UPDATE `massaia`.`songs` SET `video` = 'VIDA.mp4' WHERE (`id` = '8');
-INSERT INTO `massaia`.`art_pieces` (`id`, `song_id`, `author_id`, `image`) VALUES ('10', '2', '2', 'Lena_sRGB@800dpi_HIGH.jpg');
+
+UPDATE `massaia`.`moments` SET `image` = 'moments1.jpg' WHERE (`id` = '1');
+UPDATE `massaia`.`moments` SET `image` = 'moments2.jpg' WHERE (`id` = '2');
