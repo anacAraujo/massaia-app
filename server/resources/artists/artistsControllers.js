@@ -58,3 +58,18 @@ export async function addArtist(req, res, next) {
     next(error);
   }
 }
+
+export const deleteArtist = async (req, res, next) => {
+  try {
+    const params = await idSchema.validateAsync(req.params);
+
+    const query = "DELETE FROM authors WHERE `id` = ?";
+
+    const queryParams = [params.id];
+
+    await db.execute(query, queryParams);
+    return res.status(200).json({ message: "Artist has been deleted." });
+  } catch (error) {
+    next(error);
+  }
+};
