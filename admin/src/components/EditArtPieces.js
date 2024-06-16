@@ -7,7 +7,6 @@ import Joi from "joi";
 import axios from '../lib/AxiosConfig'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import AddAuthor from "./AddAuthor"
 
 const artPieceSchema = Joi.object({
     image: Joi.any().required().label('image'),
@@ -34,7 +33,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
     const [error, setError] = useState(null);
     const [songs, setSongs] = useState([]);
     const [authors, setAuthors] = useState([]);
-    const [openAddAuthor, setOpenAddAuthor] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -85,14 +83,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
     
     const CloseForm = () => {
         window.location.reload();
-    }
-
-    const OpenAddAuthor = () => {
-        setOpenAddAuthor(true);
-    }
-
-    const CloseAddAuthor = () => {
-        setOpenAddAuthor(false);
     }
 
     const HandleImageInput = (event) => {
@@ -210,7 +200,7 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
                     {validation.song_id && <p>{validation.song_id}</p>}
                 </div>
                 <div className="mx-5">
-                    <label htmlFor="album">Autor:</label>
+                    <label htmlFor="album">Artista:</label>
                     <select 
                         className="form-control mt-2"
                         id="album"
@@ -219,7 +209,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
                         required
                     >
                         <option value={author_id}>{authorName}</option>
-                        <option onClick={() => OpenAddAuthor()}>Adicionar outro autor</option>
                         {displayAuthorName}
                     </select>
                     {validation.author_id && <p>{validation.author_id}</p>}
@@ -241,10 +230,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
                 </div>
             </form>
             {error && <p className=" text-danger mt-2" style={{marginLeft: '6.5rem'}}>Não foi possível efetuar esta operação, volte a carregar a página e tente novamente!</p>}
-            <AddAuthor 
-                visible={openAddAuthor}
-                CloseModal={CloseAddAuthor}
-            />
         </div>
     )
 }

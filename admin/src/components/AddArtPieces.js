@@ -7,7 +7,6 @@ import Joi from "joi";
 import axios from "../lib/AxiosConfig";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import AddAuthor from "./AddAuthor";
 
 const artPieceSchema = Joi.object({
   image: Joi.any().required().label("image"),
@@ -25,7 +24,6 @@ const AddArtPieces = () => {
   const [error, setError] = useState(null);
   const [songs, setSongs] = useState([]);
   const [authors, setAuthors] = useState([]);
-  const [openAddAuthor, setOpenAddAuthor] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,16 +64,6 @@ const AddArtPieces = () => {
 
   const CloseForm = () => {
     window.location.reload();
-  };
-
-  const OpenAddAuthor = () => {
-    setOpenAddAuthor(true);
-    console.log("----openAddAuthor: ", openAddAuthor);
-  };
-
-  const CloseAddAuthor = () => {
-    setOpenAddAuthor(false);
-    console.log("----openAddAuthor: ", openAddAuthor);
   };
 
   const HandleImageInput = (event) => {
@@ -193,7 +181,7 @@ const AddArtPieces = () => {
           {validation.song_id && <p>{validation.song_id}</p>}
         </div>
         <div className="mx-5">
-          <label htmlFor="album">Autor:</label>
+          <label htmlFor="album">Artista:</label>
           <select
             className="form-control mt-2"
             id="album"
@@ -202,10 +190,6 @@ const AddArtPieces = () => {
             required
           >
             <option value="">Escolha um autor</option>
-            {/* TODO onClick is not calling funtion */}
-            <option onClick={() => OpenAddAuthor()}>
-              Adicionar outro autor
-            </option>
             {displayAuthorName}
           </select>
           {validation.author_id && <p>{validation.author_id}</p>}
@@ -238,7 +222,6 @@ const AddArtPieces = () => {
           tente novamente!
         </p>
       )}
-      <AddAuthor visible={openAddAuthor} CloseModal={CloseAddAuthor} />
     </div>
   );
 };
