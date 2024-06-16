@@ -41,7 +41,7 @@ export default function Gallery() {
           </div>
         </div>
       )}
-      {userState != USER_STATES.LOADING_PAGE && screenWidth >= 769 ? (
+      {userState !== USER_STATES.LOADING_PAGE && screenWidth >= 769 ? (
         <div className="carousel-container">
           <Carousel className="display_art_pieces">
             {artPiecesBySong[currentSong.id]?.length > 0 ? (
