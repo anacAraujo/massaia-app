@@ -28,11 +28,17 @@ export default function MusicControllers() {
   }
 
   return (
+    // TODO unmute song and pause song
+    // TODO change buttons to correct icons
+    // TODO use media queries
     <div className="musicControllers">
       <div className="left-group">
         <button className="musicControllers-vol">
+          {/* TODO use setCurrentSongByAlbum an change to the other album */}
           vol. {currentSong.album_id}
         </button>
+
+        {/* TODO create list of all songs and change current song when selected  */}
         <p className="musicControllers-song-name">{currentSong.name}</p>
         <img
           className="musicControllers-more-songs"

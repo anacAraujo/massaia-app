@@ -77,6 +77,8 @@ export default function Gallery() {
                   alt={artPiece.song_name}
                 />
                 <div className="art_info">
+                  {/* TODO turn visible after image click */}
+                  {/* TODO the first image is already active and showing the info */}
                   <h3>{artPiece.song_name}</h3>
                   <p>{artPiece.author_name}</p>
                 </div>
