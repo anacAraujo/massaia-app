@@ -15,6 +15,8 @@ import {
   cilAlbum,
   cilHistory,
   cilWallpaper,
+  cilPeople,
+  cilClipboard
 } from "@coreui/icons";
 import { logo } from "../assets/brand/logo";
 import { sygnet } from "../assets/brand/sygnet";
@@ -54,21 +56,29 @@ const AppSidebar = () => {
       <CSidebarNav>
         <CNavTitle>Tabelas</CNavTitle>
         <div className="nav-item">
-          <Link className="nav-link" to="/albums">
+          <Link className="nav-link" to="/albuns">
             <CIcon className="nav-icon" icon={cilAlbum}></CIcon>
             Álbuns
           </Link>
-          <Link className="nav-link" to="/Songs">
+          <Link className="nav-link" to="/musicas">
             <CIcon className="nav-icon" icon={cilMusicNote}></CIcon>
             Músicas
           </Link>
-          <Link className="nav-link" to="/art_pieces">
+          <Link className="nav-link" to="/obras">
             <CIcon className="nav-icon" icon={cilWallpaper}></CIcon>
             Obras
           </Link>
-          <Link className="nav-link" to="/moments">
+          <Link className="nav-link" to="/momentos">
             <CIcon className="nav-icon" icon={cilHistory}></CIcon>
             Momentos
+          </Link>
+          <Link className="nav-link" to="/artistas">
+            <CIcon className="nav-icon" icon={cilPeople}></CIcon>
+            Artistas
+          </Link>
+          <Link className="nav-link" to="/cargos">
+            <CIcon className="nav-icon" icon={cilClipboard}></CIcon>
+            Cargos
           </Link>
         </div>
       </CSidebarNav>

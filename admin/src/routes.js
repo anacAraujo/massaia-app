@@ -7,6 +7,8 @@ import Albums from './pages/Albums'
 import Songs from './pages/Songs'
 import ArtPieces from './pages/ArtPieces'
 import Moments from './pages/Moments'
+import Artists from './pages/Artists'
+import Roles from './pages/Roles'
 
 const AppRoutes = () => {
     return (
@@ -15,11 +17,13 @@ const AppRoutes = () => {
                 <Route path="/" element={<Homepage />}/>
                 <Route path="/login" element={<Login />}/>
                 <Route path="/register" element={<Register />}/>
-                <Route path="/users" element={<Users />}/>
-                <Route path="/albums" element={<Albums />}/>
-                <Route path="/songs" element={<Songs />}/>
-                <Route path="/art_pieces" element={<ArtPieces />}/>
-                <Route path="/moments" element={<Moments />}/>
+                <Route path="/utilizadores" element={<Users />}/>
+                <Route path="/albuns" element={<Albums />}/>
+                <Route path="/musicas" element={<Songs />}/>
+                <Route path="/obras" element={<ArtPieces />}/>
+                <Route path="/momentos" element={<Moments />}/>
+                <Route path="/artistas" element={<Artists />}/>
+                <Route path="/cargos" element={<Roles />}/>
             </Routes>
         </BrowserRouter>
     )
