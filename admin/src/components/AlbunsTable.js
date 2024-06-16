@@ -1,6 +1,6 @@
 import { useTable } from 'react-table'
 import { useMemo, useState } from 'react'
-import EditModal from '../components/EditModal'
+import EditModal from './EditModal'
 import CIcon from '@coreui/icons-react'
 import { cilPencil } from '@coreui/icons'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell, CButton, CTooltip } from '@coreui/react'
