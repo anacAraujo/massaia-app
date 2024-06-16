@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import {
   CCloseButton,
   CSidebar,
-  CSidebarBrand,
   CSidebarHeader,
   CSidebarNav,
   CNavTitle,
@@ -18,8 +17,6 @@ import {
   cilPeople,
   cilClipboard
 } from "@coreui/icons";
-import { logo } from "../assets/brand/logo";
-import { sygnet } from "../assets/brand/sygnet";
 
 const AppSidebar = () => {
   const dispatch = useDispatch();
@@ -38,15 +35,6 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand to="/">
-          {/* TODO delete icons */}
-          <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
-          <CIcon
-            customClassName="sidebar-brand-narrow"
-            icon={sygnet}
-            height={32}
-          />
-        </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
           dark
