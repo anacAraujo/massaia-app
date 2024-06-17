@@ -2,6 +2,8 @@ import { CModal, CModalHeader, CModalTitle, CModalBody, CModalFooter, CButton } 
 import AddSongs from './AddSongs'
 import AddMoments from './AddMoments'
 import AddArtPieces from './AddArtPieces'
+import AddAuthors from './AddAuthors'
+import AddRoles from './AddRoles'
 
 const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton}) => {
 
@@ -24,6 +26,10 @@ const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton}) => {
                 return <AddArtPieces />;
             case 'moments':
                 return <AddMoments />;
+            case 'authors':
+                return <AddAuthors />;
+            case 'roles':
+                return <AddRoles />
             default:
                 return null;
         }

@@ -100,7 +100,7 @@ const ArtPiecesTable = ({ artPieces }) => {
         accessor: "image",
       },
       {
-        Header: "Autor",
+        Header: "Artista",
         accessor: "authorName",
       },
       {

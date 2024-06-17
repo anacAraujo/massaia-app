@@ -1,13 +1,6 @@
-//TODO add option to add new role
-
-import {
-  CModal,
-  CModalHeader,
-  CModalTitle,
-  CModalBody,
-  CModalFooter,
-  CButton,
-} from "@coreui/react";
+import { CButton } from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilArrowLeft } from "@coreui/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Joi from "joi";
@@ -17,11 +10,15 @@ const authorSchema = Joi.object({
   name: Joi.string().required().label("name"),
 });
 
-const AddAuthor = ({ visible, CloseModal }) => {
+const AddAuthors = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(null);
   const [validation, setValidation] = useState({});
   const navigate = useNavigate();
+
+  const CloseForm = () => {
+    window.location.reload();
+  };
 
   const HandleNameInput = (event) => {
     setName(event.target.value);
@@ -66,47 +63,45 @@ const AddAuthor = ({ visible, CloseModal }) => {
   };
 
   return (
-    <CModal
-      id="AddAuthor"
-      alignment="center"
-      visible={visible}
-      onClose={CloseModal}
-      aria-labelledby="VerticallyCenteredExample"
-    >
-      <CModalHeader>
-        <CModalTitle>Adicionar autor</CModalTitle>
-      </CModalHeader>
-      <CModalBody>
-        <form className="row g-3 mx-5 formMargin" onSubmit={handleAddAuthor}>
-          <label htmlFor="name">Nome:</label>
+    <div>
+      <CButton onClick={CloseForm} style={{ padding: "0rem" }}>
+        <CIcon icon={cilArrowLeft} size="lg"></CIcon>
+      </CButton>
+      <h2 className="mx-5">Adicionar artista</h2>
+      <form
+        onSubmit={handleAddAuthor}
+        className="row g-3 mx-5 formMargin mt-3"
+      >
+        <div className="mx-5">
+          <label htmlFor="image">Nome:</label>
           <input
             type="text"
             className="form-control mt-2"
-            id="name"
-            name="name"
+            id="image"
+            name="image"
             onChange={HandleNameInput}
             required
           />
           {validation.name && <p>{validation.name}</p>}
-          <div className="d-flex mt-4">
-            <CButton
-              type="submit"
-              color="success"
-              style={{ color: "white", marginLeft: "20rem" }}
-            >
-              Adicionar
-            </CButton>
-          </div>
-        </form>
-        {error && (
-          <p className=" text-danger mt-2" style={{ marginLeft: "6.5rem" }}>
-            Não foi possível efetuar esta operação, volte a carregar a página e
-            tente novamente!
-          </p>
-        )}
-      </CModalBody>
-    </CModal>
+        </div>
+        <div className="d-flex justify-content-end mx-5 mt-4">
+          <CButton
+            type="submit"
+            color="success"
+            style={{ color: "white", marginBottom: "1rem" }}
+          >
+            Adicionar
+          </CButton>
+        </div>
+      </form>
+      {error && (
+        <p className=" text-danger mt-2" style={{ marginLeft: "6.5rem" }}>
+          Não foi possível efetuar esta operação, volte a carregar a página e
+          tente novamente!
+        </p>
+      )}
+    </div>
   );
 };
 
-export default AddAuthor;
+export default AddAuthors;

@@ -35,3 +35,18 @@ export const addRole = async (req, res, next) => {
     next(error);
   }
 } 
+
+export const deleteRole = async (req, res, next) => {
+  try {
+    const params = await idSchema.validateAsync(req.params);
+
+    const query = "DELETE FROM roles WHERE `id` = ?";
+
+    const queryParams = [params.id];
+
+    await db.execute(query, queryParams);
+    return res.status(200).json({ message: "Role has been deleted." });
+  } catch (error) {
+    next(error);
+  }
+};

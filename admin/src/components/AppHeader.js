@@ -35,7 +35,7 @@ const AppHeader = () => {
             <Link className='nav-item nav-link' to='/'>Página Inicial</Link>
           </CNavItem>
           <CNavItem>
-            <Link className='nav-item nav-link' to='/users'>Utilizadores</Link>
+            <Link className='nav-item nav-link' to='/utilizadores'>Utilizadores</Link>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav className="ms-auto">

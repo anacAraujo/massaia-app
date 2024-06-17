@@ -7,7 +7,6 @@ import Joi from "joi";
 import axios from '../lib/AxiosConfig'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import AddAuthor from "./AddAuthor"
 
 const artPieceSchema = Joi.object({
     image: Joi.any().required().label('image'),
@@ -22,11 +21,11 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
     const [imageName, setImageName] = useState(artPieceData.image.split('/').pop());
     const [song_id, setSong_id] = useState(artPieceData.song_id);
     console.log(song_id);
-    const [songName, setSongName] = useState(artPieceData.song);
+    const [songName, setSongName] = useState(artPieceData.song_name);
     console.log(songName);
     const [author_id, setAuthor_id] = useState(artPieceData.author_id);
     console.log(author_id);
-    const [authorName, setAuthorName] = useState(artPieceData.author);
+    const [authorName, setAuthorName] = useState(artPieceData.author_name);
     console.log(authorName);
     const [date, setDate] = useState(artPieceData.date || null);
     console.log(date);
@@ -34,16 +33,15 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
     const [error, setError] = useState(null);
     const [songs, setSongs] = useState([]);
     const [authors, setAuthors] = useState([]);
-    const [openAddAuthor, setOpenAddAuthor] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         setImage(artPieceData.image);
         setImageName(artPieceData.image.split('/').pop());
         setSong_id(artPieceData.song_id);
-        setSongName(artPieceData.song);
+        setSongName(artPieceData.song_name);
         setAuthor_id(artPieceData.author_id);
-        setAuthorName(artPieceData.author);
+        setAuthorName(artPieceData.author_name);
         setDate(artPieceData.date || null);
     }, [artPieceData]);
 
@@ -85,14 +83,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
     
     const CloseForm = () => {
         window.location.reload();
-    }
-
-    const OpenAddAuthor = () => {
-        setOpenAddAuthor(true);
-    }
-
-    const CloseAddAuthor = () => {
-        setOpenAddAuthor(false);
     }
 
     const HandleImageInput = (event) => {
@@ -210,7 +200,7 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
                     {validation.song_id && <p>{validation.song_id}</p>}
                 </div>
                 <div className="mx-5">
-                    <label htmlFor="album">Autor:</label>
+                    <label htmlFor="album">Artista:</label>
                     <select 
                         className="form-control mt-2"
                         id="album"
@@ -219,7 +209,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
                         required
                     >
                         <option value={author_id}>{authorName}</option>
-                        <option onClick={() => OpenAddAuthor()}>Adicionar outro autor</option>
                         {displayAuthorName}
                     </select>
                     {validation.author_id && <p>{validation.author_id}</p>}
@@ -241,10 +230,6 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
                 </div>
             </form>
             {error && <p className=" text-danger mt-2" style={{marginLeft: '6.5rem'}}>Não foi possível efetuar esta operação, volte a carregar a página e tente novamente!</p>}
-            <AddAuthor 
-                visible={openAddAuthor}
-                CloseModal={CloseAddAuthor}
-            />
         </div>
     )
 }

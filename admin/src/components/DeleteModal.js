@@ -26,6 +26,12 @@ const DeleteModal = ({ visible, CloseModal, itemId, type }) => {
             case 'users':
                 endpoint = `/users/${itemId}`;
                 break
+            case 'authors':
+                endpoint = `/artists/${itemId}`;
+                break
+            case 'roles':
+                endpoint = `/roles/${itemId}`;
+                break
             default:
                 return;
         }
