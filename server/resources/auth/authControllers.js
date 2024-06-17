@@ -23,11 +23,13 @@ export const login = async (req, res, next) => {
       return res.status(400).json({ message: "Wrong email or password" });
     }
 
-    const token = jwt.sign({ id: data[0].id }, "jwtkey");
+    const secret = process.env.JWT_SECRET;
+
+    const token = jwt.sign({ id: data[0].id }, secret);
     const { password, ...other } = data[0];
 
     res
-      .cookie("acess_token", token, {
+      .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(200)
