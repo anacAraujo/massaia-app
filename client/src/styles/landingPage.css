@@ -61,6 +61,10 @@
     p {
       font-size: 6vw;
     }
+
+    img {
+      display: none;
+    }
   }
 
   /* .overlay {
@@ -94,17 +98,22 @@
 @media only screen and (min-width: 1024px) {
   .eyes {
     .img-eyes {
-      width: 8vw;
-      height: auto;
+      display: none;
     }
   }
 
   .content {
     h1 {
-      font-size: 7vw;
+      display: none;
     }
     p {
-      font-size: 2vw;
+      display: none;
+    }
+
+    img {
+      display: block;
+      width: 60vw;
+      height: auto;
     }
   }
 }
