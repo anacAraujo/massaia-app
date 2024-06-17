@@ -21,7 +21,19 @@ export default function Home() {
 
   const { songId } = useParams();
 
+  const [muted, setMuted] = useState(true);
+
   const [timeoutId, setTimeoutId] = useState(null);
+
+  function handleMute() {
+    setMuted(true);
+    console.log("muted: ", muted);
+  }
+
+  function handleUnmute() {
+    setMuted(false);
+    console.log("muted: ", muted);
+  }
 
   useEffect(() => {
     if (userState === USER_STATES.LOADING_PAGE) {
@@ -71,7 +83,7 @@ export default function Home() {
               src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.video}`}
               autoPlay
               loop
-              muted
+              muted={muted}
             />
           ) : (
             <img
@@ -100,7 +112,26 @@ export default function Home() {
                 <p>créditos</p>
               </Link>
               <div className="song-info">
-                <p>1:30 {currentSong.name}</p>
+                <div>
+                  {muted ? (
+                    <img
+                      className="sound"
+                      src="../assets/icons/sound-off.svg"
+                      alt="sound off"
+                      onClick={() => handleUnmute()}
+                    />
+                  ) : (
+                    <img
+                      className="sound"
+                      src="../assets/icons/sound-on.svg"
+                      alt="sound on"
+                      onClick={() => handleMute()}
+                    />
+                  )}
+                  <p className="vol">vol. {currentSong.album_id}</p>
+                  1:30 {"  "}
+                  {currentSong.name}
+                </div>
               </div>
             </div>
           )}

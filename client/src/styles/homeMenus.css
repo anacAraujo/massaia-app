@@ -46,6 +46,7 @@ body {
     z-index: 1;
     p {
       font-size: 5vw;
+      margin: 0;
     }
   }
 
@@ -55,8 +56,23 @@ body {
     color: white;
     margin: 7%;
     font-family: "AkzidGroLigOsF";
-    p {
+    div {
       font-size: 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2vw;
+
+      .sound {
+        height: 5vw;
+        width: auto;
+      }
+
+      .vol {
+        margin: 0;
+        font-size: 4.2vw;
+        font-family: "AkzidGroReg";
+      }
     }
   }
 
@@ -148,8 +164,17 @@ body {
   }
 
   .song-info {
-    p {
+    div {
       font-size: 4vw;
+      gap: 2vw;
+
+      .vol {
+        font-size: 4vw;
+      }
+
+      .sound {
+        height: 4vw;
+      }
     }
   }
 
@@ -209,8 +234,17 @@ body {
 
   .song-info {
     margin: 2%;
-    p {
+    div {
       font-size: 1.5vw;
+      gap: 1vw;
+
+      .vol {
+        font-size: 1.5vw;
+      }
+
+      .sound {
+        height: 1.5vw;
+      }
     }
   }
 
