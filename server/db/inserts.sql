@@ -85,6 +85,9 @@ UPDATE `massaia`.`songs` SET `image` = 'o-pior-de-mim.jpg' WHERE (`id` = '7');
 UPDATE `massaia`.`songs` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '8');
 UPDATE `massaia`.`songs` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '9');
 UPDATE `massaia`.`songs` SET `video` = 'VIDA.mp4' WHERE (`id` = '8');
+UPDATE `massaia`.`songs` SET `image` = 'musicaalbum2.jpg' WHERE (`id` = '10');
+
+UPDATE `massaia`.`albums` SET `cover` = 'coverAlbum2.png' WHERE (`id` = '2');
 
 UPDATE `massaia`.`art_pieces` SET `image` = 'Capa-Massaia-Voli.jpg' WHERE (`id` = '1');
 UPDATE `massaia`.`art_pieces` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '2');

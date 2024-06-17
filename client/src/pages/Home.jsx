@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CurrentState } from "../context/currentState.js";
 import { USER_STATES } from "../context/currentState.js";
@@ -21,18 +21,33 @@ export default function Home() {
 
   const { songId } = useParams();
 
+  const [menuAlbumId, setMenuAlbumId] = useState(1);
+
   const [muted, setMuted] = useState(true);
 
   const [timeoutId, setTimeoutId] = useState(null);
 
+  function handleAlbumMenuId(albumId) {
+    setMenuAlbumId(albumId);
+  }
   function handleMute() {
     setMuted(true);
-    console.log("muted: ", muted);
   }
 
   function handleUnmute() {
     setMuted(false);
-    console.log("muted: ", muted);
+  }
+
+  function handleAlbumChange(currentAlbumId) {
+    let newAlbumId = null;
+    if (currentAlbumId === 1) {
+      newAlbumId = 2;
+    }
+
+    if (currentAlbumId === 2) {
+      newAlbumId = 1;
+    }
+    setCurrentSongByAlbum(newAlbumId);
   }
 
   useEffect(() => {
@@ -102,11 +117,24 @@ export default function Home() {
                 <img src="../assets/icons/menu-white.svg" alt="menu" />
               </Link>
               <div className="album-cover">
+                <p>vol. I</p>
                 <img
-                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${currentSong.album_cover}`}
+                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[1][0]?.album_cover}`}
                   alt="album cover"
-                  onClick={() => handleUserStateChange(USER_STATES.ALBUMS_MENU)}
+                  onClick={
+                    (() => handleAlbumMenuId(songsByAlbum[1][0]?.album_id),
+                    () => handleUserStateChange(USER_STATES.ALBUMS_MENU))
+                  }
                 />
+                <img
+                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[2][0]?.album_cover}`}
+                  alt="album cover"
+                  onClick={
+                    (() => handleAlbumMenuId(songsByAlbum[2][0]?.album_id),
+                    () => handleUserStateChange(USER_STATES.ALBUMS_MENU))
+                  }
+                />
+                <p>vol. II</p>
               </div>
               <Link className="credits" to="/creditos">
                 <p>créditos</p>
@@ -128,7 +156,12 @@ export default function Home() {
                       onClick={() => handleMute()}
                     />
                   )}
-                  <p className="vol">vol. {currentSong.album_id}</p>
+                  <p
+                    onClick={() => handleAlbumChange(currentSong.album_id)}
+                    className="vol"
+                  >
+                    vol. {currentSong.album_id}
+                  </p>
                   1:30 {"  "}
                   {currentSong.name}
                 </div>
@@ -136,7 +169,7 @@ export default function Home() {
             </div>
           )}
           {userState === USER_STATES.ALBUMS_MENU && (
-            <AlbumsMenu songsInfo={songsByAlbum[1]} />
+            <AlbumsMenu songsInfo={songsByAlbum[menuAlbumId]} />
           )}
         </div>
       )}
