@@ -20,12 +20,11 @@ export function CurrentStateProvider({ children }) {
   const { initSongsInfo } = React.useContext(CacheApi);
 
   function handleUserStateChange(newUserState) {
-    console.log(`Changing state to: ${newUserState}`);
-
     if (newUserState === userState) {
       return;
     }
     setUserState(newUserState);
+    console.log(`Changing state to: ${newUserState}`);
   }
 
   async function setCurrentSongById(songId) {

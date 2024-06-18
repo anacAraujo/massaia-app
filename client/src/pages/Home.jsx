@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import AudioPlayer from "react-h5-audio-player";
+
 import { CurrentState } from "../context/currentState.js";
 import { USER_STATES } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
@@ -25,10 +27,9 @@ export default function Home() {
 
   const [muted, setMuted] = useState(true);
 
-  const [timeoutId, setTimeoutId] = useState(null);
-
-  function handleAlbumMenuId(albumId) {
+  function handleAlbumCoverClick(albumId) {
     setMenuAlbumId(albumId);
+    handleUserStateChange(USER_STATES.ALBUMS_MENU);
   }
   function handleMute() {
     setMuted(true);
@@ -59,31 +60,57 @@ export default function Home() {
       }
     }
 
-    //TODO handleMouseMove
-    if (userState === USER_STATES.SONG_MENU) {
-      const id = setTimeout(() => {
-        handleUserStateChange(USER_STATES.VIEWING_SONG);
-      }, 5000);
+    let timeoutId;
 
-      // TODO check timeout usage
-      setTimeoutId(id);
-
-      const handleMouseMove = () => {
-        clearTimeout(id);
+    const handleMouseMove = () => {
+      clearTimeout(timeoutId);
+      if (userState === USER_STATES.VIEWING_SONG) {
         handleUserStateChange(USER_STATES.SONG_MENU);
+      } else {
+        handleUserStateChange(USER_STATES.SONG_MENU);
+      }
+      //console.log("Mouse is moving");
+    };
+
+    const handleMouseStop = () => {
+      console.log("Mouse stopped moving");
+      timeoutId = setTimeout(() => {
+        handleUserStateChange(USER_STATES.VIEWING_SONG);
+        // console.log("setTimeout: Timer viewing song after stop");
+      }, 2000);
+    };
+
+    if (
+      userState === USER_STATES.SONG_MENU ||
+      userState === USER_STATES.VIEWING_SONG
+    ) {
+      //console.log("inside useEffect SONG_MENU or VIEWING_SONG");
+      timeoutId = setTimeout(() => {
+        handleUserStateChange(USER_STATES.VIEWING_SONG);
+        console.log("setTimeout: Timer viewing song");
+      }, 2000);
+
+      let mouseStopTimeout;
+      const debouncedMouseStop = () => {
+        clearTimeout(mouseStopTimeout);
+        mouseStopTimeout = setTimeout(handleMouseStop, 100);
       };
 
       window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mousemove", debouncedMouseStop);
 
       return () => {
-        clearTimeout(id);
+        clearTimeout(timeoutId);
+        clearTimeout(mouseStopTimeout);
         window.removeEventListener("mousemove", handleMouseMove);
+        window.removeEventListener("mousemove", debouncedMouseStop);
       };
     }
   }, [userState]);
 
   return (
     <>
+      {/* TODO when there is no video, get audio of song */}
       {userState === USER_STATES.LOADING_PAGE ? (
         <Loading></Loading>
       ) : (
@@ -101,11 +128,19 @@ export default function Home() {
               muted={muted}
             />
           ) : (
-            <img
-              className="menu-albums-song"
-              src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.image}`}
-              alt="song cover"
-            />
+            <>
+              <img
+                className="menu-albums-song"
+                src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.image}`}
+                alt="song cover"
+              />
+
+              <audio
+                src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.audio}`}
+                autoPlay
+                muted={muted}
+              />
+            </>
           )}
           {userState === USER_STATES.LANDING_PAGE && <LandingPage />}
           {userState === USER_STATES.SONG_MENU && (
@@ -121,18 +156,12 @@ export default function Home() {
                 <img
                   src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[1][0]?.album_cover}`}
                   alt="album cover"
-                  onClick={
-                    (() => handleAlbumMenuId(songsByAlbum[1][0]?.album_id),
-                    () => handleUserStateChange(USER_STATES.ALBUMS_MENU))
-                  }
+                  onClick={() => handleAlbumCoverClick(1)}
                 />
                 <img
                   src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[2][0]?.album_cover}`}
                   alt="album cover"
-                  onClick={
-                    (() => handleAlbumMenuId(songsByAlbum[2][0]?.album_id),
-                    () => handleUserStateChange(USER_STATES.ALBUMS_MENU))
-                  }
+                  onClick={() => handleAlbumCoverClick(2)}
                 />
                 <p>vol. II</p>
               </div>
@@ -162,7 +191,6 @@ export default function Home() {
                   >
                     vol. {currentSong.album_id}
                   </p>
-                  1:30 {"  "}
                   {currentSong.name}
                 </div>
               </div>
