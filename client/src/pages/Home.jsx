@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 import AudioPlayer from "react-h5-audio-player";
 
 import { CurrentState } from "../context/currentState.js";
@@ -27,10 +29,13 @@ export default function Home() {
 
   const [muted, setMuted] = useState(true);
 
+  const [showingDropdownOptions, setShowingDropdownOptions] = useState(false);
+
   function handleAlbumCoverClick(albumId) {
     setMenuAlbumId(albumId);
     handleUserStateChange(USER_STATES.ALBUMS_MENU);
   }
+
   function handleMute() {
     setMuted(true);
   }
@@ -51,6 +56,16 @@ export default function Home() {
     setCurrentSongByAlbum(newAlbumId);
   }
 
+  function handleSongChange(newSongId) {
+    setCurrentSongById(newSongId);
+    setShowingDropdownOptions(false);
+  }
+
+  function handleDropdownClick() {
+    setShowingDropdownOptions(!showingDropdownOptions);
+    console.log("inside handleDropdownClick", showingDropdownOptions);
+  }
+
   useEffect(() => {
     if (userState === USER_STATES.LOADING_PAGE) {
       if (songId) {
@@ -69,14 +84,14 @@ export default function Home() {
       } else {
         handleUserStateChange(USER_STATES.SONG_MENU);
       }
-      //console.log("Mouse is moving");
+      console.log("Mouse is moving");
     };
 
     const handleMouseStop = () => {
       console.log("Mouse stopped moving");
       timeoutId = setTimeout(() => {
         handleUserStateChange(USER_STATES.VIEWING_SONG);
-        // console.log("setTimeout: Timer viewing song after stop");
+        console.log("setTimeout: Timer viewing song after stop");
       }, 2000);
     };
 
@@ -84,8 +99,9 @@ export default function Home() {
       userState === USER_STATES.SONG_MENU ||
       userState === USER_STATES.VIEWING_SONG
     ) {
-      //console.log("inside useEffect SONG_MENU or VIEWING_SONG");
+      console.log("inside useEffect SONG_MENU or VIEWING_SONG");
       timeoutId = setTimeout(() => {
+        setShowingDropdownOptions(false);
         handleUserStateChange(USER_STATES.VIEWING_SONG);
         console.log("setTimeout: Timer viewing song");
       }, 2000);
@@ -138,6 +154,7 @@ export default function Home() {
               <audio
                 src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.audio}`}
                 autoPlay
+                loop
                 muted={muted}
               />
             </>
@@ -191,7 +208,34 @@ export default function Home() {
                   >
                     vol. {currentSong.album_id}
                   </p>
-                  {currentSong.name}
+
+                  <DropdownButton
+                    key={"up"}
+                    id={`dropdown-button-drop-up-centered`}
+                    drop={"up"}
+                    variant="secondary"
+                    title={currentSong.name}
+                    show={showingDropdownOptions}
+                    onClick={() => handleDropdownClick()}
+                    className="custom-dropdown"
+                  >
+                    {showingDropdownOptions &&
+                      (songsByAlbum[currentSong.album_id]?.length > 0 ? (
+                        songsByAlbum[currentSong.album_id].map((song) => (
+                          <Dropdown.Item
+                            key={song.id}
+                            onClick={() => handleSongChange(song.id)}
+                            className="custom-dropdown-item"
+                          >
+                            {song.name}
+                          </Dropdown.Item>
+                        ))
+                      ) : (
+                        <Dropdown.Item disabled>
+                          No songs available
+                        </Dropdown.Item>
+                      ))}
+                  </DropdownButton>
                 </div>
               </div>
             </div>

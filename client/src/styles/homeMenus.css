@@ -85,6 +85,46 @@ body {
         cursor: pointer;
       }
     }
+
+    .custom-dropdown {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0;
+    }
+
+    .custom-dropdown .dropdown-toggle {
+      background: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      color: white !important;
+      font-family: "AkzidGroReg";
+      padding: 0;
+      font-size: 4.2vw;
+    }
+
+    .custom-dropdown .dropdown-menu {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0;
+    }
+
+    .custom-dropdown-item {
+      background: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      color: white !important;
+      font-size: 4.2vw;
+      font-family: "AkzidGroReg";
+      padding: 0 5px;
+    }
+
+    .custom-dropdown-item:hover,
+    .custom-dropdown-item:focus {
+      background: black !important;
+      color: white !important;
+    }
   }
 
   /* menu albums */
@@ -178,6 +218,14 @@ body {
         height: 4vw;
       }
     }
+
+    .custom-dropdown .dropdown-toggle {
+      font-size: 4vw;
+    }
+
+    .custom-dropdown-item {
+      font-size: 3.5vw;
+    }
   }
 
   /* menu albums */
@@ -247,6 +295,13 @@ body {
       .sound {
         height: 1.5vw;
       }
+    }
+    .custom-dropdown .dropdown-toggle {
+      font-size: 1.5vw;
+    }
+
+    .custom-dropdown-item {
+      font-size: 1.5vw;
     }
   }
 
