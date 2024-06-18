@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import AudioPlayer from "react-h5-audio-player";
 
 import { CurrentState } from "../context/currentState.js";
 import { USER_STATES } from "../context/currentState.js";
