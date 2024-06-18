@@ -85,6 +85,19 @@ UPDATE `massaia`.`songs` SET `image` = 'o-pior-de-mim.jpg' WHERE (`id` = '7');
 UPDATE `massaia`.`songs` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '8');
 UPDATE `massaia`.`songs` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '9');
 UPDATE `massaia`.`songs` SET `video` = 'VIDA.mp4' WHERE (`id` = '8');
+UPDATE `massaia`.`songs` SET `image` = 'musicaalbum2.jpg' WHERE (`id` = '10');
+UPDATE `massaia`.`songs` SET `audio` = 'Massaia_Master.wav' WHERE (`id` = '1');
+UPDATE `massaia`.`songs` SET `audio` = 'Madalena_New_Master.wav' WHERE (`id` = '2');
+UPDATE `massaia`.`songs` SET `audio` = 'O_homem-Merda_New_Master.wav' WHERE (`id` = '3');
+UPDATE `massaia`.`songs` SET `audio` = 'So_a _mae_tem_New_3_Master.wav' WHERE (`id` = '4');
+UPDATE `massaia`.`songs` SET `audio` = 'Fado_Desencontrado_Master.wav' WHERE (`id` = '5');
+UPDATE `massaia`.`songs` SET `audio` = 'Ficar_por_ai_New_Master.wav' WHERE (`id` = '6');
+UPDATE `massaia`.`songs` SET `audio` = 'O_pior_de_mim_New_3_Master.wav' WHERE (`id` = '7');
+UPDATE `massaia`.`songs` SET `audio` = 'A_parte_da_vida_New_3_Master.wav' WHERE (`id` = '8');
+UPDATE `massaia`.`songs` SET `audio` = 'Vinte_dois_New_Master.wav' WHERE (`id` = '9');
+UPDATE `massaia`.`songs` SET `audio` = 'O_homem-Merda_New_Master.wav' WHERE (`id` = '10');
+
+UPDATE `massaia`.`albums` SET `cover` = 'coverAlbum2.png' WHERE (`id` = '2');
 
 UPDATE `massaia`.`art_pieces` SET `image` = 'Capa-Massaia-Voli.jpg' WHERE (`id` = '1');
 UPDATE `massaia`.`art_pieces` SET `image` = 'CAPA-Madalena.jpg' WHERE (`id` = '2');

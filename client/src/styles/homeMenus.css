@@ -24,15 +24,25 @@ body {
   .album-cover {
     position: absolute;
     top: 0;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     img {
+      margin-top: 5px;
+      margin-bottom: 5px;
       width: 100px;
       height: 100px;
       object-fit: cover;
+    }
+
+    p {
+      margin: 0;
+      font-family: "AkzidGroLigOsF";
+      color: white;
     }
   }
 
@@ -46,6 +56,7 @@ body {
     z-index: 1;
     p {
       font-size: 5vw;
+      margin: 0;
     }
   }
 
@@ -55,21 +66,68 @@ body {
     color: white;
     margin: 7%;
     font-family: "AkzidGroLigOsF";
-    p {
+    div {
       font-size: 5vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2vw;
+
+      .sound {
+        height: 5vw;
+        width: auto;
+      }
+
+      .vol {
+        margin: 0;
+        font-size: 4.2vw;
+        font-family: "AkzidGroReg";
+        cursor: pointer;
+      }
+    }
+
+    .custom-dropdown {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0;
+    }
+
+    .custom-dropdown .dropdown-toggle {
+      background: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      color: white !important;
+      font-family: "AkzidGroReg";
+      padding: 0;
+      font-size: 4.2vw;
+    }
+
+    .custom-dropdown .dropdown-menu {
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0;
+    }
+
+    .custom-dropdown-item {
+      background: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      color: white !important;
+      font-size: 4.2vw;
+      font-family: "AkzidGroReg";
+      padding: 0 5px;
+    }
+
+    .custom-dropdown-item:hover,
+    .custom-dropdown-item:focus {
+      background: black !important;
+      color: white !important;
     }
   }
 
   /* menu albums */
-  .menu-albuns-line {
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
   .menu-albums {
     position: absolute;
     top: 0;
@@ -148,8 +206,25 @@ body {
   }
 
   .song-info {
-    p {
+    div {
       font-size: 4vw;
+      gap: 2vw;
+
+      .vol {
+        font-size: 4vw;
+      }
+
+      .sound {
+        height: 4vw;
+      }
+    }
+
+    .custom-dropdown .dropdown-toggle {
+      font-size: 4vw;
+    }
+
+    .custom-dropdown-item {
+      font-size: 3.5vw;
     }
   }
 
@@ -209,7 +284,23 @@ body {
 
   .song-info {
     margin: 2%;
-    p {
+    div {
+      font-size: 1.5vw;
+      gap: 1vw;
+
+      .vol {
+        font-size: 1.5vw;
+      }
+
+      .sound {
+        height: 1.5vw;
+      }
+    }
+    .custom-dropdown .dropdown-toggle {
+      font-size: 1.5vw;
+    }
+
+    .custom-dropdown-item {
       font-size: 1.5vw;
     }
   }
