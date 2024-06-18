@@ -126,7 +126,6 @@ export default function Home() {
 
   return (
     <>
-      {/* TODO when there is no video, get audio of song */}
       {userState === USER_STATES.LOADING_PAGE ? (
         <Loading></Loading>
       ) : (
