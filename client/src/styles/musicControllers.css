@@ -4,33 +4,29 @@
   }
 
   .musicControllers {
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    display: flex;
     width: 100%;
     height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 1.5rem;
     background-color: white;
-  }
-
-  .left-group,
-  .center-group,
-  .right-group {
-    display: flex;
     align-items: center;
   }
 
+  .flex-item {
+    flex: 1;
+  }
   .left-group {
     gap: 2vw;
     color: black;
+    display: flex;
   }
 
   .musicControllers-vol {
     margin: 0;
     font-size: 5vw;
-    font-family: "AkzidGroReg";
+    font-family: "AkzidGroMed";
     cursor: pointer;
   }
 
@@ -47,7 +43,7 @@
     border: none !important;
     border-radius: 0 !important;
     color: black !important;
-    font-family: "AkzidGroReg";
+    font-family: "AkzidGroMed";
     padding: 0;
     font-size: 5vw;
     z-index: 1;
@@ -67,7 +63,7 @@
     border-radius: 0 !important;
     color: black !important;
     font-size: 5vw;
-    font-family: "AkzidGroReg";
+    font-family: "AkzidGroMed";
     padding: 0 5px;
   }
 
@@ -78,7 +74,6 @@
   }
 
   .center-group {
-    flex: 1;
     justify-content: end;
   }
 
@@ -86,30 +81,71 @@
     margin: 0 0.5rem;
     width: 4vw;
     height: auto;
+    cursor: pointer;
   }
 
   .right-group {
-    flex: 1;
-    justify-content: flex-end;
-  }
-
-  .mute-button {
-    margin-right: 1rem;
-  }
-
-  .volume-slider {
-    width: 100px;
-  }
-
-  @media (max-width: 768px) {
-    .right-group {
-      display: none;
-    }
+    display: none;
   }
 }
 
-@media only screen and (min-width: 590px) {
+@media only screen and (min-width: 768px) {
+  body {
+    overflow: hidden !important;
+  }
+  .musicControllers {
+    height: 100px;
+  }
+
+  .musicControllers-vol {
+    font-size: 3vw;
+    z-index: 1;
+  }
+
+  .custom-dropdown .dropdown-toggle {
+    font-size: 3vw;
+  }
+
+  .custom-dropdown-item {
+    font-size: 3vw;
+  }
+
+  .control-button {
+    width: 3vw;
+  }
+
+  .center-group {
+    text-align: center;
+  }
+
+  .right-group {
+    display: block;
+    text-align: end;
+    z-index: 1;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
+  .musicControllers {
+    height: 50px;
+  }
+
+  .musicControllers-vol {
+    font-size: 1.2vw;
+    font-family: "AkzidGroLigOsF";
+  }
+
+  .custom-dropdown .dropdown-toggle {
+    font-size: 1.2vw;
+    font-family: "AkzidGroLigOsF";
+  }
+
+  .custom-dropdown-item {
+    font-size: 1.2vw;
+    font-family: "AkzidGroLigOsF";
+  }
+
+  .control-button {
+    width: 1vw;
+  }
 }

@@ -16,6 +16,10 @@ export default function MusicControllers() {
 
   const { songsById, songsByAlbum } = React.useContext(CacheApi);
 
+  const [muted, setMuted] = useState(true);
+  const [play, setPlay] = useState(false);
+  const audio = document.getElementById("audio_tag");
+
   const [showingDropdownOptions, setShowingDropdownOptions] = useState(false);
 
   function handlePrevSong() {
@@ -33,6 +37,16 @@ export default function MusicControllers() {
     }
 
     setCurrentSongById(newSongId);
+  }
+
+  function handleMute() {
+    setMuted(!muted);
+  }
+
+  function handlePlaySong() {
+    play ? setPlay(false) : setPlay(true);
+    play ? audio.pause() : audio.play();
+    setMuted(!muted);
   }
 
   function handleAlbumChange(currentAlbumId) {
@@ -58,11 +72,8 @@ export default function MusicControllers() {
   }
 
   return (
-    // TODO unmute song and pause song
-    // TODO change buttons to correct icons
-    // TODO use media queries
-    <div className="musicControllers">
-      <div className="left-group">
+    <div className="musicControllers flex-container">
+      <div className="left-group flex-item">
         {currentSong.album_id === 1 ? (
           <p
             onClick={() => handleAlbumChange(currentSong.album_id)}
@@ -106,18 +117,26 @@ export default function MusicControllers() {
         </DropdownButton>
       </div>
 
-      <div className="center-group">
+      <div className="center-group flex-item">
         <img
           className="control-button"
           onClick={() => handlePrevSong()}
           src="../assets/icons/previous-song.svg"
         />
 
-        <img
-          className="control-button"
-          onClick={() => handleNextSong()}
-          src="../assets/icons/play.svg"
-        />
+        {play ? (
+          <img
+            className="control-button"
+            onClick={() => handlePlaySong()}
+            src="../assets/icons/pause.svg"
+          />
+        ) : (
+          <img
+            className="control-button"
+            onClick={() => handlePlaySong()}
+            src="../assets/icons/play.svg"
+          />
+        )}
 
         <img
           className="control-button"
@@ -126,13 +145,31 @@ export default function MusicControllers() {
         />
       </div>
 
-      <div className="right-group">
-        <img
-          className="control-button"
-          onClick={() => handleNextSong()}
-          src="../assets/icons/mute.svg"
-        />
+      <div className="right-group flex-item">
+        {muted ? (
+          <img
+            className="control-button"
+            src="../assets/icons/mute.svg"
+            alt="sound off"
+            onClick={() => handleMute()}
+          />
+        ) : (
+          <img
+            className="control-button"
+            src="../assets/icons/unmute.svg"
+            alt="sound on"
+            onClick={() => handleMute()}
+          />
+        )}
       </div>
+
+      <audio
+        id="audio_tag"
+        src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.audio}`}
+        autoPlay
+        loop
+        muted={muted}
+      />
     </div>
   );
 }

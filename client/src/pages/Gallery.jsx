@@ -95,9 +95,7 @@ export default function Gallery() {
         </div>
       )}
 
-      <div className="music-controllers-container">
-        <MusicControllers />
-      </div>
+      <MusicControllers />
     </div>
   );
 }

@@ -5,14 +5,6 @@
   z-index: 1;
 }
 
-.music-controllers-container {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 1;
-  background-color: bisque;
-}
-
 .gallery-container {
   margin-top: 15vh;
 }
@@ -60,6 +52,13 @@
   left: 0;
 }
 
+.carousel-control-prev {
+  height: 50px;
+  left: 0;
+  transform: translateY(-100%);
+  top: 55%;
+}
+
 @media (min-width: 769px) {
   .carousel-container {
     display: flex;
@@ -87,9 +86,9 @@
   }
 
   .carousel-caption {
-    position: absolute;
-    bottom: 3rem;
-    left: 2rem;
+    position: relative;
+    bottom: 10rem;
+    left: 63vw;
     background-color: white;
     padding: 10px;
     text-align: left;
@@ -102,5 +101,11 @@
   .carousel-caption h3,
   .carousel-caption p {
     color: black;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .carousel-caption {
+    left: 75%;
   }
 }
