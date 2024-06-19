@@ -46,7 +46,7 @@ export default function MusicControllers() {
   function handlePlaySong() {
     play ? setPlay(false) : setPlay(true);
     play ? audio.pause() : audio.play();
-    setMuted(!muted);
+    play ? setMuted(true) : setMuted(false);
   }
 
   function handleAlbumChange(currentAlbumId) {
