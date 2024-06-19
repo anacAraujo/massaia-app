@@ -28,6 +28,7 @@
     font-size: 5vw;
     font-family: "AkzidGroMed";
     cursor: pointer;
+    width: max-content;
   }
 
   .custom-dropdown {
@@ -74,7 +75,7 @@
   }
 
   .center-group {
-    justify-content: end;
+    text-align: end;
   }
 
   .control-button {

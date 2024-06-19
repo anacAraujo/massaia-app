@@ -6,7 +6,7 @@
 }
 
 .gallery-container {
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .grid-container {
@@ -16,6 +16,7 @@
   gap: 10px;
   width: 100%;
   overflow-y: auto;
+  margin-bottom: 5vh;
 }
 
 .grid-item {
@@ -29,10 +30,14 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .art_info {
-  text-align: center;
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 3vh;
+  width: 90vw;
 }
 
 .carousel-container {
@@ -60,6 +65,10 @@
 }
 
 @media (min-width: 769px) {
+  .gallery-container {
+    margin-top: 15vh;
+  }
+
   .carousel-container {
     display: flex;
   }
@@ -92,10 +101,14 @@
     background-color: white;
     padding: 10px;
     text-align: left;
-    width: auto;
+    width: 20vw;
+    height: max-content;
     /* border: 2px solid red; */
     max-width: 300px;
     z-index: 10;
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 
   .carousel-caption h3,
