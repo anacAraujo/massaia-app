@@ -1,72 +1,115 @@
-.musicControllers {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: white;
-}
-
-.left-group,
-.center-group,
-.right-group {
-  display: flex;
-  align-items: center;
-}
-
-.left-group {
-  flex: 1;
-}
-
-.musicControllers-vol {
-  margin-right: 1rem;
-  padding: 0 0.5rem;
-  color: white;
-  background-color: black;
-  font-family: "AkzidGroReg";
-}
-
-.musicControllers-song-name {
-  margin-right: 1rem;
-  margin-bottom: 0;
-  padding: 0.5rem 0;
-}
-
-.musicControllers-more-songs {
-  width: 20px;
-  height: auto;
-  margin-bottom: 0;
-  color: black;
-  font-family: "AkzidGroReg";
-}
-
-.center-group {
-  flex: 1;
-  justify-content: center;
-}
-
-.control-button {
-  margin: 0 0.5rem;
-}
-
-.right-group {
-  flex: 1;
-  justify-content: flex-end;
-}
-
-.mute-button {
-  margin-right: 1rem;
-}
-
-.volume-slider {
-  width: 100px;
-}
-
-@media (max-width: 768px) {
-  .right-group {
-    display: none;
+@media only screen and (min-width: 0px) {
+  body {
+    overflow: scroll !important;
   }
+
+  .musicControllers {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background-color: white;
+  }
+
+  .left-group,
+  .center-group,
+  .right-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .left-group {
+    gap: 2vw;
+    color: black;
+  }
+
+  .musicControllers-vol {
+    margin: 0;
+    font-size: 5vw;
+    font-family: "AkzidGroReg";
+    cursor: pointer;
+  }
+
+  .custom-dropdown {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    z-index: 1;
+  }
+
+  .custom-dropdown .dropdown-toggle {
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: black !important;
+    font-family: "AkzidGroReg";
+    padding: 0;
+    font-size: 5vw;
+    z-index: 1;
+  }
+
+  .custom-dropdown .dropdown-menu {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    z-index: 1;
+  }
+
+  .custom-dropdown-item {
+    background-color: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: black !important;
+    font-size: 5vw;
+    font-family: "AkzidGroReg";
+    padding: 0 5px;
+  }
+
+  .custom-dropdown-item:hover,
+  .custom-dropdown-item:focus {
+    background: black !important;
+    color: white !important;
+  }
+
+  .center-group {
+    flex: 1;
+    justify-content: end;
+  }
+
+  .control-button {
+    margin: 0 0.5rem;
+    width: 4vw;
+    height: auto;
+  }
+
+  .right-group {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .mute-button {
+    margin-right: 1rem;
+  }
+
+  .volume-slider {
+    width: 100px;
+  }
+
+  @media (max-width: 768px) {
+    .right-group {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 590px) {
+}
+
+@media only screen and (min-width: 1024px) {
 }

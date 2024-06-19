@@ -32,6 +32,7 @@ export default function Home() {
 
   function handleAlbumCoverClick(albumId) {
     setMenuAlbumId(albumId);
+
     handleUserStateChange(USER_STATES.ALBUMS_MENU);
   }
 
