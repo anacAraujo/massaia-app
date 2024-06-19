@@ -200,12 +200,21 @@ export default function Home() {
                       onClick={() => handleMute()}
                     />
                   )}
-                  <p
-                    onClick={() => handleAlbumChange(currentSong.album_id)}
-                    className="vol"
-                  >
-                    vol. {currentSong.album_id}
-                  </p>
+                  {currentSong.album_id === 1 ? (
+                    <p
+                      onClick={() => handleAlbumChange(currentSong.album_id)}
+                      className="vol"
+                    >
+                      vol. I
+                    </p>
+                  ) : (
+                    <p
+                      onClick={() => handleAlbumChange(currentSong.album_id)}
+                      className="vol"
+                    >
+                      vol. II
+                    </p>
+                  )}
 
                   <DropdownButton
                     key={"up"}
