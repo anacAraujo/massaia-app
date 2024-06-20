@@ -39,28 +39,26 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    padding: 2rem;
 
     .menu-main-option {
       font-size: 10vw;
-      font-family: "AkzidGroReg";
 
       a {
         text-decoration: none;
         color: black;
+        font-family: "AkzidGroReg";
       }
 
       p {
         margin: 0;
         padding: 0;
+        font-family: "AkzidGroReg";
       }
 
       .menu-option {
-        font-family: "AkzidGroLigOsF";
-
         button {
           background: none;
-          color: inherit;
           border: none;
           padding: 0;
           font: inherit;
@@ -68,6 +66,11 @@ body {
           outline: inherit;
           text-decoration: none;
           color: black;
+          font-family: "AkzidGroLigOsF";
+        }
+
+        a {
+          font-family: "AkzidGroLigOsF";
         }
       }
     }
@@ -92,6 +95,7 @@ body {
   }
 
   .menu-options {
+    padding: 0;
     .menu-main-option {
       font-size: 7vw;
     }
