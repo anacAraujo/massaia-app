@@ -20,14 +20,23 @@ export default function Gallery() {
     React.useContext(CacheApi);
 
   let screenWidth = window.innerWidth;
-  console.log("screenWidth: ", screenWidth);
 
   useEffect(() => {
     setCurrentSongById(songId);
     initArtPieces();
   }, [songId, screenWidth]);
 
-  //TODO add image in case song has no art pieces
+  const [activeArt, setActiveArt] = useState(null);
+
+  useEffect(() => {
+    if (artPiecesBySong[currentSong.id]?.length > 0) {
+      setActiveArt(artPiecesBySong[currentSong.id][0].id);
+    }
+  }, [artPiecesBySong, currentSong.id]);
+
+  const handleImageClick = (id) => {
+    setActiveArt(id);
+  };
 
   return (
     <div className="gallery-container">
@@ -52,18 +61,14 @@ export default function Gallery() {
                     alt={artPiece.song_name}
                   />
                   <Carousel.Caption>
-                    <h3>{artPiece.song_name}</h3>
-                    <p>{artPiece.author_name}</p>
+                    <h3>{artPiece.author_name}</h3>
                   </Carousel.Caption>
                 </Carousel.Item>
               ))
             ) : (
-              <Carousel.Item>
-                <img src="placeholder.jpg" alt="placeholder" />
-                <Carousel.Caption>
-                  <h3>No Art Pieces Available</h3>
-                </Carousel.Caption>
-              </Carousel.Item>
+              <h3 style={{ margin: "2rem" }}>
+                Esta Música ainda não tem obras disponíveis.
+              </h3>
             )}
           </Carousel>
         </div>
@@ -75,29 +80,27 @@ export default function Gallery() {
                 <img
                   src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${artPiece.image}`}
                   alt={artPiece.song_name}
+                  onClick={() => handleImageClick(artPiece.id)}
+                  className={activeArt === artPiece.id ? "active" : ""}
                 />
-                <div className="art_info">
-                  {/* TODO turn visible after image click */}
-                  {/* TODO the first image is already active and showing the info */}
-                  <h3>{artPiece.song_name}</h3>
-                  <p>{artPiece.author_name}</p>
-                </div>
+                {activeArt === artPiece.id && (
+                  <div className="art_info">
+                    <h3>{artPiece.author_name}</h3>
+                  </div>
+                )}
               </div>
             ))
           ) : (
             <div className="grid-item">
-              <img src="placeholder.jpg" alt="placeholder" />
               <div className="art_info">
-                <h3>No Art Pieces Available</h3>
+                <h3>Esta Música ainda não tem obras disponíveis.</h3>
               </div>
             </div>
           )}
         </div>
       )}
 
-      <div className="music-controllers-container">
-        <MusicControllers />
-      </div>
+      <MusicControllers />
     </div>
   );
 }

@@ -5,16 +5,8 @@
   z-index: 1;
 }
 
-.music-controllers-container {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 1;
-  background-color: bisque;
-}
-
 .gallery-container {
-  margin-top: 15vh;
+  margin-top: 10vh;
 }
 
 .grid-container {
@@ -24,6 +16,7 @@
   gap: 10px;
   width: 100%;
   overflow-y: auto;
+  margin-bottom: 5vh;
 }
 
 .grid-item {
@@ -37,10 +30,14 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .art_info {
-  text-align: center;
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 3vh;
+  width: 90vw;
 }
 
 .carousel-container {
@@ -60,7 +57,18 @@
   left: 0;
 }
 
+.carousel-control-prev {
+  height: 50px;
+  left: 0;
+  transform: translateY(-100%);
+  top: 55%;
+}
+
 @media (min-width: 769px) {
+  .gallery-container {
+    margin-top: 15vh;
+  }
+
   .carousel-container {
     display: flex;
   }
@@ -87,20 +95,30 @@
   }
 
   .carousel-caption {
-    position: absolute;
-    bottom: 3rem;
-    left: 2rem;
+    position: relative;
+    bottom: 10rem;
+    left: 63vw;
     background-color: white;
     padding: 10px;
     text-align: left;
-    width: auto;
+    width: 20vw;
+    height: max-content;
     /* border: 2px solid red; */
     max-width: 300px;
     z-index: 10;
+    h3 {
+      font-size: 1.5rem;
+    }
   }
 
   .carousel-caption h3,
   .carousel-caption p {
     color: black;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .carousel-caption {
+    left: 75%;
   }
 }

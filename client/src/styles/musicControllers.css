@@ -1,72 +1,152 @@
-.musicControllers {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background-color: white;
-}
+@media only screen and (min-width: 0px) {
+  body {
+    overflow: scroll !important;
+  }
 
-.left-group,
-.center-group,
-.right-group {
-  display: flex;
-  align-items: center;
-}
+  .musicControllers {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    padding: 1.5rem;
+    background-color: white;
+    align-items: center;
+  }
 
-.left-group {
-  flex: 1;
-}
+  .flex-item {
+    flex: 1;
+  }
+  .left-group {
+    gap: 2vw;
+    color: black;
+    display: flex;
+  }
 
-.musicControllers-vol {
-  margin-right: 1rem;
-  padding: 0 0.5rem;
-  color: white;
-  background-color: black;
-  font-family: "AkzidGroReg";
-}
+  .musicControllers-vol {
+    margin: 0;
+    font-size: 5vw;
+    font-family: "AkzidGroMed";
+    cursor: pointer;
+    width: max-content;
+  }
 
-.musicControllers-song-name {
-  margin-right: 1rem;
-  margin-bottom: 0;
-  padding: 0.5rem 0;
-}
+  .custom-dropdown {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    z-index: 1;
+  }
 
-.musicControllers-more-songs {
-  width: 20px;
-  height: auto;
-  margin-bottom: 0;
-  color: black;
-  font-family: "AkzidGroReg";
-}
+  .custom-dropdown .dropdown-toggle {
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: black !important;
+    font-family: "AkzidGroMed";
+    padding: 0;
+    font-size: 5vw;
+    z-index: 1;
+  }
 
-.center-group {
-  flex: 1;
-  justify-content: center;
-}
+  .custom-dropdown .dropdown-menu {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    z-index: 1;
+  }
 
-.control-button {
-  margin: 0 0.5rem;
-}
+  .custom-dropdown-item {
+    background-color: white !important;
+    border: none !important;
+    border-radius: 0 !important;
+    color: black !important;
+    font-size: 5vw;
+    font-family: "AkzidGroMed";
+    padding: 0 5px;
+  }
 
-.right-group {
-  flex: 1;
-  justify-content: flex-end;
-}
+  .custom-dropdown-item:hover,
+  .custom-dropdown-item:focus {
+    background: black !important;
+    color: white !important;
+  }
 
-.mute-button {
-  margin-right: 1rem;
-}
+  .center-group {
+    text-align: end;
+  }
 
-.volume-slider {
-  width: 100px;
-}
+  .control-button {
+    margin: 0 0.5rem;
+    width: 4vw;
+    height: auto;
+    cursor: pointer;
+  }
 
-@media (max-width: 768px) {
   .right-group {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    overflow: hidden !important;
+  }
+  .musicControllers {
+    height: 100px;
+  }
+
+  .musicControllers-vol {
+    font-size: 3vw;
+    z-index: 1;
+  }
+
+  .custom-dropdown .dropdown-toggle {
+    font-size: 3vw;
+  }
+
+  .custom-dropdown-item {
+    font-size: 3vw;
+  }
+
+  .control-button {
+    width: 3vw;
+  }
+
+  .center-group {
+    text-align: center;
+  }
+
+  .right-group {
+    display: block;
+    text-align: end;
+    z-index: 1;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .musicControllers {
+    height: 50px;
+  }
+
+  .musicControllers-vol {
+    font-size: 1.2vw;
+    font-family: "AkzidGroLigOsF";
+  }
+
+  .custom-dropdown .dropdown-toggle {
+    font-size: 1.2vw;
+    font-family: "AkzidGroLigOsF";
+  }
+
+  .custom-dropdown-item {
+    font-size: 1.2vw;
+    font-family: "AkzidGroLigOsF";
+  }
+
+  .control-button {
+    width: 1vw;
   }
 }
