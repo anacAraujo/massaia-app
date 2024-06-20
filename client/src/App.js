@@ -17,7 +17,6 @@ function App() {
           <Routes>
             <Route path="/">
               {/* TODO add header as global component */}
-              {/* TODO create a specific link for each song to relate each one to a qr code */}
               <Route index element={<Home></Home>}></Route>
               <Route path="temas/:songId" element={<Home></Home>}></Route>
               <Route path="menu" element={<Menu></Menu>}></Route>
@@ -26,8 +25,11 @@ function App() {
                 element={<Gallery></Gallery>}
               ></Route>
               <Route path="creditos" element={<Credits></Credits>}></Route>
-              <Route path="momentos" element={<Moments></Moments>}></Route>
+              {/* <Route path="projeto" element={<Authors></Authors>}></Route> */}
               <Route path="autores" element={<Authors></Authors>}></Route>
+              {/* <Route path="artistas" element={<Authors></Authors>}></Route> */}
+              {/* <Route path="site" element={<Authors></Authors>}></Route> */}
+              <Route path="momentos" element={<Moments></Moments>}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

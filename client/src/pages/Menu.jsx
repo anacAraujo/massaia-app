@@ -105,31 +105,16 @@ export default function Menu() {
               style={{ display: selectedMenu === "sobre" ? "block" : "none" }}
             >
               <p>
-                <button
-                  // TODO DO NOT RESET STATE, JUST LINK TO OTHER PAGE
-                  onClick={() => handleChangeCurrentSong("1", "/projetos")}
-                >
-                  projetos
-                </button>
+                <Link to="/projeto">projeto</Link>
               </p>
               <p>
-                <button
-                  onClick={() => handleChangeCurrentSong("1", "/autores")}
-                >
-                  autores
-                </button>
+                <Link to="/autores">autores</Link>
               </p>
               <p>
-                <button
-                  onClick={() => handleChangeCurrentSong("1", "/artistas")}
-                >
-                  artistas
-                </button>
+                <Link to="/artistas">artistas</Link>
               </p>
               <p>
-                <button onClick={() => handleChangeCurrentSong("1", "/site")}>
-                  site
-                </button>
+                <Link to="/site">site</Link>
               </p>
             </div>
           </div>
