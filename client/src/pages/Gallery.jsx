@@ -20,7 +20,6 @@ export default function Gallery() {
     React.useContext(CacheApi);
 
   let screenWidth = window.innerWidth;
-  console.log("screenWidth: ", screenWidth);
 
   useEffect(() => {
     setCurrentSongById(songId);
@@ -94,7 +93,7 @@ export default function Gallery() {
           ) : (
             <div className="grid-item">
               <div className="art_info">
-                <h3>Esta Música ainda não tem obras disponíveis</h3>
+                <h3>Esta Música ainda não tem obras disponíveis.</h3>
               </div>
             </div>
           )}

@@ -68,7 +68,6 @@ export default function MusicControllers() {
 
   function handleDropdownClick() {
     setShowingDropdownOptions(!showingDropdownOptions);
-    console.log("inside handleDropdownClick", showingDropdownOptions);
   }
 
   return (
