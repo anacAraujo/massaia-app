@@ -6,6 +6,7 @@ import Gallery from "./pages/Gallery";
 import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
 import Authors from "./pages/Authors";
+import Project from "./pages/Project";
 import { CurrentStateProvider } from "./context/currentState";
 import { CacheApiProvider } from "./context/cacheApi";
 
@@ -25,7 +26,7 @@ function App() {
                 element={<Gallery></Gallery>}
               ></Route>
               <Route path="creditos" element={<Credits></Credits>}></Route>
-              {/* <Route path="projeto" element={<Authors></Authors>}></Route> */}
+              <Route path="projeto" element={<Project></Project>}></Route>
               <Route path="autores" element={<Authors></Authors>}></Route>
               {/* <Route path="artistas" element={<Authors></Authors>}></Route> */}
               {/* <Route path="site" element={<Authors></Authors>}></Route> */}
