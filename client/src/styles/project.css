@@ -15,11 +15,34 @@
     align-items: center;
     justify-content: center;
     overflow-x: auto;
+    gap: 2rem;
 
     p {
       font-family: "AkzidGroMed";
       margin: 0 1rem;
       width: max-content;
+      cursor: pointer;
+    }
+
+    .project-key {
+      margin: 0 10px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .project-key.selected {
+      background-color: black;
+      color: white;
+    }
+
+    .nav-arrow {
+      width: 2rem;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    .nav-arrow-prev {
+      transform: rotate(180deg);
     }
   }
 
@@ -27,6 +50,41 @@
     padding: 2rem;
     p {
       font-family: "AkzidGroLigOsF";
+    }
+  }
+}
+
+@media only screen and (min-width: 880px) {
+  .project-container {
+    margin-top: 5vh;
+  }
+
+  .project-video {
+    width: 100vw;
+    height: 40vh;
+    margin: 0;
+  }
+
+  .project-scroll-bar {
+    justify-content: flex-start;
+    margin: 2rem;
+
+    p {
+      font-size: 15px;
+    }
+
+    .project-key {
+      margin: 0;
+    }
+  }
+
+  .project-info {
+    margin: 2rem;
+    padding: 0 45% 0 0;
+
+    p {
+      margin: 0;
+      font-size: 20px;
     }
   }
 }
