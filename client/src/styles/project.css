@@ -1,0 +1,32 @@
+@media only screen and (min-width: 0px) {
+  .project-container {
+    margin-top: 10vh;
+  }
+
+  .project-video {
+    width: 100vw;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
+  .project-scroll-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+
+    p {
+      font-family: "AkzidGroMed";
+      margin: 0 1rem;
+      width: max-content;
+    }
+  }
+
+  .project-info {
+    padding: 2rem;
+    p {
+      font-family: "AkzidGroLigOsF";
+    }
+  }
+}
