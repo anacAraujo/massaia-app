@@ -22,6 +22,7 @@
       margin: 0 1rem;
       width: max-content;
       cursor: pointer;
+      font-size: 15px;
     }
 
     .project-key {
@@ -50,6 +51,7 @@
     padding: 2rem;
     p {
       font-family: "AkzidGroLigOsF";
+      font-size: 18px;
     }
   }
 }
@@ -68,10 +70,6 @@
   .project-scroll-bar {
     justify-content: flex-start;
     margin: 2rem;
-
-    p {
-      font-size: 15px;
-    }
 
     .project-key {
       margin: 0;
