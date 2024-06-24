@@ -1,51 +1,304 @@
-.container {
-  display: flex;
-  margin: 0;
-  position: relative;
+@media only screen and (min-width: 0px) {
+  .authors-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+  }
+  
+  .header-container {
+    grid-row: 1;
+  }
+
+  .authors-grid-container {
+    grid-row: 2;
+  }
+
+  .authors-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 12vh 3.5vh 10vh 3.5vh;
+  }
+
+  .authors-image {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/3;
+    object-fit: cover;
+  }
+
+  .authors-image.hidden {
+    display: none;
+  }
+
+  .authors-controllers {
+    position: relative;
+    bottom: 15%;
+    left: 55%;
+    transform: translateX(-50%);
+    color: white;
+  }
+
+  .author-name {
+    font-size: 16px;
+    font-family: "AkzidGroMed";
+    color: white;
+  }
+
+  .authors-controllers button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    bottom: 3%;
+    right: 10%;
+    margin-top: 0;
+  }
+
+  .authors-controllers button img {
+    width: 18px;
+    height: auto;
+  }
+
+  .authors-controllers.hidden {
+    display: none;
+  }
+
+  .authors-info {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .authors-info h3 {
+    font-family: "AkzidGroMed";
+    font-size: 16px;
+    display: flex;
+    align-self: baseline;
+    margin-top: 2vh;
+  }
+
+  .authors-info p {
+    font-family: "AkzidGroLigOsF";
+    font-size: 16px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    max-height: calc(40vh - 100px);
+    width: 100%;
+    margin-top: 1vh;
+  }
+
+  .authors-info button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 3vh;
+    margin-right: 8vw;
+  }
+
+  .authors-info button img {
+    width: 22px;
+    height: auto;
+  }
+
 }
 
-.column {
-  flex: 1;
-  text-align: center;
-  position: relative;
+@media only screen and (min-width: 650px) {
+  .authors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 12vh 0 0 0;
+  }
+
+  .authors-image.hidden {
+    display: none;
+  }
+
+  .authors-controllers {
+    position: relative;
+    bottom: 35%;
+    left: 60%;
+    transform: translateX(-50%);
+    color: white;
+  }
+
+  .author-name {
+    font-size: 18px;
+    font-family: "AkzidGroMed";
+    color: white;
+  }
+
+  .authors-controllers button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 0%;
+    right: 0%;
+    margin-top: 1vh
+  }
+
+  .authors-controllers button img {
+    width: 20px;
+    height: auto;
+  }
+
+  .authors-controllers.hidden {
+    display: none;
+  }
+
+  .authors-info {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .authors-info h3 {
+    font-family: "AkzidGroMed";
+    font-size: 18px;
+    display: flex;
+    align-self: baseline;
+  }
+
+  .authors-info p {
+    font-family: "AkzidGroLigOsF";
+    font-size: 18px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    max-height: calc(25vh - 100px);
+    margin-top: 1vh;
+    margin-right: 6.5vw;
+    width: 86%;
+  }
+
+  .authors-info button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 3vh;
+    margin-right: 8vw;
+    position: absolute;
+    top: 16rem;
+  }
+
+  .authors-info button img {
+    width: 25px;
+    height: auto;
+  }
+
+  .authors-info.helena {
+    position: relative;
+    left: 105.5%;
+    top: -340px;
+  }
+  
+  .authors-info.pedro {
+    position: relative;
+    right: 95.8%;
+    top: -340px
+  }
 }
 
-.author-info {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  visibility: hidden;
+@media only screen and (min-width: 1024px) {
+  .authors-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 15vh 0 0 0;
+  }
+
+  .authors-image.hidden {
+    display: none;
+  }
+
+  .authors-controllers {
+    position: relative;
+    bottom: 35%;
+    left: 60%;
+    transform: translateX(-50%);
+    color: white;
+  }
+
+  .author-name {
+    font-size: 24px;
+    font-family: "AkzidGroMed";
+    color: white;
+  }
+
+  .authors-controllers button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: 0%;
+    right: 0%;
+    margin-top: 1vh
+  }
+
+  .authors-controllers button img {
+    width: 20px;
+    height: auto;
+  }
+
+  .authors-controllers.hidden {
+    display: none;
+  }
+
+  .authors-info {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .authors-info h3 {
+    font-family: "AkzidGroMed";
+    font-size: 20px;
+    display: flex;
+    align-self: baseline;
+  }
+
+  .authors-info p {
+    font-family: "AkzidGroLigOsF";
+    font-size: 20px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    max-height: calc(70vh - 100px);
+    margin-top: 3vh;
+    margin-right: 6.5vw;
+    width: 86%;
+  }
+
+  .authors-info button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 3vh;
+    margin-right: 8vw;
+    position: absolute;
+    top: 32rem;
+  }
+
+  .authors-info button img {
+    width: 25px;
+    height: auto;
+  }
+
+  .authors-info.helena {
+    position: relative;
+    left: 105.5%;
+    top: -770px;
+  }
+  
+  .authors-info.pedro {
+    position: relative;
+    right: 95.8%;
+    top: -770px
+  }
+
 }
 
-.author-info.active {
-  visibility: visible;
-}
-
-.author-name {
-  font-size: 24px;
-  font-family: "AkzidGroMed";
-}
-
-.author-image {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  width: 50vw;
-  height: 85vh;
-  object-fit: cover;
-  margin-top: 15vh;
-}
-
-.author-info button {
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  height: 24px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
