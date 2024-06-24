@@ -9,6 +9,7 @@ export function CacheApiProvider({ children }) {
 
   const [artPiecesBySong, setArtPiecesBySong] = useState({});
   const [moments, setMoments] = useState([]);
+  const [authors, setAuthors] = useState([]);
 
   async function initSongsInfo() {
     if (Object.keys(songsByAlbum).length > 0) {
@@ -86,6 +87,20 @@ export function CacheApiProvider({ children }) {
     }
   }
 
+  async function initAuthors() {
+    if (authors.length > 0) {
+      return authors;
+    }
+    try {
+      const res = await axios.get(`/artists`);
+      setAuthors(res.data);
+
+      return res.data;
+    } catch (err) {
+      console.error("Error getting authors ", err);
+    }
+  }
+
   return (
     <CacheApi.Provider
       value={{
@@ -96,6 +111,8 @@ export function CacheApiProvider({ children }) {
         initArtPieces,
         moments,
         initMoments,
+        authors,
+        initAuthors
       }}
     >
       {children}
