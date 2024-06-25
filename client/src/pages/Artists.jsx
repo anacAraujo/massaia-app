@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import Header from "../components/Header";
-import { CurrentState } from "../context/currentState";
 import { CacheApi } from "../context/cacheApi";
 import "../styles/artists.css";
 
