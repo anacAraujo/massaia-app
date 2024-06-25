@@ -153,6 +153,7 @@ UPDATE `massaia`.`authors` SET `image` = 'ines_guedes.jpg' WHERE (`id` = '18');
 UPDATE `massaia`.`authors` SET `image` = 'ines_lamela.jpg' WHERE (`id` = '12');
 UPDATE `massaia`.`authors` SET `image` = 'jose_emidio.jpg' WHERE (`id` = '27');
 UPDATE `massaia`.`authors` SET `image` = 'mario_santos.jpg' WHERE (`id` = '26');
+UPDATE `massaia`.`authors` SET `title` = 'criação musical e piano' WHERE (`id` = '3');
 
 UPDATE `massaia`.`moments` SET `image` = 'moments1.jpg' WHERE (`id` = '1');
 UPDATE `massaia`.`moments` SET `image` = 'moments2.jpg' WHERE (`id` = '2');

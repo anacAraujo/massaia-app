@@ -1,3 +1,14 @@
+.header-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.artists-container {
+  margin-top: 10vh;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -16,15 +27,82 @@
 }
 
 .grid-item img {
-  width: 100%;
-  height: auto;
+  width: 90vw;
+  height: 90vw;
   object-fit: cover;
   cursor: pointer;
+  filter: grayscale(100%);
 }
 
-.art_info {
+.grid-item.active img {
+  filter: grayscale(0);
+}
+
+.artists_info {
   text-align: left;
   margin-top: 15px;
   margin-bottom: 3vh;
   width: 90vw;
+
+  p {
+    margin: 0;
+    font-family: "AkzidGroLigOsF";
+    font-size: 18px;
+  }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+@media (min-width: 769px) {
+  .grid-item img {
+    width: 100%;
+    height: 200px;
+  }
+
+  .artists-container {
+    margin-top: 15vh;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+  }
+
+  .grid-item {
+    margin: 0;
+    position: relative;
+  }
+
+  .artists_info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    color: white;
+    display: none;
+    margin: 0;
+    padding: 10px;
+
+    p {
+      font-size: 15px;
+    }
+
+    .artists-title {
+      font-size: 14px;
+      font-family: "AkzidGroMed";
+    }
+  }
+
+  .grid-item.active .artists_info {
+    display: block;
+  }
 }
