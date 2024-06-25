@@ -1,3 +1,4 @@
+// TODO adicionar opção de ficheiro
 import { CButton } from "@coreui/react"
 import CIcon from '@coreui/icons-react'
 import { cilArrowLeft } from '@coreui/icons'
@@ -82,8 +83,8 @@ const AddMoments = () => {
             return
         }
 
-        let imgUrl = "";
-        let videoUrl = "";
+        let imgUrl = image;
+        let videoUrl = video;
 
         if (image && typeof image === 'object') {
             imgUrl = await upload(image);
@@ -95,7 +96,7 @@ const AddMoments = () => {
 
         const body = {
             name,
-            cover: imgUrl,
+            image: imgUrl,
             video: videoUrl,
             date,
         }
