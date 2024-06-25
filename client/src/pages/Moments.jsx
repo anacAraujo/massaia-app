@@ -1,4 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 import { CacheApi } from "../context/cacheApi.js";
 import Header from "../components/Header";
@@ -8,7 +9,6 @@ export default function Moments() {
   const { moments, initMoments } = useContext(CacheApi);
   const [scroll, setScroll] = useState(false);
   const [toggleHeader, setToggleHeader] = useState(true);
-  console.log(moments);
 
   useEffect(() => {
     initMoments();
@@ -41,7 +41,6 @@ export default function Moments() {
     };
   }, []);
 
-  //TODO add loading spinner (same as gallery)
   return (
     <div className="moments-container">
       <div className={`header-container ${toggleHeader ? "show" : "hide"}`}>
@@ -53,7 +52,7 @@ export default function Moments() {
         }`}
       >
         <div className="moments-grid">
-          {Array.isArray(moments) && moments.length > 0 ? (
+          {moments.length > 0 ? (
             moments.map((moment) =>
               moment.image !== null ? (
                 <img
@@ -71,7 +70,11 @@ export default function Moments() {
               )
             )
           ) : (
-            <p>Ainda não há momentos disponíveis.</p>
+            <div className="spinner-container">
+              <div className="spinner">
+                <Spinner animation="grow" variant="dark" />
+              </div>
+            </div>
           )}
         </div>
       </div>

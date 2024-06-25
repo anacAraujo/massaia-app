@@ -1,94 +1,111 @@
 @media only screen and (min-width: 0px) {
-    .moments-container {
-        display: grid;
-        grid-template-rows: auto 1fr;
-        height: 100vh;
-    }
+  .moments-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+  }
 
-    .header-container {
-        grid-row: 1;
-        display: block;
-    }
+  .header-container {
+    grid-row: 1;
+    display: block;
+  }
 
-    .header-container.hide {
-        display: none;
-    }
+  .header-container.hide {
+    display: none;
+  }
 
-    .header-container.show {
-        display: block;
-    }
+  .header-container.show {
+    display: block;
+  }
 
-    .moments-grid-container {
-        grid-row: 2;
-    }
+  .moments-grid-container {
+    grid-row: 2;
+  }
 
-    .scrollable {
-        overflow-y: auto;
-    }
+  .scrollable {
+    overflow-y: auto;
+  }
 
-    .moments-grid {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        row-gap: 7rem;
-        column-gap: 2rem;
-        margin: 12vh 3.5vh 10vh 3.5vh;
-    }
+  .moments-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 7rem;
+    column-gap: 2rem;
+    margin: 12vh 3.5vh 10vh 3.5vh;
+  }
 
-    .moments-grid img {
-        width: 100%;
-        height: 120%;
-        aspect-ratio: 4/3;
-        object-fit: cover;
-        border: 0.10rem solid;
-    }
+  .moments-grid img {
+    width: 100%;
+    height: 120%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 0.1rem solid;
+  }
 
-    .moments-grid video {
-        width: 100%;
-        height: 120%;
-        aspect-ratio: 4/3;
-        object-fit: cover;
-        border: 0.10rem solid;
-    }
+  .moments-grid video {
+    width: 100%;
+    height: 120%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: 0.1rem solid;
+  }
 
-    .moments-grid p {
-        text-align: center;
-        font-family: "AkzidGroMed";
-        font-size: 18px;
-    }
+  .moments-grid p {
+    text-align: center;
+    font-family: "AkzidGroMed";
+    font-size: 18px;
+  }
+
+  .spinner-container {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+  }
+
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 @media only screen and (min-width: 749px) {
-    .header-container.hide {
-        display: none;
-    }
+  .header-container.hide {
+    display: none;
+  }
 
-    .header-container.show {
-        display: block;
-    }
+  .header-container.show {
+    display: block;
+  }
 
-    .moments-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 7rem;
-        column-gap: 2rem;
-        margin: 15vh 11vh 15vh 11vh;
-    }
+  .moments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 7rem;
+    column-gap: 2rem;
+    margin: 15vh 11vh 15vh 11vh;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
-    .header-container.hide {
-        display: none;
-    }
+  .header-container.hide {
+    display: none;
+  }
 
-    .header-container.show {
-        display: block;
-    }
+  .header-container.show {
+    display: block;
+  }
 
-    .moments-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        row-gap: 7rem;
-        column-gap: 2rem;
-        margin: 15vh 11vh 15vh 11vh;
-    }
+  .moments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 7rem;
+    column-gap: 2rem;
+    margin: 15vh 11vh 15vh 11vh;
+  }
 }

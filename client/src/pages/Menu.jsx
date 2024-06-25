@@ -15,7 +15,7 @@ export default function Menu() {
   };
 
   const { setCurrentSongByAlbum } = React.useContext(CurrentState);
-  const { songsByAlbum, initSongsInfo } = React.useContext(CacheApi);
+  const { initSongsInfo } = React.useContext(CacheApi);
 
   const navigate = useNavigate();
 

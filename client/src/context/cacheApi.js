@@ -112,7 +112,7 @@ export function CacheApiProvider({ children }) {
         moments,
         initMoments,
         authors,
-        initAuthors
+        initAuthors,
       }}
     >
       {children}

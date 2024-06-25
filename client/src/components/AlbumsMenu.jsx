@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { CurrentState } from "../context/currentState.js";
 import { USER_STATES } from "../context/currentState.js";
 import "../styles/homeMenus.css";

@@ -22,7 +22,7 @@ export function CurrentStateProvider({ children }) {
 
   function handleUserStateChange(newUserState) {
     //TODO when in albums_menu, keep albume_menu
-    if (newUserState === userState && userState != USER_STATES.ALBUMS_MENU) {
+    if (newUserState === userState && userState !== USER_STATES.ALBUMS_MENU) {
       return;
     }
     setUserState(newUserState);

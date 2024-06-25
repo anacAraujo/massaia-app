@@ -7,12 +7,8 @@ import { CacheApi } from "../context/cacheApi.js";
 import { CurrentState } from "../context/currentState.js";
 
 export default function MusicControllers() {
-  const {
-    currentSong,
-    setCurrentSongById,
-    setCurrentSong,
-    setCurrentSongByAlbum,
-  } = React.useContext(CurrentState);
+  const { currentSong, setCurrentSongById, setCurrentSongByAlbum } =
+    React.useContext(CurrentState);
 
   const { songsById, songsByAlbum } = React.useContext(CacheApi);
 
@@ -124,6 +120,7 @@ export default function MusicControllers() {
           className="control-button"
           onClick={() => handlePrevSong()}
           src="../assets/icons/previous-song.svg"
+          alt="Previous Song"
         />
 
         {play ? (
@@ -131,12 +128,14 @@ export default function MusicControllers() {
             className="control-button"
             onClick={() => handlePlaySong()}
             src="../assets/icons/pause.svg"
+            alt="Pause Song"
           />
         ) : (
           <img
             className="control-button"
             onClick={() => handlePlaySong()}
             src="../assets/icons/play.svg"
+            alt="Play Song"
           />
         )}
 
@@ -144,6 +143,7 @@ export default function MusicControllers() {
           className="control-button"
           onClick={() => handleNextSong()}
           src="../assets/icons/next-song.svg"
+          alt="Next Song"
         />
       </div>
 

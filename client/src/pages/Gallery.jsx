@@ -16,8 +16,7 @@ export default function Gallery() {
   const { userState, currentSong, setCurrentSongById } =
     React.useContext(CurrentState);
 
-  const { artPiecesBySong, initArtPieces, initSongsInfo } =
-    React.useContext(CacheApi);
+  const { artPiecesBySong, initArtPieces } = React.useContext(CacheApi);
 
   let screenWidth = window.innerWidth;
 
