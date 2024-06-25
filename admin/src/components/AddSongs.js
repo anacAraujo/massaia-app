@@ -74,7 +74,13 @@ const AddSongs = () => {
     }
 
     const HandlePositionInput = (event) => {
-        setPosition(event.target.value);
+        const value = event.target.value;
+        if (value < 1 || value > 10) {
+            setValidation({ position: 'A posição deve estar entre 1 e 10' });
+        } else {
+            setValidation({ ...validation, position: '' });
+            setPosition(value);
+        }
     }
 
     const HandleAudioInput = (event) => {
@@ -209,6 +215,8 @@ const AddSongs = () => {
                         id="position"
                         name="position"
                         placeholder="Escolha a posição da música no álbum"
+                        min="1"
+                        max="10"
                         onChange={HandlePositionInput}
                         required
                     />

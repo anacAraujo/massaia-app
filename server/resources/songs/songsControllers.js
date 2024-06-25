@@ -102,21 +102,26 @@ export const addSong = async (req, res, next) => {
 
 export const updateSong = async (req, res, next) => {
   try {
-    const params = await updateSongSchema.validateAsync(req.body);
+    const params = await updateSongSchema.validateAsync({
+      ...req.body,
+      id: req.params.id
+    });
+
+    const { album_id, name, position, lyrics, audio, video, image, date, id } = params;
 
     const query =
       "UPDATE songs SET `album_id` = ?, `name` = ?, `position` = ?, `lyrics` = ?, `audio` = ?, `video` = ?, `image` = ?, `date` = ? WHERE `id`= ?";
 
     const queryParams = [
-      params.album_id,
-      params.name,
-      params.position,
-      params.lyrics,
-      params.audio,
-      params.video,
-      params.image,
-      params.date,
-      params.id,
+      album_id,
+      name,
+      position,
+      lyrics,
+      audio,
+      video,
+      image,
+      date,
+      id,
     ];
 
     const [results] = await db.execute(query, queryParams);

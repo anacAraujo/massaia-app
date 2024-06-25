@@ -15,7 +15,7 @@ const songSchema = Joi.object({
   album_id: Joi.number().integer().positive().required().label("albumId"),
   position: Joi.number().integer().positive().required().label("position"),
   lyrics: Joi.string().allow(null).label("lyrics"),
-  audio: Joi.string().allow(null).label("audio"),
+  audio: Joi.string().required().label("audio"),
   video: Joi.string().allow(null).label("video"),
   image: Joi.any().allow(null).label("image"),
   date: Joi.date().allow(null).label("date"),
@@ -34,8 +34,18 @@ const EditSongs = ({ songId, songData }) => {
   console.log(lyrics);
   const [audio, setAudio] = useState(songData.audio || null);
   console.log(audio);
+  const [audioName, setAudioName] = useState(
+    songData.audio
+      ? songData.audio.split("/").pop()
+      : "Nenhum ficheiro selecionado."
+  );
   const [video, setVideo] = useState(songData.video || null);
   console.log(video);
+  const [videoName, setVideoName] = useState(
+    songData.video
+      ? songData.video.split("/").pop()
+      : "Nenhum ficheiro selecionado."
+  );
   const [image, setImage] = useState(songData.image || null);
   console.log(image);
   const [imageName, setImageName] = useState(
@@ -57,7 +67,17 @@ const EditSongs = ({ songId, songData }) => {
     setPosition(songData.position);
     setLyrics(songData.lyrics || null);
     setAudio(songData.audio || null);
+    setAudioName(
+      songData.audio
+        ? songData.audio.split("/").pop()
+        : "Nenhum ficheiro selecionado."
+    );
     setVideo(songData.video || null);
+    setVideoName(
+      songData.video
+        ? songData.video.split("/").pop()
+        : "Nenhum ficheiro selecionado."
+    );
     setImage(songData.image || null);
     setImageName(
       songData.image
@@ -105,15 +125,31 @@ const EditSongs = ({ songId, songData }) => {
   };
 
   const HandlePositionInput = (event) => {
-    setPosition(event.target.value);
+    const value = event.target.value;
+        if (value < 1 || value > 10) {
+            setValidation({ position: 'A posição deve estar entre 1 e 10' });
+        } else {
+            setValidation({ ...validation, position: '' });
+            setPosition(value);
+        }
   };
 
   const HandleAudioInput = (event) => {
     setAudio(event.target.value);
+    setAudioName(
+      event.target.files[0]
+        ? event.target.files[0].name
+        : "Nenhum ficheiro selecionado."
+    );
   };
 
   const HandleVideoInput = (event) => {
     setVideo(event.target.value);
+    setVideoName(
+      event.target.files[0]
+        ? event.target.files[0].name
+        : "Nenhum ficheiro selecionado."
+    );
   };
 
   const HandleImageInput = (event) => {
@@ -160,7 +196,17 @@ const EditSongs = ({ songId, songData }) => {
       return;
     }
 
+    let audioUrl = audio;
+    let videoUrl = video;
     let imgUrl = image;
+
+    if (audio && typeof audio === "object") {
+      audioUrl = await upload(audio);
+    }
+
+    if (video && typeof video === "object") {
+      videoUrl = await upload(video);
+    }
 
     if (image && typeof image === "object") {
       imgUrl = await upload(image);
@@ -171,8 +217,8 @@ const EditSongs = ({ songId, songData }) => {
       album_id,
       position,
       lyrics,
-      audio,
-      video,
+      audio: audioUrl,
+      video: videoUrl,
       image: imgUrl,
       date,
     };
@@ -258,25 +304,25 @@ const EditSongs = ({ songId, songData }) => {
         <div className="mx-5">
           <label htmlFor="audio">Audio:</label>
           <input
-            type="text"
+            type="file"
             className="form-control mt-2"
             id="audio"
             name="audio"
-            value={audio}
             onChange={HandleAudioInput}
           />
+          <span>Audio atual: {audioName}</span>
           {validation.audio && <p>{validation.audio}</p>}
         </div>
         <div className="mx-5">
           <label htmlFor="video">Vídeo:</label>
           <input
-            type="text"
+            type="file"
             className="form-control mt-2"
             id="video"
             name="video"
-            value={video.toString()}
             onChange={HandleVideoInput}
           />
+          <span>Video atual: {videoName}</span>
           {validation.video && <p>{validation.video}</p>}
         </div>
         <div className="mx-5">
