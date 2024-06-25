@@ -1,6 +1,6 @@
 import { db } from "../../db/db.js";
 
-import { idSchema } from "./artistsSchemas.js";
+import { addArtistSchema, idSchema } from "./artistsSchemas.js";
 
 export async function getArtist(req, res, next) {
   try {
@@ -45,7 +45,7 @@ export async function getArtists(req, res, next) {
 
 export async function addArtist(req, res, next) {
   try {
-    const params = await addArtist.validateAsync(req.body);
+    const params = await addArtistSchema.validateAsync(req.body);
 
     const query = "INSERT INTO authors(`name`) VALUES (?)";
 

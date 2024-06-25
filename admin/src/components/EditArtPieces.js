@@ -150,7 +150,7 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
             }
         } catch (error) {
             setError(error.response);
-            console.log(error);
+            console.error(error);
         } 
     }
 

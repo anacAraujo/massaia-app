@@ -112,7 +112,7 @@ const EditMoments = ({ momentId, momentData }) => {
 
         const body = {
             name,
-            cover: imgUrl,
+            image: imgUrl,
             video: videoUrl,
             date,
         }
@@ -125,7 +125,7 @@ const EditMoments = ({ momentId, momentData }) => {
             }
         } catch (error) {
             setError(error.response);
-            console.log(error);
+            console.error(error);
         }
     }
 

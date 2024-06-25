@@ -66,7 +66,7 @@ export const register = async (req, res, next) => {
 export const logout = async (req, res, next) => {
   try {
     res
-      .clearCookie("acess_token", {
+      .clearCookie("access_token", {
         sameSite: "none",
         secure: true,
       })

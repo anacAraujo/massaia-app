@@ -4,7 +4,7 @@ import {
   songIddSchema,
   addArtPieceSchema,
   updateArtPieceSchema,
-} from "./artPiecesSchemas.js";
+} from "./ArtPiecesSchemas.js";
 
 export const getArtPieces = async (req, res, next) => {
   try {
@@ -49,7 +49,7 @@ export const getArtPiece = async (req, res, next) => {
 
 export const addArtPiece = async (req, res, next) => {
   try {
-    const params = await addArtPieceSchema(req.body);
+    const params = await addArtPieceSchema.validateAsync(req.body);
 
     const query =
       "INSERT INTO art_pieces(`song_id`, `author_id`, `image`, `date`) VALUES (?,?,?,?)";
@@ -71,18 +71,23 @@ export const addArtPiece = async (req, res, next) => {
 
 export const updateArtPiece = async (req, res, next) => {
   try {
-    const params = await updateArtPieceSchema.validateAsync(req.body);
+    const params = await updateArtPieceSchema.validateAsync({
+      ...req.body,
+      id: req.params.id
+    });
+
+    const { song_id, author_id, image, date, id } = params;
 
     const query =
       "UPDATE art_pieces SET `song_id` = ?, `author_id` = ?, `image` = ?, `date` = ? WHERE `id`= ?";
 
-    const queryParams = [
-      params.song_id,
-      params.author_id,
-      params.image,
-      params.date,
-      params.id,
-    ];
+      const queryParams = [
+        song_id,
+        author_id,
+        image,
+        date,
+        id,
+      ];
 
     const [results] = await db.execute(query, queryParams);
 
@@ -90,7 +95,7 @@ export const updateArtPiece = async (req, res, next) => {
       return res.status(404).json({ message: "Art Piece was not updated!" });
     }
 
-    return res.status(200).json({ message: "Moment updated" });
+    return res.status(200).json({ message: "Art Piece updated" });
   } catch (error) {
     next(error);
   }
