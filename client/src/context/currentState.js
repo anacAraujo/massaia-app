@@ -11,6 +11,7 @@ export const USER_STATES = {
   ALBUMS_MENU: "ALBUMS_MENU",
   VIEWING_SONG: "VIEWING_SONG",
   SONG_VIDEO: "SONG_VIDEO",
+  VIEWING_CREDITS: "VIEWING_CREDITS",
 };
 
 export function CurrentStateProvider({ children }) {
@@ -20,7 +21,8 @@ export function CurrentStateProvider({ children }) {
   const { initSongsInfo } = React.useContext(CacheApi);
 
   function handleUserStateChange(newUserState) {
-    if (newUserState === userState) {
+    //TODO when in albums_menu, keep albume_menu
+    if (newUserState === userState && userState != USER_STATES.ALBUMS_MENU) {
       return;
     }
     setUserState(newUserState);

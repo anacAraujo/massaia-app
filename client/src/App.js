@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
-import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
 import Authors from "./pages/Authors";
 import Artists from "./pages/Artists";
 import Project from "./pages/Project";
+import Site from "./pages/Site";
 import { CurrentStateProvider } from "./context/currentState";
 import { CacheApiProvider } from "./context/cacheApi";
 
@@ -26,11 +26,10 @@ function App() {
                 path="galeria/:songId"
                 element={<Gallery></Gallery>}
               ></Route>
-              <Route path="creditos" element={<Credits></Credits>}></Route>
               <Route path="projeto" element={<Project></Project>}></Route>
               <Route path="autores" element={<Authors></Authors>}></Route>
               <Route path="artistas" element={<Artists></Artists>}></Route>
-              {/* <Route path="site" element={<Authors></Authors>}></Route> */}
+              <Route path="site" element={<Site></Site>}></Route>
               <Route path="momentos" element={<Moments></Moments>}></Route>
             </Route>
           </Routes>

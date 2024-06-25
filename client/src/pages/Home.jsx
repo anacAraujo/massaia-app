@@ -1,3 +1,5 @@
+//TODO add lyrics
+
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -6,6 +8,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { CurrentState } from "../context/currentState.js";
 import { USER_STATES } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
+import Credits from "./Credits.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
 import { Loading } from "../pages/Loading.jsx";
 import { CacheApi } from "../context/cacheApi.js";
@@ -64,6 +67,10 @@ export default function Home() {
   function handleDropdownClick() {
     setShowingDropdownOptions(!showingDropdownOptions);
     console.log("inside handleDropdownClick", showingDropdownOptions);
+  }
+
+  function handleCreditsClick() {
+    handleUserStateChange(USER_STATES.VIEWING_CREDITS);
   }
 
   useEffect(() => {
@@ -181,9 +188,9 @@ export default function Home() {
                 />
                 <p>vol. II</p>
               </div>
-              <Link className="credits" to="/creditos">
+              <div className="credits" onClick={() => handleCreditsClick()}>
                 <p>créditos</p>
-              </Link>
+              </div>
               <div className="song-info">
                 <div>
                   {muted ? (
@@ -250,6 +257,9 @@ export default function Home() {
           )}
           {userState === USER_STATES.ALBUMS_MENU && (
             <AlbumsMenu songsInfo={songsByAlbum[menuAlbumId]} />
+          )}
+          {userState === USER_STATES.VIEWING_CREDITS && (
+            <Credits songId={currentSong.id} />
           )}
         </div>
       )}

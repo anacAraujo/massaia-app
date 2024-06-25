@@ -54,6 +54,7 @@ body {
     margin: 7%;
     font-family: "AkzidGroLigOsF";
     z-index: 1;
+    cursor: pointer;
     p {
       font-size: 5vw;
       margin: 0;

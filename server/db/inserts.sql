@@ -42,7 +42,16 @@ INSERT INTO `massaia`.`authors` (`id`, `name`) VALUES ('28', 'Helena Barbosa');
 INSERT INTO `massaia`.`authors` (`id`, `name`) VALUES ('29', 'Isabel Calado');
 INSERT INTO `massaia`.`authors` (`id`, `name`) VALUES ('30', 'Manuel Caspurro');
 INSERT INTO `massaia`.`authors` (`id`, `name`) VALUES ('31', 'Sónia Teles e Silva');
-
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('32', 'Augusto Aguiar ', 'augusto_aguiar.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('33', 'Fátima Pombo', 'fatima_pombo.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('34', 'Francisco Badilla ', 'francisco_badila.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('35', 'Helena Branco', 'helena_branco.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('36', 'Inês Calado', 'ines_calado.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('37', 'Joana Quental', 'joana_quental.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('38', 'João Baeta ', 'joao_baeta.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('39', 'Joaquim Branco', 'joaquim_branco.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('40', 'Nuno Higino ', 'nuno_higino.jpg');
+INSERT INTO `massaia`.`authors` (`id`, `name`, `image`) VALUES ('41', 'Paulo Vaz de Carvalho ', 'paulo_vaz.jpg');
 
 
 INSERT INTO `massaia`.`art_pieces` (`id`, `song_id`, `author_id`, `image`) VALUES ('1', '1', '4', 'Capa-Massaia-Vol.I');
@@ -73,6 +82,29 @@ INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('4', 'piano');
 INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('5', 'mistura');
 INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('6', 'masterização');
 INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('7', 'captação sonora e gravação');
+INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('8', 'argumento');
+INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('9', 'realização');
+INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('10', 'produção');
+INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('11', 'produtor associado');
+INSERT INTO `massaia`.`roles` (`id`, `name`) VALUES ('12', 'direção artística');
+
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('1', '1', '1');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('1', '1', '2');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('2', '1', '2');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('2', '1', '1');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('4', '1', '3');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('3', '1', '3');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('8', '1', '5');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('9', '1', '5');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('8', '1', '1');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('8', '1', '2');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('9', '1', '1');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('9', '1', '2');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('10', '1', '1');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('11', '1', '6');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('12', '1', '1');
+INSERT INTO `massaia`.`songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('12', '1', '2');
+
 
 UPDATE `massaia`.`songs` SET `video` = 'massaia.mp4' WHERE (`id` = '1');
 UPDATE `massaia`.`songs` SET `image` = 'Capa-Massaia-Voli.jpg' WHERE (`id` = '1');
@@ -111,6 +143,16 @@ UPDATE `massaia`.`art_pieces` SET `image` = 'ApartedaVida.jpg' WHERE (`id` = '9'
 
 UPDATE `massaia`.`authors` SET `image` = 'pedro_almeida.jpg' WHERE (`id` = '2');
 UPDATE `massaia`.`authors` SET `image` = 'helena_caspurro.jpeg' WHERE (`id` = '1');
+UPDATE `massaia`.`authors` SET `image` = 'jose_maria.jpg' WHERE (`id` = '3');
+UPDATE `massaia`.`authors` SET `image` = 'francisco_providencia.jpg' WHERE (`id` = '4');
+UPDATE `massaia`.`authors` SET `image` = 'antonio_valente.jpg' WHERE (`id` = '6');
+UPDATE `massaia`.`authors` SET `image` = 'rui_ferro.jpg' WHERE (`id` = '23');
+UPDATE `massaia`.`authors` SET `image` = 'sonia_teles.jpg' WHERE (`id` = '31');
+UPDATE `massaia`.`authors` SET `image` = 'helena_barbosa.jpg' WHERE (`id` = '28');
+UPDATE `massaia`.`authors` SET `image` = 'ines_guedes.jpg' WHERE (`id` = '18');
+UPDATE `massaia`.`authors` SET `image` = 'ines_lamela.jpg' WHERE (`id` = '12');
+UPDATE `massaia`.`authors` SET `image` = 'jose_emidio.jpg' WHERE (`id` = '27');
+UPDATE `massaia`.`authors` SET `image` = 'mario_santos.jpg' WHERE (`id` = '26');
 
 UPDATE `massaia`.`moments` SET `image` = 'moments1.jpg' WHERE (`id` = '1');
 UPDATE `massaia`.`moments` SET `image` = 'moments2.jpg' WHERE (`id` = '2');

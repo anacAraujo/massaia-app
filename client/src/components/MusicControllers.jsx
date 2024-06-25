@@ -40,6 +40,9 @@ export default function MusicControllers() {
   }
 
   function handleMute() {
+    if (!play && muted) {
+      return;
+    }
     setMuted(!muted);
   }
 
