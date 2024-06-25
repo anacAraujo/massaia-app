@@ -6,9 +6,6 @@ import { CacheApi } from "../context/cacheApi";
 import "../styles/artists.css";
 
 export default function Artists() {
-  const { userState, currentSong, setCurrentSongById } =
-    React.useContext(CurrentState);
-
   const { initAuthors, authors } = React.useContext(CacheApi);
 
   const [activeAuthor, setActiveAuthor] = useState(3);
