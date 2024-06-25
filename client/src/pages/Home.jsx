@@ -1,3 +1,5 @@
+//TODO add lyrics
+
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";

@@ -54,6 +54,27 @@ export async function getSong(req, res, next) {
   }
 }
 
+export async function getCredits(req, res, next) {
+  try {
+    const params = await idSchema.validateAsync(req.params);
+
+    let query = `SELECT a.name AS authors_name, r.name AS role_name FROM massaia.songs_has_authors_has_roles credits 
+                  JOIN massaia.authors a ON massaia.a.id = massaia.credits.authors_id 
+                  JOIN massaia.roles r ON massaia.r.id = massaia.credits.roles_id
+                WHERE massaia.credits.songs_id = ?;`;
+
+    const [results] = await db.execute(query, [params.id]);
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Song has no credits yet!" });
+    }
+
+    res.status(200).json(results[0]);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export const addSong = async (req, res, next) => {
   try {
     const params = await addSongSchema.validateAsync(req.body);
