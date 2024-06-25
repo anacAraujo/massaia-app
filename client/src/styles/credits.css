@@ -6,11 +6,13 @@ body {
   .credits-info {
     position: absolute;
     top: 0;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
     margin: 0;
+    background-color: white;
 
     .img-eyes {
       margin-top: 15vh;
@@ -24,11 +26,17 @@ body {
       font-size: 120%;
     }
 
-    p {
+    .credits-roles-authors {
+      display: inline; /* Ensure entries are displayed inline */
       text-align: center;
       padding: 0 7%;
       font-family: "AkzidGroLigOsF";
       font-size: 4vw;
+
+      .role {
+        font-family: "AkzidGroMed";
+        display: inline; /* Ensure role and authors are on the same line */
+      }
     }
   }
 
@@ -59,7 +67,7 @@ body {
       font-size: 220%;
     }
 
-    p {
+    .credits-roles-authors {
       font-size: 190%;
     }
   }
@@ -82,7 +90,7 @@ body {
       font-size: 1.5vw;
     }
 
-    p {
+    .credits-roles-authors {
       padding: 0 25%;
       font-size: 1.3vw;
     }

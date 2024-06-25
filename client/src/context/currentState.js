@@ -11,6 +11,7 @@ export const USER_STATES = {
   ALBUMS_MENU: "ALBUMS_MENU",
   VIEWING_SONG: "VIEWING_SONG",
   SONG_VIDEO: "SONG_VIDEO",
+  VIEWING_CREDITS: "VIEWING_CREDITS",
 };
 
 export function CurrentStateProvider({ children }) {

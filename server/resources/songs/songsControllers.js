@@ -69,7 +69,22 @@ export async function getCredits(req, res, next) {
       return res.status(404).json({ message: "Song has no credits yet!" });
     }
 
-    res.status(200).json(results[0]);
+    const groupedResults = results.reduce(
+      (acc, { authors_name, role_name }) => {
+        if (!acc[role_name]) {
+          acc[role_name] = [];
+        }
+        acc[role_name].push(authors_name);
+        return acc;
+      },
+      {}
+    );
+
+    const formattedResponse = Object.keys(groupedResults).map((role_name) => ({
+      [role_name]: groupedResults[role_name],
+    }));
+
+    res.status(200).json(formattedResponse);
   } catch (error) {
     next(error);
   }

@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
-import Credits from "./pages/Credits";
 import Moments from "./pages/Moments";
 import Authors from "./pages/Authors";
 import Project from "./pages/Project";
@@ -26,7 +25,6 @@ function App() {
                 path="galeria/:songId"
                 element={<Gallery></Gallery>}
               ></Route>
-              <Route path="creditos" element={<Credits></Credits>}></Route>
               <Route path="projeto" element={<Project></Project>}></Route>
               <Route path="autores" element={<Authors></Authors>}></Route>
               {/* <Route path="artistas" element={<Authors></Authors>}></Route> */}
