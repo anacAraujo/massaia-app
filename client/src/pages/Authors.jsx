@@ -16,30 +16,33 @@ export default function Authors() {
 
     const handleMobile = () => {
       setMobile(window.innerWidth <= 649);
-    }
+    };
 
-    window.addEventListener('resize', handleMobile);
-    return () => window.removeEventListener('resize', handleMobile);
+    window.addEventListener("resize", handleMobile);
+    return () => window.removeEventListener("resize", handleMobile);
   }, [authors]);
 
   useEffect(() => {
     if (infoTextRef.current) {
-      setInfoTextExcedingSize(infoTextRef.current.scrollHeight > infoTextRef.current.clientHeight);
+      setInfoTextExcedingSize(
+        infoTextRef.current.scrollHeight > infoTextRef.current.clientHeight
+      );
     }
   }, [showHelenaInfo, showPedroInfo]);
 
   const toggleHelenaInfo = () => {
-    setShowHelenaInfo(prev => !prev);
+    setShowHelenaInfo((prev) => !prev);
     setShowPedroInfo(false);
   };
 
   const togglePedroInfo = () => {
-    setShowPedroInfo(prev => !prev);
+    setShowPedroInfo((prev) => !prev);
     setShowHelenaInfo(false);
   };
 
   const getAuthors = authors.slice(0, 2);
 
+  //TODO check scroll
   return (
     <div className="authors-container">
       <div className="header-container">
@@ -54,105 +57,128 @@ export default function Authors() {
                   src={`${process.env.REACT_APP_UPLOAD_FOLDER}${author.image}`}
                   className={`authors-image ${
                     (showHelenaInfo && author.name !== "Helena Caspurro") ||
-                    (showPedroInfo && author.name !== "Pedro Carvalho de Almeida") ? "hidden" : ""}`}
+                    (showPedroInfo &&
+                      author.name !== "Pedro Carvalho de Almeida")
+                      ? "hidden"
+                      : ""
+                  }`}
                   alt={author.name}
                 />
                 {author.name === "Helena Caspurro" && showHelenaInfo ? (
-                  <div 
-                    className={`authors-info ${showHelenaInfo ? 'helena' : ''}`}
+                  <div
+                    className={`authors-info ${showHelenaInfo ? "helena" : ""}`}
                     ref={showHelenaInfo ? infoTextRef : null}
                   >
                     {mobile ? (
                       <h3>Maria Helena Ribeiro da Silva Caspurro</h3>
                     ) : (
-                      <h3>Maria Helena Ribeiro <br/>
+                      <h3>
+                        Maria Helena Ribeiro <br />
                         da Silva Caspurro
                       </h3>
                     )}
-                    <p className={infoTextExcedingSize ? 'overflow' : ''}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor? Lorem ipsum dolor sit amet consectetur 
-                      adipisicing elit. Sed quae possimus accusantium aspernatur
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor? Lorem ipsum dolor sit amet consectetur 
-                      adipisicing elit. Sed quae possimus accusantium aspernatur
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor? Lorem ipsum dolor sit amet consectetur 
-                      adipisicing elit. Sed quae possimus accusantium aspernatur
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
+                    <p className={infoTextExcedingSize ? "overflow" : ""}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Sed quae possimus accusantium aspernatur maiores? Cum
+                      neque, cumque magnam porro sint expedita eum aliquid,
+                      saepe maiores numquam magni ipsum in dolor? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Sed quae
+                      possimus accusantium aspernatur quae possimus accusantium
+                      aspernatur maiores? Cum neque, cumque magnam porro sint
+                      expedita eum aliquid, saepe maiores numquam magni ipsum in
+                      dolor? Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit. Sed quae possimus accusantium aspernatur maiores?
+                      Cum neque, cumque magnam porro sint expedita eum aliquid,
+                      saepe maiores numquam magni ipsum in dolor? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Sed quae
+                      possimus accusantium aspernatur quae possimus accusantium
+                      aspernatur maiores? Cum neque, cumque magnam porro sint
+                      expedita eum aliquid, saepe maiores numquam magni ipsum in
+                      dolor? Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit. Sed quae possimus accusantium aspernatur maiores?
+                      Cum neque, cumque magnam porro sint expedita eum aliquid,
+                      saepe maiores numquam magni ipsum in dolor? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Sed quae
+                      possimus accusantium aspernatur quae possimus accusantium
+                      aspernatur maiores? Cum neque, cumque magnam porro sint
+                      expedita eum aliquid, saepe maiores numquam magni ipsum in
+                      dolor?
                     </p>
                     <button onClick={toggleHelenaInfo}>
                       <img src="../assets/icons/exit.svg" alt="exit" />
                     </button>
                   </div>
-                ) : author.name === "Pedro Carvalho de Almeida" && showPedroInfo ? (
-                  <div 
-                    className={`authors-info ${showPedroInfo ? 'pedro' : ''}`}
+                ) : author.name === "Pedro Carvalho de Almeida" &&
+                  showPedroInfo ? (
+                  <div
+                    className={`authors-info ${showPedroInfo ? "pedro" : ""}`}
                     ref={showPedroInfo ? infoTextRef : null}
                   >
                     {mobile ? (
                       <h3>Pedro Carvalho de Almeida</h3>
                     ) : (
-                      <h3>Pedro Carvalho de <br/>
+                      <h3>
+                        Pedro Carvalho de <br />
                         Almeida
                       </h3>
                     )}
-                    <p className={infoTextExcedingSize ? 'overflow' : ''}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor? Lorem ipsum dolor sit amet consectetur 
-                      adipisicing elit. Sed quae possimus accusantium aspernatur
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor? Lorem ipsum dolor sit amet consectetur 
-                      adipisicing elit. Sed quae possimus accusantium aspernatur
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor? Lorem ipsum dolor sit amet consectetur 
-                      adipisicing elit. Sed quae possimus accusantium aspernatur
-                      quae possimus accusantium aspernatur maiores? Cum neque, cumque
-                      magnam porro sint expedita eum aliquid, saepe maiores numquam
-                      magni ipsum in dolor?
+                    <p className={infoTextExcedingSize ? "overflow" : ""}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Sed quae possimus accusantium aspernatur maiores? Cum
+                      neque, cumque magnam porro sint expedita eum aliquid,
+                      saepe maiores numquam magni ipsum in dolor? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Sed quae
+                      possimus accusantium aspernatur maiores? Cum neque, cumque
+                      magnam porro sint expedita eum aliquid, saepe maiores
+                      numquam magni ipsum in dolor? Lorem ipsum dolor sit amet
+                      consectetur adipisicing elit. Sed quae possimus
+                      accusantium aspernatur quae possimus accusantium
+                      aspernatur maiores? Cum neque, cumque magnam porro sint
+                      expedita eum aliquid, saepe maiores numquam magni ipsum in
+                      dolor? Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit. Sed quae possimus accusantium aspernatur maiores?
+                      Cum neque, cumque magnam porro sint expedita eum aliquid,
+                      saepe maiores numquam magni ipsum in dolor? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Sed quae
+                      possimus accusantium aspernatur quae possimus accusantium
+                      aspernatur maiores? Cum neque, cumque magnam porro sint
+                      expedita eum aliquid, saepe maiores numquam magni ipsum in
+                      dolor? Lorem ipsum dolor sit amet consectetur adipisicing
+                      elit. Sed quae possimus accusantium aspernatur maiores?
+                      Cum neque, cumque magnam porro sint expedita eum aliquid,
+                      saepe maiores numquam magni ipsum in dolor? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Sed quae
+                      possimus accusantium aspernatur quae possimus accusantium
+                      aspernatur maiores? Cum neque, cumque magnam porro sint
+                      expedita eum aliquid, saepe maiores numquam magni ipsum in
+                      dolor?
                     </p>
                     <button onClick={togglePedroInfo}>
                       <img src="../assets/icons/exit.svg" alt="exit" />
                     </button>
                   </div>
                 ) : (
-                  <div className={`authors-controllers ${
-                    (showHelenaInfo && author.name !== "Helena Caspurro") ||
-                    (showPedroInfo && author.name !== "Pedro Carvalho de Almeida") ? "hidden" : ""}`}
+                  <div
+                    className={`authors-controllers ${
+                      (showHelenaInfo && author.name !== "Helena Caspurro") ||
+                      (showPedroInfo &&
+                        author.name !== "Pedro Carvalho de Almeida")
+                        ? "hidden"
+                        : ""
+                    }`}
                   >
                     <h3 className="author-name">{author.name}</h3>
-                    <button onClick={author.name === "Helena Caspurro" ? toggleHelenaInfo : togglePedroInfo}>
-                      <img src="../assets/icons/more-info.svg" alt="more info" />
+                    <button
+                      onClick={
+                        author.name === "Helena Caspurro"
+                          ? toggleHelenaInfo
+                          : togglePedroInfo
+                      }
+                    >
+                      <img
+                        src="../assets/icons/more-info.svg"
+                        alt="more info"
+                      />
                     </button>
                   </div>
                 )}
