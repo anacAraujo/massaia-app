@@ -5,6 +5,7 @@ import Menu from "./pages/Menu";
 import Gallery from "./pages/Gallery";
 import Moments from "./pages/Moments";
 import Authors from "./pages/Authors";
+import Artists from "./pages/Artists";
 import Project from "./pages/Project";
 import Site from "./pages/Site";
 import { CurrentStateProvider } from "./context/currentState";
@@ -27,7 +28,7 @@ function App() {
               ></Route>
               <Route path="projeto" element={<Project></Project>}></Route>
               <Route path="autores" element={<Authors></Authors>}></Route>
-              {/* <Route path="artistas" element={<Authors></Authors>}></Route> */}
+              <Route path="artistas" element={<Artists></Artists>}></Route>
               <Route path="site" element={<Site></Site>}></Route>
               <Route path="momentos" element={<Moments></Moments>}></Route>
             </Route>
