@@ -39,6 +39,7 @@ export default function Project() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  //TODO add logos (ua, inet, ...)
   return (
     <>
       <Header />
