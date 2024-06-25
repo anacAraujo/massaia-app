@@ -2,6 +2,7 @@ import express from "express";
 import {
   getSong,
   getSongs,
+  getCredits,
   addSong,
   updateSong,
   deleteSong,
@@ -12,6 +13,7 @@ const router = express.Router();
 
 router.get("/", getSongs);
 router.get("/:id", getSong);
+router.get("/:id/credits", getCredits);
 router.post("/", authMiddleware, addSong);
 router.put("/:id", authMiddleware, updateSong);
 router.delete("/:id", authMiddleware, deleteSong);
