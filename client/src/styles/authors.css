@@ -1,3 +1,7 @@
+body {
+  overflow: hidden !important;
+}
+
 @media only screen and (min-width: 0px) {
   .authors-container {
     display: grid;
@@ -105,104 +109,27 @@
 }
 
 @media only screen and (min-width: 650px) {
-  .authors-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 12vh 0 0 0;
+  .authors-info h3 {
+    font-size: 25px;
   }
-
-  .authors-image.hidden {
-    display: none;
-  }
-
-  .authors-controllers {
-    position: relative;
-    bottom: 35%;
-    left: 60%;
-    transform: translateX(-50%);
-    color: white;
+  .authors-info p {
+    font-size: 20px;
   }
 
   .author-name {
-    font-size: 18px;
-    font-family: "AkzidGroMed";
-    color: white;
-  }
-
-  .authors-controllers button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    top: 0%;
-    right: 0%;
-    margin-top: 1vh;
+    font-size: 25px;
   }
 
   .authors-controllers button img {
-    width: 20px;
-    height: auto;
-  }
-
-  .authors-controllers.hidden {
-    display: none;
-  }
-
-  .authors-info {
-    color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-  }
-
-  .authors-info h3 {
-    font-family: "AkzidGroMed";
-    font-size: 18px;
-    display: flex;
-    align-self: baseline;
-  }
-
-  .authors-info p {
-    font-family: "AkzidGroLigOsF";
-    font-size: 18px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    max-height: calc(25vh - 100px);
-    margin-top: 1vh;
-    margin-right: 6.5vw;
-    width: 86%;
-  }
-
-  .authors-info button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-top: 3vh;
-    margin-right: 8vw;
-    position: absolute;
-    top: 16rem;
-  }
-
-  .authors-info button img {
     width: 25px;
-    height: auto;
-  }
-
-  .authors-info.helena {
-    position: relative;
-    left: 105.5%;
-    top: -340px;
-  }
-
-  .authors-info.pedro {
-    position: relative;
-    right: 95.8%;
-    top: -340px;
   }
 }
 
 @media only screen and (min-width: 1024px) {
+  .authors-container {
+    overflow: hidden;
+  }
+
   .authors-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
