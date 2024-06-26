@@ -10,6 +10,37 @@ a {
 }
 
 @media only screen and (min-width: 0px) {
+  .lyrics-container {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-top: 5vh;
+      margin: 2rem;
+      padding: 2rem;
+      font-size: 18px;
+    }
+
+    div {
+      position: fixed;
+      bottom: 0;
+      display: flex;
+      width: 100vw;
+      background-color: white;
+      img {
+        align-self: center;
+        margin: 2rem auto;
+        height: 5vw;
+        width: auto;
+      }
+    }
+  }
+
   .massaia {
     display: none;
   }
@@ -60,9 +91,22 @@ a {
     font-family: "AkzidGroLigOsF";
     z-index: 1;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+
     p {
       font-size: 5vw;
       margin: 0;
+    }
+
+    img {
+      margin: 0;
+      padding: 0;
+      height: 4vw;
+      width: auto;
     }
   }
 
@@ -183,6 +227,18 @@ a {
 }
 
 @media only screen and (min-width: 590px) {
+  .lyrics-container {
+    p {
+      font-size: 20px;
+    }
+
+    div {
+      img {
+        height: 4vw;
+      }
+    }
+  }
+
   .massaia {
     position: absolute;
     top: 0;
@@ -211,6 +267,9 @@ a {
   .credits {
     p {
       font-size: 4vw;
+    }
+    img {
+      width: 4vw;
     }
   }
 
@@ -270,6 +329,31 @@ a {
 }
 
 @media only screen and (min-width: 1024px) {
+  .lyrics-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20vw;
+    height: 100vh;
+    overflow: auto;
+
+    p {
+      margin-top: 5vh;
+      margin: 2rem;
+      padding: 0;
+      font-size: 15px;
+    }
+
+    div {
+      width: 20vw;
+      img {
+        margin: 2rem auto;
+        height: 1.5vw;
+        width: auto;
+      }
+    }
+  }
+
   .massaia {
     margin: 2%;
     p {
@@ -286,8 +370,12 @@ a {
 
   .credits {
     margin: 2%;
+    gap: 1vw;
     p {
       font-size: 1.5vw;
+    }
+    img {
+      width: 1.5vw;
     }
   }
 
