@@ -1,5 +1,5 @@
 import { db } from "../../db/db.js";
-import { addRoleSchema } from "./rolesSchema.js"
+import { addRoleSchema, idSchema } from "./rolesSchema.js"
 
 export async function getRoles(req, res, next) {
   try {

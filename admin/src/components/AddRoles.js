@@ -77,8 +77,8 @@ const AddRoles = () => {
           <input
             type="text"
             className="form-control mt-2"
-            id="image"
-            name="image"
+            id="name"
+            name="name"
             onChange={HandleNameInput}
             required
           />
