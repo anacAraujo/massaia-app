@@ -55,7 +55,6 @@ export default function Menu() {
               className="menu-option"
               style={{ display: selectedMenu === "videos" ? "block" : "none" }}
             >
-              {/* TODO  change to  button - set current song to first song of each volume and then redirect*/}
               <p>
                 <button
                   onClick={() => handleChangeCurrentSong("1", "/temas/1")}

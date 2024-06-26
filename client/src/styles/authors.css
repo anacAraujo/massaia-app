@@ -182,6 +182,7 @@ body {
   }
 
   .authors-info h3 {
+    margin-top: 2rem;
     font-family: "AkzidGroMed";
     font-size: 20px;
     display: flex;
@@ -203,10 +204,9 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    margin-top: 3vh;
     margin-right: 8vw;
     position: absolute;
-    top: 32rem;
+    top: 33rem;
   }
 
   .authors-info button img {

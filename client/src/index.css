@@ -24,6 +24,21 @@
   font-family: "AkzidGroLigOsF";
 }
 
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none; /* For Firefox */
+}
+
+/* Hide scrollbar for IE and Edge */
+* {
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
 @media only screen and (min-width: 0px) {
   .navbar {
     width: 100%;

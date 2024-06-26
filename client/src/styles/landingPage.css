@@ -14,6 +14,23 @@
     width: 100%;
     height: 100vh;
     background-color: black;
+    overflow: hidden;
+    scrollbar-width: none;
+  }
+
+  /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+  .videoPlayer::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  .videoPlayer {
+    scrollbar-width: none; /* For Firefox */
+  }
+
+  /* Hide scrollbar for IE and Edge */
+  .videoPlayer {
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
   }
 
   video {
@@ -97,6 +114,9 @@
 }
 
 @media only screen and (min-width: 1024px) {
+  .videoPlayer {
+    overflow: hidden;
+  }
   .eyes {
     .img-eyes {
       display: none;
