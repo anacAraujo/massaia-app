@@ -4,6 +4,11 @@ body {
   overflow: hidden;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 @media only screen and (min-width: 0px) {
   .massaia {
     display: none;

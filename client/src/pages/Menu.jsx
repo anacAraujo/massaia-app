@@ -31,7 +31,10 @@ export default function Menu() {
   return (
     <div>
       <div>
-        <h1 className="menu-massaia">MASSAIÁ</h1>
+        <Link to="/">
+          <h1 className="menu-massaia">MASSAIÁ</h1>
+        </Link>
+
         <Link to="/">
           {" "}
           <img

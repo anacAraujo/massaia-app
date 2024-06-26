@@ -5,7 +5,10 @@ export default function Header() {
   return (
     //TODO use media queries
     <div className="menu-geral">
-      <h1 className="menu-massaia">MASSAIÁ</h1>
+      <Link to="/">
+        <h1 className="menu-massaia">MASSAIÁ</h1>
+      </Link>
+
       <Link to="/menu">
         <img
           className="menu-exit"
