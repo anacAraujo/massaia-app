@@ -6,13 +6,14 @@ import EditSongs from './EditSongs';
 import EditMoments from './EditMoments';
 import EditArtPieces from './EditArtPieces';
 import EditUsers from './EditUsers';
+import EditAuthors from './EditAuthors';
 
 const EditModal = ({ visible, CloseModal, type, idEdit, idTable, idButton, idCard, itemId }) => {
     const [info, setInfo] = useState(null);
     const [error, setError] = useState(null);
 
     const ChangeVisibility = (showEdit) => {
-        if (type === 'moments' || type === 'songs' || type === 'art_pieces') {
+        if (type === 'moments' || type === 'songs' || type === 'art_pieces' || type === 'artists') {
             document.getElementById(idEdit).style.display = showEdit ? 'block' : 'none';
             document.getElementById(idTable).style.display = showEdit ? 'none' : 'block';
             document.getElementById(idButton).style.display = showEdit ? 'none' : 'block';
@@ -63,6 +64,8 @@ const EditModal = ({ visible, CloseModal, type, idEdit, idTable, idButton, idCar
                 return info ? <EditMoments momentId={itemId} momentData={info} /> : null;
             case 'users':
                 return info ? <EditUsers userId={itemId} userData={info} /> : null;
+            case 'artists':
+                return info ? <EditAuthors authorId={itemId} authorData={info} /> : null
             default:
                 return null;
         }

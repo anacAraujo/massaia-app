@@ -26,7 +26,7 @@ const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton}) => {
                 return <AddArtPieces />;
             case 'moments':
                 return <AddMoments />;
-            case 'authors':
+            case 'artists':
                 return <AddAuthors />;
             case 'roles':
                 return <AddRoles />

@@ -1,27 +1,40 @@
 import { useTable } from 'react-table'
 import { useMemo, useState } from 'react'
 import AddModal from "./AddModal";
+import EditModal from "./EditModal";
 import DeleteModal from "../components/DeleteModal";
 import CIcon from '@coreui/icons-react'
-import { cilTrash, cilPlus } from '@coreui/icons'
+import { cilTrash, cilPlus, cilPencil } from '@coreui/icons'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell, CButton, CTooltip } from '@coreui/react'
 
 const ArtistTable = ({ authors }) => {
     const [addModalVisible, setAddModalVisible] = useState(false);
+    const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const [selectedAuthorId, setSelectedAuthorId] = useState(null);
 
     const idAdd = "Add";
     const idTable = 'table';
+    const idEdit = 'Edit';
     const idAddButton = "Button";
 
     const OpenAddModal = () => {
         setAddModalVisible(true);
-      };
+    };
     
-      const CloseAddModal = () => {
+    const CloseAddModal = () => {
         setAddModalVisible(false);
-      };
+    };
+
+    const OpenEditModal = (authorId) => {
+        console.log("Opening edit modal for authorId:", authorId);
+        setSelectedAuthorId(authorId);
+        setEditModalVisible(true);
+    }
+
+    const CloseEditModal = () => {
+        setEditModalVisible(false);
+    }
 
     const OpenDeleteModal = (authorId) => {
         console.log("Opening delete modal for artPieceId:", authorId);
@@ -35,11 +48,19 @@ const ArtistTable = ({ authors }) => {
     };
 
     const authorsData = authors.map(author => {
+        const image = author.image || "Sem dados!";
         return {
             id: author.id,
             name: author.name,
+            image: image,
+            title: author.title,
             button: (
                 <div>
+                    <CTooltip content="Editar" placement="bottom">
+                        <CButton onClick={() => OpenEditModal(author.id)} variant='outline' color='warning'>
+                            <CIcon icon={cilPencil}></CIcon>
+                        </CButton>
+                    </CTooltip>
                     <CTooltip content="Apagar" placement="bottom">
                         <CButton
                             onClick={() => OpenDeleteModal(author.id)}
@@ -62,6 +83,14 @@ const ArtistTable = ({ authors }) => {
             accessor: "name"
         },
         {
+            Header: "Imagem",
+            accessor: "image"
+        },
+        {
+            Header: "Contribuição",
+            accessor: "title"
+        },
+        {
             Header: "",
             accessor: "button"
         },
@@ -73,7 +102,7 @@ const ArtistTable = ({ authors }) => {
     let HeaderGroups = headerGroups.map((headerGroup) => (
         <CTableRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-                <CTableHeaderCell className='tableAlbums' {...column.getHeaderProps()}>
+                <CTableHeaderCell className='tableFormat' {...column.getHeaderProps()}>
                     {column.render("Header")}
                 </CTableHeaderCell>
             ))}
@@ -85,7 +114,7 @@ const ArtistTable = ({ authors }) => {
         return (
             <CTableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                    <CTableDataCell className='tableAlbums' {...cell.getCellProps()}>
+                    <CTableDataCell className='tableFormat' {...cell.getCellProps()}>
                         {cell.render("Cell")}
                     </CTableDataCell>
                 ))}
@@ -129,13 +158,22 @@ const ArtistTable = ({ authors }) => {
                 idTable={idTable}
                 idAdd={idAdd}
                 idButton={idAddButton}
-                type="authors"
+                type="artists"
+            />
+            <EditModal
+                visible={editModalVisible}
+                CloseModal={CloseEditModal}
+                idTable={idTable}
+                idEdit={idEdit}
+                idButton={idAddButton}
+                itemId={selectedAuthorId}
+                type='artists'
             />
             <DeleteModal
                 visible={deleteModalVisible}
                 CloseModal={CloseDeleteModal}
                 itemId={selectedAuthorId}
-                type="authors"
+                type="artists"
             />
         </div>
     )

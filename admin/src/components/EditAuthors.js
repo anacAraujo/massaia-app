@@ -1,7 +1,7 @@
 import { CButton } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { cilArrowLeft } from "@coreui/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Joi from "joi";
 import axios from "../lib/AxiosConfig";
@@ -12,27 +12,43 @@ const authorSchema = Joi.object({
   title: Joi.string().required().label('title')
 });
 
-const AddAuthors = () => {
-  const [name, setName] = useState("");
+const EditSongs = ({ authorId, authorData }) => {
+  const [name, setName] = useState(authorData.name);
   console.log(name);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(authorData.image || null);
   console.log(image);
-  const [title, setTitle] = useState("");
+  const [imageName, setImageName] = useState(
+    authorData.image
+      ? authorData.image.split("/").pop()
+      : "Nenhum ficheiro selecionado."
+  );
+  const [title, setTitle] = useState(authorData.title);
   console.log(title);
   const [error, setError] = useState(null);
   const [validation, setValidation] = useState({});
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setName(authorData.name);
+    setImage(authorData.image || null);
+    setImageName(
+      authorData.image
+        ? authorData.image.split("/").pop()
+        : "Nenhum ficheiro selecionado."
+    );
+    setTitle(authorData.title);
+  }, [authorData]);
+
   const upload = async (file) => {
     try {
-        const formData = new FormData();
-        formData.append("file", file);
-        const response = await axios.post("/upload", formData);
-        return response.data.filename;
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await axios.post("/upload", formData);
+      return response.data.filename;
     } catch (error) {
-        console.error(error);
+      console.error(error);
     }
-}
+  };
 
   const CloseForm = () => {
     window.location.reload();
@@ -44,11 +60,16 @@ const AddAuthors = () => {
 
   const HandleImageInput = (event) => {
     setImage(event.target.files[0]);
-  }
+    setImageName(
+      event.target.files[0]
+        ? event.target.files[0].name
+        : "Nenhum ficheiro selecionado."
+    );
+  };
 
   const HandleTitleInput = (event) => {
     setTitle(event.target.value);
-  }
+  };
 
   const ValidateForm = () => {
     const body = {
@@ -70,7 +91,7 @@ const AddAuthors = () => {
     return true;
   };
 
-  const handleAddAuthor = async (event) => {
+  const handleEditSong = async (event) => {
     event.preventDefault();
     if (!ValidateForm()) {
       return;
@@ -78,23 +99,25 @@ const AddAuthors = () => {
 
     let imgUrl = image;
 
-    if (image && typeof image === 'object') {
+    if (image && typeof image === "object") {
       imgUrl = await upload(image);
-  }
+    }
 
     const body = {
       name,
       image: imgUrl,
-      title
+      title,
     };
 
     try {
-      await axios.post(`/artists/`, body);
-      console.log("Sucesso!!!");
-      navigate("/");
+      if (authorId) {
+        await axios.put(`/artists/${authorId}`, body);
+        console.log("Sucesso!!!");
+        navigate("/");
+      }
     } catch (error) {
       setError(error.response);
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -103,18 +126,16 @@ const AddAuthors = () => {
       <CButton onClick={CloseForm} style={{ padding: "0rem" }}>
         <CIcon icon={cilArrowLeft} size="lg"></CIcon>
       </CButton>
-      <h2 className="mx-5">Adicionar artista</h2>
-      <form
-        onSubmit={handleAddAuthor}
-        className="row g-3 mx-5 formMargin mt-3"
-      >
+      <h2 className="mx-5">Editar artista</h2>
+      <form onSubmit={handleEditSong} className="row g-3 mx-5 formMargin mt-3">
         <div className="mx-5">
-          <label htmlFor="image">Nome:</label>
+          <label htmlFor="name">Nome:</label>
           <input
             type="text"
             className="form-control mt-2"
             id="name"
             name="name"
+            value={name}
             onChange={HandleNameInput}
             required
           />
@@ -129,6 +150,7 @@ const AddAuthors = () => {
             name="image"
             onChange={HandleImageInput}
           />
+          <span>Imagem atual: {imageName}</span>
           {validation.image && <p>{validation.image}</p>}
         </div>
         <div className="mx-5">
@@ -138,7 +160,7 @@ const AddAuthors = () => {
             className="form-control mt-2"
             id="title"
             name="title"
-            placeholder="Contribuição para o projeto, ex: produção, voz, etc.."
+            value={title}
             onChange={HandleTitleInput}
             required
           />
@@ -147,10 +169,10 @@ const AddAuthors = () => {
         <div className="d-flex justify-content-end mx-5 mt-4">
           <CButton
             type="submit"
-            color="success"
+            color="warning"
             style={{ color: "white", marginBottom: "1rem" }}
           >
-            Adicionar
+            Editar
           </CButton>
         </div>
       </form>
@@ -164,4 +186,4 @@ const AddAuthors = () => {
   );
 };
 
-export default AddAuthors;
+export default EditSongs;
