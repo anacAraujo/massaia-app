@@ -81,8 +81,22 @@ export default function Project() {
         <br />
         <div className="logos">
           <img src="../assets/images/inet.png" alt="INET-md" />
-          <img src="../assets/images/FCT.png" alt="FCT" />
+          <img src="../assets/images/deca.png" alt="deca" />
           <img src="../assets/images/UA.png" alt="UA" />
+        </div>
+        <div className="logos">
+          <img src="../assets/images/idmais.png" alt="id+" />
+
+          <img src="../assets/images/FCT.png" alt="FCT" />
+          <img src="../assets/images/pt.png" alt="republica portuguesa" />
+          <img
+            src="../assets/images/Mulher-Avestruz.png"
+            alt="Mulher-Avestruz"
+          />
+        </div>
+        <div className="logos">
+          <img src="../assets/images/infante.png" alt="Escritório do Infante" />
+          <img src="../assets/images/a-cca.png" alt="cinecultura de avanca" />
         </div>
       </>
     ),
