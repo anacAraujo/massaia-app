@@ -37,9 +37,13 @@ const ArtistTable = ({ authors }) => {
     }
 
     const OpenDeleteModal = (authorId) => {
-        console.log("Opening delete modal for artPieceId:", authorId);
-        setSelectedAuthorId(authorId);
-        setDeleteModalVisible(true);
+        if (authorId === 1 || authorId === 2) {
+            alert('Este artista não pode ser apagado, por ser um dos autores principais do projeto!');
+        } else {
+           console.log("Opening delete modal for artPieceId:", authorId);
+            setSelectedAuthorId(authorId);
+            setDeleteModalVisible(true); 
+        }
     };
 
     const CloseDeleteModal = () => {
