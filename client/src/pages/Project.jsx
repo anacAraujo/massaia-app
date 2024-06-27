@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { CurrentState } from "../context/currentState";
+import { CacheApi } from "../context/cacheApi";
 import Header from "../components/Header";
 import "../styles/project.css";
 
@@ -8,6 +9,7 @@ export default function Project() {
   const [selectedKey, setSelectedKey] = useState("Massaiá");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { setPrevPage } = React.useContext(CurrentState);
+  const { songsByAlbum } = React.useContext(CacheApi);
 
   const projectInfo = {
     Massaiá: (
@@ -158,7 +160,7 @@ export default function Project() {
         <div>
           <video
             className="project-video"
-            src="../upload/massaia.mp4"
+            src={`../upload/${songsByAlbum[1][0].video}`}
             autoPlay
             loop
             muted
