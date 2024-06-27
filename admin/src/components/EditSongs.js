@@ -15,8 +15,8 @@ const songSchema = Joi.object({
   album_id: Joi.number().integer().positive().required().label("albumId"),
   position: Joi.number().integer().positive().required().label("position"),
   lyrics: Joi.string().allow(null).label("lyrics"),
-  audio: Joi.string().required().label("audio"),
-  video: Joi.string().allow(null).label("video"),
+  audio: Joi.any().required().label("audio"),
+  video: Joi.any().allow(null).label("video"),
   image: Joi.any().allow(null).label("image"),
   date: Joi.date().allow(null).label("date"),
 });
@@ -103,14 +103,14 @@ const EditSongs = ({ songId, songData }) => {
 
   const upload = async (file) => {
     try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const response = await axios.post("/upload", formData);
-      return response.data.filename;
+        const formData = new FormData();
+        formData.append("file", file);
+        const response = await axios.post("/upload", formData);
+        return response.data.filename;
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
-  };
+  } 
 
   const CloseForm = () => {
     window.location.reload();
@@ -135,31 +135,19 @@ const EditSongs = ({ songId, songData }) => {
   };
 
   const HandleAudioInput = (event) => {
-    setAudio(event.target.value);
-    setAudioName(
-      event.target.files[0]
-        ? event.target.files[0].name
-        : "Nenhum ficheiro selecionado."
-    );
-  };
+    setAudio(event.target.files[0]);
+    setAudioName(event.target.files[0] ? event.target.files[0].name : 'Nenhum ficheiro selecionado.')
+}
 
   const HandleVideoInput = (event) => {
-    setVideo(event.target.value);
-    setVideoName(
-      event.target.files[0]
-        ? event.target.files[0].name
-        : "Nenhum ficheiro selecionado."
-    );
-  };
+    setVideo(event.target.files[0]);
+    setVideoName(event.target.files[0] ? event.target.files[0].name : 'Nenhum ficheiro selecionado.')
+  }
 
   const HandleImageInput = (event) => {
     setImage(event.target.files[0]);
-    setImageName(
-      event.target.files[0]
-        ? event.target.files[0].name
-        : "Nenhum ficheiro selecionado."
-    );
-  };
+    setImageName(event.target.files[0] ? event.target.files[0].name : 'Nenhum ficheiro selecionado.')
+  }
 
   const HandleDateInput = (date) => {
     setDate(date);
