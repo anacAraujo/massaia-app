@@ -47,9 +47,17 @@ const SongsTable = ({ songs }) => {
         setSelectedSongId(null);
     }
 
+    const RemoveTags = (string) => {
+        if (!string) return "";
+        return string.replace(/<[^>]*>/g, ' ');
+    };
+
     const songsData = songs.map(song => {
         const date = song.date ? song.date.substring(0, 10) : "Sem dados!";
         const lyrics = song.lyrics || "Sem dados!";
+        const cleanedLyrics = RemoveTags(lyrics);
+        const displayedLyrics = cleanedLyrics.split(' ').slice(0, 5).join(' ');
+        const finalLyrics = cleanedLyrics.split(' ').length > 5 ? displayedLyrics + '...' : displayedLyrics;
         const audio = song.audio || "Sem dados!";
         const video = song.video || "Sem dados!";
         const image = song.image || "Sem dados!";
@@ -59,7 +67,7 @@ const SongsTable = ({ songs }) => {
             albumName: song.album_name,
             name: song.name,
             position: song.position,
-            lyrics: lyrics,
+            lyrics: finalLyrics,
             audio: audio,
             video: video,
             image: image,
@@ -148,7 +156,7 @@ const SongsTable = ({ songs }) => {
 
     return (
         <div>
-            <div style={{ maxHeight: rows.length > 5 ? '30rem' : 'auto', overflowY: rows.length > 5 ? 'scroll' : 'auto' }}>
+            <div style={{ maxHeight: rows.length > 5 ? '30rem' : 'auto', overflowY: rows.length > 5 ? 'scroll' : 'auto', overflowX: columns.length > 5 ? 'scroll' : 'auto' }}>
                 <CTable id={idTable} {...getTableProps} align='middle' responsive captionTop='Tabelas dos Músicas'>
                     <CTableHead>
                         {HeaderGroups}

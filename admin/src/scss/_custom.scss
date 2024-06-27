@@ -24,6 +24,11 @@ caption {
     margin-left: 0.5rem !important;
 }
 
+.tableFormat {
+    max-width: 11rem;
+    word-break: break-word;
+}
+
 .tableFormat:last-child {
     width: 7rem !important;
 }
