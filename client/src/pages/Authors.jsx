@@ -1,10 +1,12 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { CacheApi } from "../context/cacheApi.js";
+import { CurrentState } from "../context/currentState.js";
 import Header from "../components/Header";
 import "../styles/authors.css";
 
 export default function Authors() {
   const { authors, initAuthors } = useContext(CacheApi);
+  const { setPrevPage } = React.useContext(CurrentState);
   const [showHelenaInfo, setShowHelenaInfo] = useState(false);
   const [showPedroInfo, setShowPedroInfo] = useState(false);
   const [mobile, setMobile] = useState(window.innerWidth <= 649);
@@ -13,6 +15,8 @@ export default function Authors() {
 
   useEffect(() => {
     initAuthors();
+
+    setPrevPage("/autores");
 
     const handleMobile = () => {
       setMobile(window.innerWidth <= 649);

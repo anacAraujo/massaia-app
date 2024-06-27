@@ -18,7 +18,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/">
-              {/* TODO add header as global component */}
               <Route index element={<Home></Home>}></Route>
               <Route path="temas/:songId" element={<Home></Home>}></Route>
               <Route path="menu" element={<Menu></Menu>}></Route>

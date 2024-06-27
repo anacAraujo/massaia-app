@@ -13,7 +13,7 @@ import "../styles/gallery.css";
 export default function Gallery() {
   const { songId } = useParams();
 
-  const { userState, currentSong, setCurrentSongById } =
+  const { userState, currentSong, setCurrentSongById, setPrevPage } =
     React.useContext(CurrentState);
 
   const { artPiecesBySong, initArtPieces } = React.useContext(CacheApi);
@@ -23,6 +23,7 @@ export default function Gallery() {
   useEffect(() => {
     setCurrentSongById(songId);
     initArtPieces();
+    setPrevPage(`/galeria/${songId}`);
   }, [songId, screenWidth]);
 
   const [activeArt, setActiveArt] = useState(null);

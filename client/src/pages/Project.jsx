@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
+import { CurrentState } from "../context/currentState";
 import Header from "../components/Header";
 import "../styles/project.css";
 
 export default function Project() {
   const [selectedKey, setSelectedKey] = useState("Massaiá");
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const { setPrevPage } = React.useContext(CurrentState);
 
   const projectInfo = {
     Massaiá: (
@@ -142,6 +145,7 @@ export default function Project() {
   };
 
   useEffect(() => {
+    setPrevPage("/projeto");
     const handleResize = () => setScreenWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);

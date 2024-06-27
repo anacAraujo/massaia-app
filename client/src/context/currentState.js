@@ -18,6 +18,7 @@ export const USER_STATES = {
 export function CurrentStateProvider({ children }) {
   const [currentSong, setCurrentSong] = useState({});
   const [userState, setUserState] = useState(USER_STATES.LOADING_PAGE);
+  const [prevPge, setPrevPage] = useState("/");
 
   const { initSongsInfo } = React.useContext(CacheApi);
 
@@ -64,6 +65,8 @@ export function CurrentStateProvider({ children }) {
         handleUserStateChange,
         setCurrentSongById,
         setCurrentSongByAlbum,
+        prevPge,
+        setPrevPage,
       }}
     >
       {children}

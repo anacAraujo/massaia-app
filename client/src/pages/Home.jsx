@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
@@ -8,6 +8,7 @@ import { USER_STATES } from "../context/currentState.js";
 import { AlbumsMenu } from "../components/AlbumsMenu.jsx";
 import Credits from "./Credits.jsx";
 import Lyrics from "../components/Lyrics.jsx";
+import Menu from "./Menu.jsx";
 import { LandingPage } from "../components/LandingPage.jsx";
 import { Loading } from "../pages/Loading.jsx";
 import { CacheApi } from "../context/cacheApi.js";
@@ -20,21 +21,22 @@ export default function Home() {
     setCurrentSongByAlbum,
     userState,
     handleUserStateChange,
+    setPrevPage,
   } = React.useContext(CurrentState);
 
   const { songsByAlbum } = React.useContext(CacheApi);
 
   const { songId } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [menuAlbumId, setMenuAlbumId] = useState(1);
-
   const [muted, setMuted] = useState(true);
-
   const [showingDropdownOptions, setShowingDropdownOptions] = useState(false);
+  const [viewingMenu, setViewingMenu] = useState("none");
 
   function handleAlbumCoverClick(albumId) {
     setMenuAlbumId(albumId);
-
     handleUserStateChange(USER_STATES.ALBUMS_MENU);
   }
 
@@ -76,7 +78,13 @@ export default function Home() {
     handleUserStateChange(USER_STATES.VIEWING_LYRICS);
   }
 
+  function handleMenuClick() {
+    setViewingMenu("block");
+  }
+
   useEffect(() => {
+    setPrevPage("/");
+
     if (userState === USER_STATES.LOADING_PAGE) {
       if (songId) {
         setCurrentSongById(songId);
@@ -134,145 +142,153 @@ export default function Home() {
     }
   }, [userState]);
 
+  useEffect(() => {
+    setViewingMenu("none");
+  }, [location]);
+
   return (
     <>
       {userState === USER_STATES.LOADING_PAGE ? (
         <Loading></Loading>
       ) : (
-        <div
-          className="videoPlayer"
-          onClick={() => handleUserStateChange(USER_STATES.SONG_MENU)}
-        >
-          <div className="overlay"></div>
-          {currentSong.video != null ? (
-            <video
-              className="menu-albums-song"
-              src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.video}`}
-              autoPlay
-              loop
-              muted={muted}
-            />
-          ) : (
-            <>
-              <img
+        <>
+          <div
+            className="videoPlayer"
+            onClick={() => handleUserStateChange(USER_STATES.SONG_MENU)}
+          >
+            <div className="overlay"></div>
+            {currentSong.video != null ? (
+              <video
                 className="menu-albums-song"
-                src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.image}`}
-                alt="song cover"
-              />
-
-              <audio
-                src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.audio}`}
+                src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.video}`}
                 autoPlay
                 loop
                 muted={muted}
               />
-            </>
-          )}
-          {userState === USER_STATES.LANDING_PAGE && <LandingPage />}
-          {userState === USER_STATES.SONG_MENU && (
-            <div>
-              <div className="massaia">
-                <p>MASSAIÁ</p>
-              </div>
-              <Link className="menu" to="/menu">
-                <img src="../assets/icons/menu-white.svg" alt="menu" />
-              </Link>
-              <div className="album-cover">
-                <p>vol. I</p>
+            ) : (
+              <>
                 <img
-                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[1][0]?.album_cover}`}
-                  alt="album cover"
-                  onClick={() => handleAlbumCoverClick(1)}
+                  className="menu-albums-song"
+                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.image}`}
+                  alt="song cover"
                 />
-                <img
-                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[2][0]?.album_cover}`}
-                  alt="album cover"
-                  onClick={() => handleAlbumCoverClick(2)}
-                />
-                <p>vol. II</p>
-              </div>
 
-              <div className="credits">
-                <p onClick={() => handleCreditsClick()}>créditos</p>
-                <img
-                  onClick={() => handleLyrisClick()}
-                  src="../assets/icons/lyrics.svg"
-                  alt="lyrics"
+                <audio
+                  src={`${process.env.REACT_APP_UPLOAD_FOLDER}${currentSong.audio}`}
+                  autoPlay
+                  loop
+                  muted={muted}
                 />
-              </div>
+              </>
+            )}
 
-              <div className="song-info">
-                <div>
-                  {muted ? (
-                    <img
-                      className="sound"
-                      src="../assets/icons/sound-off.svg"
-                      alt="sound off"
-                      onClick={() => handleUnmute()}
-                    />
-                  ) : (
-                    <img
-                      className="sound"
-                      src="../assets/icons/sound-on.svg"
-                      alt="sound on"
-                      onClick={() => handleMute()}
-                    />
-                  )}
-                  {currentSong.album_id === 1 ? (
-                    <p
-                      onClick={() => handleAlbumChange(currentSong.album_id)}
-                      className="vol"
+            {userState === USER_STATES.LANDING_PAGE && <LandingPage />}
+            {userState === USER_STATES.SONG_MENU && (
+              <div>
+                <div className="massaia">
+                  <p>MASSAIÁ</p>
+                </div>
+                <div className="menu" onClick={() => handleMenuClick()}>
+                  <img src="../assets/icons/menu-white.svg" alt="menu" />
+                </div>
+                <div className="album-cover">
+                  <p>vol. I</p>
+                  <img
+                    src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[1][0]?.album_cover}`}
+                    alt="album cover"
+                    onClick={() => handleAlbumCoverClick(1)}
+                  />
+                  <img
+                    src={`${process.env.REACT_APP_UPLOAD_FOLDER}/${songsByAlbum[2][0]?.album_cover}`}
+                    alt="album cover"
+                    onClick={() => handleAlbumCoverClick(2)}
+                  />
+                  <p>vol. II</p>
+                </div>
+
+                <div className="credits">
+                  <p onClick={() => handleCreditsClick()}>créditos</p>
+                  <img
+                    onClick={() => handleLyrisClick()}
+                    src="../assets/icons/lyrics.svg"
+                    alt="lyrics"
+                  />
+                </div>
+
+                <div className="song-info">
+                  <div>
+                    {muted ? (
+                      <img
+                        className="sound"
+                        src="../assets/icons/sound-off.svg"
+                        alt="sound off"
+                        onClick={() => handleUnmute()}
+                      />
+                    ) : (
+                      <img
+                        className="sound"
+                        src="../assets/icons/sound-on.svg"
+                        alt="sound on"
+                        onClick={() => handleMute()}
+                      />
+                    )}
+                    {currentSong.album_id === 1 ? (
+                      <p
+                        onClick={() => handleAlbumChange(currentSong.album_id)}
+                        className="vol"
+                      >
+                        vol. I
+                      </p>
+                    ) : (
+                      <p
+                        onClick={() => handleAlbumChange(currentSong.album_id)}
+                        className="vol"
+                      >
+                        vol. II
+                      </p>
+                    )}
+
+                    <DropdownButton
+                      key={"up"}
+                      id={`dropdown-button-drop-up-centered`}
+                      drop={"up"}
+                      variant="secondary"
+                      title={currentSong.name}
+                      show={showingDropdownOptions}
+                      onClick={() => handleDropdownClick()}
+                      className="custom-dropdown"
                     >
-                      vol. I
-                    </p>
-                  ) : (
-                    <p
-                      onClick={() => handleAlbumChange(currentSong.album_id)}
-                      className="vol"
-                    >
-                      vol. II
-                    </p>
-                  )}
-
-                  <DropdownButton
-                    key={"up"}
-                    id={`dropdown-button-drop-up-centered`}
-                    drop={"up"}
-                    variant="secondary"
-                    title={currentSong.name}
-                    show={showingDropdownOptions}
-                    onClick={() => handleDropdownClick()}
-                    className="custom-dropdown"
-                  >
-                    {showingDropdownOptions &&
-                      (songsByAlbum[currentSong.album_id]?.length > 0 ? (
-                        songsByAlbum[currentSong.album_id].map((song) => (
-                          <Dropdown.Item
-                            key={song.id}
-                            onClick={() => handleSongChange(song.id)}
-                            className="custom-dropdown-item"
-                          >
-                            {song.name}
+                      {showingDropdownOptions &&
+                        (songsByAlbum[currentSong.album_id]?.length > 0 ? (
+                          songsByAlbum[currentSong.album_id].map((song) => (
+                            <Dropdown.Item
+                              key={song.id}
+                              onClick={() => handleSongChange(song.id)}
+                              className="custom-dropdown-item"
+                            >
+                              {song.name}
+                            </Dropdown.Item>
+                          ))
+                        ) : (
+                          <Dropdown.Item disabled>
+                            No songs available
                           </Dropdown.Item>
-                        ))
-                      ) : (
-                        <Dropdown.Item disabled>
-                          No songs available
-                        </Dropdown.Item>
-                      ))}
-                  </DropdownButton>
+                        ))}
+                    </DropdownButton>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-          {userState === USER_STATES.ALBUMS_MENU && (
-            <AlbumsMenu songsInfo={songsByAlbum[menuAlbumId]} />
-          )}
-          {userState === USER_STATES.VIEWING_CREDITS && (
-            <Credits songId={currentSong.id} />
-          )}
-          {userState === USER_STATES.VIEWING_LYRICS && <Lyrics />}
-        </div>
+            )}
+            {userState === USER_STATES.ALBUMS_MENU && (
+              <AlbumsMenu songsInfo={songsByAlbum[menuAlbumId]} />
+            )}
+            {userState === USER_STATES.VIEWING_CREDITS && (
+              <Credits songId={currentSong.id} />
+            )}
+            {userState === USER_STATES.VIEWING_LYRICS && <Lyrics />}
+            <Menu style={{ display: viewingMenu }} />
+          </div>
+        </>
       )}
     </>
   );

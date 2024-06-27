@@ -1,23 +1,22 @@
-//TODO make global component like header
-
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { CurrentState } from "../context/currentState.js";
 import { CacheApi } from "../context/cacheApi.js";
 import "../styles/menu.css";
 
-export default function Menu() {
+export default function Menu({ style }) {
   const [selectedMenu, setSelectedMenu] = useState(null);
 
   const handleMenuClick = (menu) => {
     setSelectedMenu(selectedMenu === menu ? null : menu);
   };
 
-  const { setCurrentSongByAlbum } = React.useContext(CurrentState);
+  const { setCurrentSongByAlbum, prevPge } = React.useContext(CurrentState);
   const { initSongsInfo } = React.useContext(CacheApi);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleChangeCurrentSong(album_id, destination) {
     setCurrentSongByAlbum(album_id);
@@ -28,14 +27,18 @@ export default function Menu() {
     initSongsInfo();
   }, []);
 
+  useEffect(() => {
+    setSelectedMenu(null);
+  }, [location]);
+
   return (
-    <div>
+    <div className="menu-container" style={style}>
       <div>
         <Link to="/">
           <h1 className="menu-massaia">MASSAIÁ</h1>
         </Link>
 
-        <Link to="/">
+        <Link to={prevPge}>
           {" "}
           <img
             className="menu-exit"

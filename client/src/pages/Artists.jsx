@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import Header from "../components/Header";
 import { CacheApi } from "../context/cacheApi";
+import { CurrentState } from "../context/currentState";
 import "../styles/artists.css";
 
 export default function Artists() {
   const { initAuthors, authors } = React.useContext(CacheApi);
+  const { setPrevPage } = React.useContext(CurrentState);
 
   const [activeAuthor, setActiveAuthor] = useState(3);
 
@@ -23,6 +25,7 @@ export default function Artists() {
 
   useEffect(() => {
     initAuthors();
+    setPrevPage("/artistas");
   }, [authors]);
 
   return (

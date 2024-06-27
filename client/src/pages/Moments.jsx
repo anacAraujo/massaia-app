@@ -2,11 +2,14 @@ import React, { useEffect, useContext, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
 import { CacheApi } from "../context/cacheApi.js";
+import { CurrentState } from "../context/currentState.js";
 import Header from "../components/Header";
 import "../styles/moments.css";
 
 export default function Moments() {
   const { moments, initMoments } = useContext(CacheApi);
+  const { setPrevPage } = React.useContext(CurrentState);
+
   const [scroll, setScroll] = useState(false);
   const [toggleHeader, setToggleHeader] = useState(true);
 
@@ -15,9 +18,13 @@ export default function Moments() {
     if (moments.length > 3) {
       setScroll(true);
     }
+
+    setPrevPage("/momentos");
   }, [moments]);
 
   useEffect(() => {
+    setPrevPage("/momentos");
+
     const handleScroll = () => {
       const momentsContainer = document.querySelector(
         ".moments-grid-container"

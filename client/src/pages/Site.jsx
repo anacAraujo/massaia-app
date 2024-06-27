@@ -1,7 +1,12 @@
+import React, { useEffect } from "react";
+
+import { CurrentState } from "../context/currentState";
 import Header from "../components/Header";
 import "../styles/aboutSite.css";
 
 export default function Site() {
+  const { setPrevPage } = React.useContext(CurrentState);
+
   const siteCreatorsInfo = {
     "Ana Araújo": {
       image: "../assets/images/ana-araujo.jpeg",
@@ -20,6 +25,10 @@ export default function Site() {
       title: "3D modeler",
     },
   };
+
+  useEffect(() => {
+    setPrevPage("/site");
+  }, []);
 
   return (
     <>
