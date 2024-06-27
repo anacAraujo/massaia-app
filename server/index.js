@@ -22,13 +22,13 @@ app.use(cookieParser());
 
 const checkFileName = (filename) => {
   const fixName = filename
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-zA-Z0-9.]/g, '_')
-    .replace(/_+/g, '_')
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9.]/g, "_")
+    .replace(/_+/g, "_")
     .toLowerCase();
 
-  const parts = fixName.split('.');
+  const parts = fixName.split(".");
   const extension = parts.pop();
   const fixedName = parts.join();
 
