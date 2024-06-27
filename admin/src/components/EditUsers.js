@@ -14,7 +14,6 @@ const userSchema = Joi.object({
     }).required().label('email'),
     password: Joi.string().min(8).required().label('password'),
     newPassword: Joi.string().min(8).required().label('newPassword'),
-    confirmNewPassword: Joi.any().equal(Joi.ref('newPassword')).required().label('confirmNewPassword').messages({ 'any.only': 'As passwords não são iguais.' })
 })
 
 const EditUsers = ({ userId, userData }) => {
@@ -23,7 +22,6 @@ const EditUsers = ({ userId, userData }) => {
     const [password, setPassword] = useState('');
     console.log(password);
     const [newPassword, setNewPassword] = useState('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [error, setError] = useState(null);
     const [validation, setValidation] = useState({});
     const navigate = useNavigate();
@@ -32,7 +30,6 @@ const EditUsers = ({ userId, userData }) => {
         setEmail(userData.email);
         setPassword('');
         setNewPassword('');
-        setConfirmNewPassword('');
     }, [userData]);
 
     const CloseForm = () => {
@@ -51,16 +48,11 @@ const EditUsers = ({ userId, userData }) => {
         setNewPassword(event.target.value);
     }
 
-    const HandleConfirmNewPassword = (event) => {
-        setConfirmNewPassword(event.target.value);
-    }
-
     const ValidateForm = () => {
         const body = {
             email,
             password,
             newPassword,
-            confirmNewPassword
         }
 
         const { error } = userSchema.validate(body, { abortEarly: false });
@@ -86,7 +78,6 @@ const EditUsers = ({ userId, userData }) => {
             email,
             password,
             newPassword,
-            confirmNewPassword
         }
 
         try {
@@ -149,18 +140,6 @@ const EditUsers = ({ userId, userData }) => {
                         required
                     />
                     {validation.newPassword && <p>Tem que ter no mínimo 8 caracteres.</p>}
-                </div>
-                <div className="mx-5">
-                    <label htmlFor="confirmNewPassword">Confirma Nova Password:</label>
-                    <input
-                        type="password"
-                        className="form-control mt-2"
-                        id="confirmNewPassword"
-                        name="confirmNewPassword"
-                        onChange={HandleConfirmNewPassword}
-                        required
-                    />
-                    {validation.confirmNewPassword && <p>Tem que ter no mínimo 8 caracteres.</p>}
                 </div>
                 <div className="d-flex justify-content-end mx-5 mt-4">
                     <CButton type="submit" color="warning" style={{ color: 'white' }}>Editar</CButton>

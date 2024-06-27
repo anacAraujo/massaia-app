@@ -1,6 +1,6 @@
 import { db } from "../../db/db.js";
 import bcrypt from "bcryptjs";
-import { idSchema, updateUserSchema } from "./usersSchemas.js";
+import { idSchema, updateUserSchema } from "./UsersSchemas.js";
 
 export const getUsers = async (req, res, next) => {
   try {
@@ -58,28 +58,33 @@ export const deleteUser = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
   try {
-    const params = await updateUserSchema.validateAsync(req.body);
+    const params = await updateUserSchema.validateAsync({
+      ...req.body,
+      id: req.params.id
+    });
+
+    const { email, password, newPassword, id } = params;
 
     const querySelect = "SELECT * FROM users WHERE id = ?";
-    const [data] = await db.execute(querySelect, [params.id]);
+    const [data] = await db.execute(querySelect, [id]);
 
     if (data.length === 0) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const validPassword = bcrypt.compareSync(params.password, data[0].password);
+    const validPassword = bcrypt.compareSync(password, data[0].password);
 
     if (!validPassword) {
       return res.status(400).json({ message: "Wrong email or password" });
     }
 
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(params.newPassword, salt);
+    const hash = bcrypt.hashSync(newPassword, salt);
 
     const queryUpdate =
       "UPDATE users SET `email` = ?, `password` = ? WHERE `id`= ?";
 
-    const queryParams = [params.email, hash, params.id];
+    const queryParams = [email, hash, id];
 
     const [results] = await db.execute(queryUpdate, queryParams);
 

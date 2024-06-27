@@ -25,7 +25,7 @@ export const login = async (req, res, next) => {
 
     const secret = process.env.JWT_SECRET;
 
-    const token = jwt.sign({ id: data[0].id }, secret);
+    const token = jwt.sign({ id: data[0].id }, secret, { expiresIn: "2h" });
     const { password, ...other } = data[0];
 
     res
@@ -66,7 +66,7 @@ export const register = async (req, res, next) => {
 export const logout = async (req, res, next) => {
   try {
     res
-      .clearCookie("acess_token", {
+      .clearCookie("access_token", {
         sameSite: "none",
         secure: true,
       })

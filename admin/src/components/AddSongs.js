@@ -1,3 +1,4 @@
+//TODO adicionar créditos
 import { CButton } from "@coreui/react"
 import CIcon from '@coreui/icons-react'
 import { cilArrowLeft } from '@coreui/icons'
@@ -15,8 +16,8 @@ const songSchema = Joi.object({
     album_id: Joi.number().integer().positive().required().label('album_id'),
     position: Joi.number().integer().positive().required().label('position'),
     lyrics: Joi.string().allow(null).label('lyrics'),
-    audio: Joi.string().allow(null).label('audio'),
-    video: Joi.string().allow(null).label('video'),
+    audio: Joi.any().required().label('audio'),
+    video: Joi.any().allow(null).label('video'),
     image: Joi.any().allow(null).label('image'),
     date: Joi.date().allow(null).label('date')
 })
@@ -73,15 +74,21 @@ const AddSongs = () => {
     }
 
     const HandlePositionInput = (event) => {
-        setPosition(event.target.value);
+        const value = event.target.value;
+        if (value < 1 || value > 10) {
+            setValidation({ position: 'A posição deve estar entre 1 e 10' });
+        } else {
+            setValidation({ ...validation, position: '' });
+            setPosition(value);
+        }
     }
 
     const HandleAudioInput = (event) => {
-        setAudio(event.target.value);
+        setAudio(event.target.files[0]);
     }
 
     const HandleVideoInput = (event) => {
-        setVideo(event.target.value);
+        setVideo(event.target.files[0]);
     }
 
     const HandleImageInput = (event) => {
@@ -122,8 +129,18 @@ const AddSongs = () => {
         if (!ValidateForm()) {
             return
         }
+ 
+        let audioUrl = audio;
+        let videoUrl = video;
+        let imgUrl = image;
 
-        let imgUrl = "";
+        if (audio && typeof audio === 'object') {
+            audioUrl = await upload(audio);
+        }
+
+        if (video && typeof video === 'object') {
+            videoUrl = await upload(video);
+        }
 
         if (image && typeof image === 'object') {
             imgUrl = await upload(image);
@@ -134,8 +151,8 @@ const AddSongs = () => {
             album_id,
             position,
             lyrics,
-            audio,
-            video,
+            audio: audioUrl,
+            video: videoUrl,
             image: imgUrl,
             date
         }
@@ -198,6 +215,8 @@ const AddSongs = () => {
                         id="position"
                         name="position"
                         placeholder="Escolha a posição da música no álbum"
+                        min="1"
+                        max="10"
                         onChange={HandlePositionInput}
                         required
                     />
@@ -218,23 +237,22 @@ const AddSongs = () => {
                 <div className="mx-5">
                     <label htmlFor="audio">Áudio:</label>
                     <input 
-                        type="text"
+                        type="file"
                         className="form-control mt-2"
                         id="audio"
                         name="audio"
-                        placeholder="Link para o áudio no Youtube"
                         onChange={HandleAudioInput}
+                        required
                     />
                     {validation.audio && <p>{validation.audio}</p>}
                 </div>
                 <div className="mx-5">
                     <label htmlFor="video">Vídeo:</label>
                     <input 
-                        type="text"
+                        type="file"
                         className="form-control mt-2"
                         id="video"
                         name="video"
-                        placeholder="Link para o vídeo no Youtube"
                         onChange={HandleVideoInput}
                     />
                     {validation.video && <p>{validation.video}</p>}

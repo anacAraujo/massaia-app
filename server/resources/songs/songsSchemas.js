@@ -1,14 +1,14 @@
 import Joi from "joi";
 
-const id = Joi.number().integer().positive();
+const id = Joi.number().integer().positive().required();
 const album_id = Joi.number().integer().positive().required();
 const name = Joi.string().required();
 const position = Joi.number().integer().positive().required();
 const lyrics = Joi.string();
-const audio = Joi.string();
-const video = Joi.string();
-const image = Joi.string();
-const date = Joi.date();
+const audio = Joi.string().required();
+const video = Joi.string().allow(null);
+const image = Joi.string().allow(null);
+const date = Joi.date().allow(null);
 
 export const idSchema = Joi.object({
   id: id.optional(),
@@ -23,7 +23,7 @@ export const addSongSchema = Joi.object({
   album_id: album_id,
   position: position,
   lyrics: lyrics.optional(),
-  audio: audio.optional(),
+  audio: audio,
   video: video.optional(),
   image: image.optional(),
   date: date.optional(),
@@ -38,5 +38,5 @@ export const updateSongSchema = Joi.object({
   audio: audio,
   video: video,
   image: image,
-  date: date,
+  date: date.optional(),
 });

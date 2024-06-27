@@ -58,17 +58,22 @@ export const addMoment = async (req, res, next) => {
 
 export const updateMoment = async (req, res, next) => {
   try {
-    const params = await updateMomentSchema.validateAsync(req.body);
+    const params = await updateMomentSchema.validateAsync({
+      ...req.body,
+      id: req.params.id
+    });
+
+    const { name, image, video, date, id } = params;
 
     const query =
-      "UPDATE moment SET `name` = ?, `image` = ?, `video` = ?, `date` = ? WHERE `id`= ?";
+      "UPDATE moments SET `name` = ?, `image` = ?, `video` = ?, `date` = ? WHERE `id`= ?";
 
     const queryParams = [
-      params.name,
-      params.image,
-      params.video,
-      params.date,
-      params.id,
+      name,
+      image,
+      video,
+      date,
+      id,
     ];
 
     const [results] = await db.execute(query, queryParams);

@@ -59,12 +59,17 @@ export async function getAlbum(req, res, next) {
 
 export const updateAlbum = async (req, res, next) => {
   try {
-    const params = await updateAlbumSchema.validateAsync(req.body);
+    const params = await updateAlbumSchema.validateAsync({
+      ...req.body,
+      id: req.params.id
+    });
+
+    const { name, cover, date, id } = params;
 
     const query =
       "UPDATE albums SET `name` = ?, `cover` = ?, `date` = ? WHERE `id`= ?";
 
-    const queryParams = [params.name, params.cover, params.date, params.id];
+    const queryParams = [name, cover, date, id];
 
     const [results] = await db.execute(query, queryParams);
 

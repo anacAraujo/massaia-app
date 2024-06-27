@@ -5,7 +5,7 @@ import { CCard, CCardBody, CCardHeader, CCardText, CCardTitle, CCol, CRow } from
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-const UserCards = ({ users }) => {
+const UserCards = ({ users, idButton }) => {
     const { currentUser } = useContext(AuthContext);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
@@ -13,6 +13,7 @@ const UserCards = ({ users }) => {
 
     const idCard = 'card';
     const idEdit = 'Edit';
+    const idAddButton = 'Button';
 
     const OpenEditModal = (userId) => {
         console.log("Opening edit modal for userId:", userId);
@@ -75,6 +76,7 @@ const UserCards = ({ users }) => {
                 CloseModal={CloseEditModal}
                 idCard={idCard}
                 idEdit={idEdit}
+                idButton={idButton}
                 itemId={selectedUserId}
                 type='users'
             />

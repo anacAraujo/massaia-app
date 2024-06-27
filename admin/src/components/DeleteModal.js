@@ -26,7 +26,7 @@ const DeleteModal = ({ visible, CloseModal, itemId, type }) => {
             case 'users':
                 endpoint = `/users/${itemId}`;
                 break
-            case 'authors':
+            case 'artists':
                 endpoint = `/artists/${itemId}`;
                 break
             case 'roles':
@@ -58,7 +58,13 @@ const DeleteModal = ({ visible, CloseModal, itemId, type }) => {
                 <CModalHeader>
                     <CModalTitle id="AddModal">Apagar dados a uma tabela</CModalTitle>
                 </CModalHeader>
-                <CModalBody>Pressione o botão de continuar, se pretende apagar esta linha da tabela!</CModalBody>
+                <CModalBody>
+                    <p className='m-0'>Pressione o botão de continuar, se pretende apagar esta linha da tabela!</p>
+                    <p>
+                        <span className='text-danger'>Nota: </span>
+                        <span>Confirmar sempre se o elemento que pretende eliminar não está a ser utilizado noutra tabela, pois se estiver não será possível de apagar enquanto estiver a ser utilizado nessa mesma tabela!</span>
+                    </p>
+                </CModalBody>
                 <CModalFooter>
                     <CButton color="secondary" onClick={CloseModal}>Fechar</CButton>
                     <CButton onClick={deleteItem} color="danger" style={{ color: 'white' }}>Continuar</CButton>
