@@ -10,7 +10,7 @@ export default function Site() {
   const siteCreatorsInfo = {
     "Ana Araújo": {
       image: "../assets/images/ana-araujo.jpeg",
-      title: "web developer",
+      title: "full-stack developer",
     },
     "João Oliveira": {
       image: "../assets/images/joao-oliveira.jpeg",
@@ -18,7 +18,7 @@ export default function Site() {
     },
     "Leonardo Bastos": {
       image: "../assets/images/leonardo-bastos.jpg",
-      title: "web developer",
+      title: "full-stack developer",
     },
     "Pedro Soares": {
       image: "../assets/images/pedro-soares.jpeg",
