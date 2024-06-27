@@ -1,11 +1,11 @@
 // TODO adicionar opção de ficheiro
-import { CButton } from "@coreui/react"
-import CIcon from '@coreui/icons-react'
-import { cilArrowLeft } from '@coreui/icons'
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { CButton } from "@coreui/react";
+import CIcon from '@coreui/icons-react';
+import { cilArrowLeft } from '@coreui/icons';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Joi from "joi";
-import axios from '../lib/AxiosConfig'
+import axios from '../lib/AxiosConfig';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -14,7 +14,7 @@ const momentSchema = Joi.object({
     image: Joi.any().allow(null).label('image'),
     video: Joi.any().allow(null).label('video'),
     date: Joi.date().allow(null).label('date')
-})
+});
 
 const AddMoments = () => {
     const [name, setName] = useState('');
@@ -23,6 +23,7 @@ const AddMoments = () => {
     const [date, setDate] = useState(null);
     const [error, setError] = useState(null);
     const [validation, setValidation] = useState({});
+    const [mediaType, setMediaType] = useState('');
     const navigate = useNavigate();
 
     const upload = async (file) => {
@@ -34,53 +35,69 @@ const AddMoments = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const CloseForm = () => {
         window.location.reload();
-    }
+    };
 
     const HandleNameInput = (event) => {
         setName(event.target.value);
-    }
+    };
 
     const HandleImageInput = (event) => {
         setImage(event.target.files[0]);
-    }
+    };
 
     const HandleVideoInput = (event) => {
         setVideo(event.target.files[0]);
-    }
+    };
 
     const HandleDateInput = (date) => {
         setDate(date);
-    }
+    };
+
+    const HandleMediaTypeChange = (event) => {
+        setMediaType(event.target.value);
+        setImage(null);
+        setVideo(null);
+    };
 
     const ValidateForm = () => {
         const body = {
             name,
-            image,
-            video,
+            image: mediaType === 'image' ? image : null,
+            video: mediaType === 'video' ? video : null,
             date
-        }
+        };
 
         const { error } = momentSchema.validate(body, { abortEarly: false });
         if (error) {
             const errors = {};
             error.details.forEach(err => {
                 errors[err.path[0]] = err.message;
-            })
+            });
             setValidation(errors);
+            return false;
+        }
+
+        if (!mediaType) {
+            setValidation(prev => ({ ...prev, mediaType: 'Tem que escolher entre uma imagem ou um vídeo' }));
+            return false;
+        }
+
+        if ((mediaType === 'image' && !image) || (mediaType === 'video' && !video)) {
+            setValidation(prev => ({ ...prev, mediaType: 'Adicione o tipo de ficheiro consoante o tipo de momento que pretende' }));
             return false;
         }
         setValidation({});
         return true;
-    }
+    };
 
     const handleAddMoment = async (event) => {
         event.preventDefault();
         if (!ValidateForm()) {
-            return
+            return;
         }
 
         let imgUrl = image;
@@ -96,10 +113,10 @@ const AddMoments = () => {
 
         const body = {
             name,
-            image: imgUrl,
-            video: videoUrl,
+            image: mediaType === 'image' ? imgUrl : null,
+            video: mediaType === 'video' ? videoUrl : null,
             date,
-        }
+        };
 
         try {
             await axios.post(`/moments/`, body);
@@ -109,7 +126,7 @@ const AddMoments = () => {
             setError(error.response);
             console.error(error);
         }
-    }
+    };
 
     return (
         <div>
@@ -123,7 +140,7 @@ const AddMoments = () => {
             >
                 <div className="mx-5">
                     <label htmlFor="name">Nome:</label>
-                    <input 
+                    <input
                         type="text"
                         className="form-control mt-2"
                         id="name"
@@ -134,27 +151,46 @@ const AddMoments = () => {
                     {validation.name && <p>{validation.name}</p>}
                 </div>
                 <div className="mx-5">
-                    <label htmlFor="image">Imagem:</label>
-                    <input 
-                        type="file"
+                    <label htmlFor="mediaType">Tipo de Momento:</label>
+                    <select
                         className="form-control mt-2"
-                        id="image"
-                        name="image"
-                        onChange={HandleImageInput}
-                    />
-                    {validation.image && <p>{validation.image}</p>}
+                        id="mediaType"
+                        name="mediaType"
+                        onChange={HandleMediaTypeChange}
+                        required
+                    >
+                        <option value="">Selecione entre imagem ou vídeo</option>
+                        <option value="image">Imagem</option>
+                        <option value="video">Vídeo</option>
+                    </select>
+                    {validation.mediaType && <p>{validation.mediaType}</p>}
                 </div>
-                <div className="mx-5">
-                    <label htmlFor="video">Vídeo:</label>
-                    <input 
-                        type="file"
-                        className="form-control mt-2"
-                        id="video"
-                        name="video"
-                        onChange={HandleVideoInput}
-                    />
-                    {validation.video && <p>{validation.video}</p>}
-                </div>
+                {mediaType === 'image' && (
+                    <div className="mx-5">
+                        <label htmlFor="image">Imagem:</label>
+                        <input
+                            type="file"
+                            className="form-control mt-2"
+                            id="image"
+                            name="image"
+                            onChange={HandleImageInput}
+                        />
+                        {validation.image && <p>{validation.image}</p>}
+                    </div>
+                )}
+                {mediaType === 'video' && (
+                    <div className="mx-5">
+                        <label htmlFor="video">Vídeo:</label>
+                        <input
+                            type="file"
+                            className="form-control mt-2"
+                            id="video"
+                            name="video"
+                            onChange={HandleVideoInput}
+                        />
+                        {validation.video && <p>{validation.video}</p>}
+                    </div>
+                )}
                 <div className="mx-5">
                     <label htmlFor="date">Data:</label>
                     <DatePicker
@@ -171,9 +207,9 @@ const AddMoments = () => {
                     <CButton type="submit" color="success" style={{ color: 'white' }}>Adicionar</CButton>
                 </div>
             </form>
-            {error && <p className=" text-danger mt-2" style={{marginLeft: '6.5rem'}}>Não foi possível efetuar esta operação, volte a carregar a página e tente novamente!</p>}
+            {error && <p className=" text-danger mt-2" style={{ marginLeft: '6.5rem' }}>Não foi possível efetuar esta operação, volte a carregar a página e tente novamente!</p>}
         </div>
-    )
-}
+    );
+};
 
-export default AddMoments
+export default AddMoments;

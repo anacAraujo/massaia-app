@@ -28,6 +28,7 @@ const EditMoments = ({ momentId, momentData }) => {
     console.log(date);
     const [error, setError] = useState(null);
     const [validation, setValidation] = useState({});
+    const [mediaType, setMediaType] = useState(momentData.image ? 'image' : 'video');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,6 +38,7 @@ const EditMoments = ({ momentId, momentData }) => {
         setVideo(momentData.video || null);
         setVideoName(momentData.video ? momentData.video.split('/').pop() : 'Nenhum ficheiro selecionado.');
         setDate(momentData.date || null);
+        setMediaType(momentData.image ? 'image' : 'video');
     }, [momentData]);
 
     const upload = async (file) => {
@@ -72,11 +74,19 @@ const EditMoments = ({ momentId, momentData }) => {
         setDate(date);
     }
 
+    const HandleMediaTypeChange = (event) => {
+        setMediaType(event.target.value);
+        setImage(null);
+        setImageName('Nenhum ficheiro selecionado.');
+        setVideo(null);
+        setVideoName('Nenhum ficheiro selecionado.');
+    };
+
     const ValidateForm = () => {
         const body = {
             name,
-            image,
-            video,
+            image: mediaType === 'image' ? image : null,
+            video : mediaType === 'video' ? video : null,
             date
         }
 
@@ -112,8 +122,8 @@ const EditMoments = ({ momentId, momentData }) => {
 
         const body = {
             name,
-            image: imgUrl,
-            video: videoUrl,
+            image: mediaType === 'image' ? imgUrl : null,
+            video: mediaType === 'video' ? videoUrl : null,
             date,
         }
 
@@ -153,29 +163,47 @@ const EditMoments = ({ momentId, momentData }) => {
                     {validation.name && <p>{validation.name}</p>}
                 </div>
                 <div className="mx-5">
-                    <label htmlFor="image">Imagem:</label>
-                    <input 
-                        type="file"
+                    <label htmlFor="mediaType">Tipo de Momento:</label>
+                    <select 
                         className="form-control mt-2"
-                        id="image"
-                        name="image"
-                        onChange={HandleImageInput}
-                    />
-                    <span>Imagem atual: {imageName}</span>
-                    {validation.image && <p>{validation.image}</p>}
+                        id="mediaType"
+                        name="mediaType"
+                        value={mediaType}
+                        onChange={HandleMediaTypeChange}
+                        required
+                    >
+                        <option value="image">Imagem</option>
+                        <option value="video">Vídeo</option>
+                    </select>
                 </div>
-                <div className="mx-5">
-                    <label htmlFor="video">Vídeo:</label>
-                    <input 
-                        type="file"
-                        className="form-control mt-2"
-                        id="video"
-                        name="video"
-                        onChange={HandleVideoInput}
-                    />
-                    <span>Vídeo atual: {videoName}</span>
-                    {validation.video && <p>{validation.video}</p>}
-                </div>
+                {mediaType === 'image' && (
+                    <div className="mx-5">
+                        <label htmlFor="image">Imagem:</label>
+                        <input 
+                            type="file"
+                            className="form-control mt-2"
+                            id="image"
+                            name="image"
+                            onChange={HandleImageInput}
+                        />
+                        <span>Imagem atual: {imageName}</span>
+                        {validation.image && <p>{validation.image}</p>}
+                    </div>
+                )}
+                {mediaType === 'video' && (
+                    <div className="mx-5">
+                        <label htmlFor="video">Vídeo:</label>
+                        <input 
+                            type="file"
+                            className="form-control mt-2"
+                            id="video"
+                            name="video"
+                            onChange={HandleVideoInput}
+                        />
+                        <span>Vídeo atual: {videoName}</span>
+                        {validation.video && <p>{validation.video}</p>}
+                    </div>
+                )}
                 <div className="mx-5">
                     <label htmlFor="date">Data:</label>
                     <DatePicker
