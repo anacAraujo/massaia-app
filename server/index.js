@@ -20,12 +20,28 @@ app.use(logger());
 app.use(express.json());
 app.use(cookieParser());
 
+const checkFileName = (filename) => {
+  const fixName = filename
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9.]/g, '_')
+    .replace(/_+/g, '_')
+    .toLowerCase();
+
+  const parts = fixName.split('.');
+  const extension = parts.pop();
+  const fixedName = parts.join();
+
+  return `${fixedName}.${extension}`;
+};
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, process.env.UPLOAD_FOLDER);
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname);
+    const correctFileName = checkFileName(file.originalname);
+    cb(null, Date.now() + "_" + correctFileName);
   },
 });
 
