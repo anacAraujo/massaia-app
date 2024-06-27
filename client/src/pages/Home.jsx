@@ -207,31 +207,32 @@ export default function Home() {
                 </div>
 
                 <div className="credits">
-                  <p onClick={() => handleCreditsClick()}>créditos</p>
                   <img
                     onClick={() => handleLyrisClick()}
                     src="../assets/icons/lyrics.svg"
                     alt="lyrics"
                   />
+                  {muted ? (
+                    <img
+                      className="sound"
+                      src="../assets/icons/sound-off.svg"
+                      alt="sound off"
+                      onClick={() => handleUnmute()}
+                    />
+                  ) : (
+                    <img
+                      className="sound"
+                      src="../assets/icons/sound-on.svg"
+                      alt="sound on"
+                      onClick={() => handleMute()}
+                    />
+                  )}
+
+                  <p onClick={() => handleCreditsClick()}>créditos</p>
                 </div>
 
                 <div className="song-info">
                   <div>
-                    {muted ? (
-                      <img
-                        className="sound"
-                        src="../assets/icons/sound-off.svg"
-                        alt="sound off"
-                        onClick={() => handleUnmute()}
-                      />
-                    ) : (
-                      <img
-                        className="sound"
-                        src="../assets/icons/sound-on.svg"
-                        alt="sound on"
-                        onClick={() => handleMute()}
-                      />
-                    )}
                     {currentSong.album_id === 1 ? (
                       <p
                         onClick={() => handleAlbumChange(currentSong.album_id)}

@@ -101,6 +101,10 @@ a {
       font-size: 5vw;
       margin: 0;
     }
+    .sound {
+      height: 5vw;
+      width: auto;
+    }
 
     img {
       margin: 0;
@@ -123,11 +127,6 @@ a {
       align-items: center;
       gap: 2vw;
 
-      .sound {
-        height: 5vw;
-        width: auto;
-      }
-
       .vol {
         margin: 0;
         font-size: 4.2vw;
@@ -149,7 +148,7 @@ a {
       border: none !important;
       border-radius: 0 !important;
       color: white !important;
-      font-family: "AkzidGroReg";
+      font-family: "AkzidGroReg" !important;
       padding: 0;
       font-size: 4.2vw;
       z-index: 1;
@@ -169,7 +168,7 @@ a {
       border-radius: 0 !important;
       color: white !important;
       font-size: 4.2vw;
-      font-family: "AkzidGroReg";
+      font-family: "AkzidGroReg" !important;
       padding: 0 5px;
     }
 
@@ -271,6 +270,9 @@ a {
     img {
       width: 4vw;
     }
+    .sound {
+      height: 4vw;
+    }
   }
 
   .song-info {
@@ -281,14 +283,11 @@ a {
       .vol {
         font-size: 4vw;
       }
-
-      .sound {
-        height: 4vw;
-      }
     }
 
     .custom-dropdown .dropdown-toggle {
       font-size: 4vw;
+      font-family: "AkzidGroLigOsF" !important;
     }
 
     .custom-dropdown-item {
@@ -377,6 +376,9 @@ a {
     img {
       width: 1.5vw;
     }
+    .sound {
+      height: 1.5vw;
+    }
   }
 
   .song-info {
@@ -384,13 +386,10 @@ a {
     div {
       font-size: 1.5vw;
       gap: 1vw;
+      margin-bottom: 2%;
 
       .vol {
         font-size: 1.5vw;
-      }
-
-      .sound {
-        height: 1.5vw;
       }
     }
     .custom-dropdown .dropdown-toggle {
