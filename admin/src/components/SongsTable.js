@@ -4,19 +4,25 @@ import AddModal from "../components/AddModal"
 import EditModal from '../components/EditModal'
 import DeleteModal from '../components/DeleteModal';
 import CIcon from '@coreui/icons-react'
-import { cilPencil, cilTrash, cilPlus } from '@coreui/icons'
+import { cilPencil, cilTrash, cilPlus, cilDescription } from '@coreui/icons'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell, CButton, CTooltip  } from '@coreui/react'
+import axios from '../lib/AxiosConfig'
+import CreditsTable from './CreditsTable';
 
 const SongsTable = ({ songs }) => {
     const [addModalVisible, setAddModalVisible] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+    const [creditsTableVisible, setCreditsTableVisible] = useState(false);
     const [selectedSongId, setSelectedSongId] = useState(null);
+    const [credits, setCredits] = useState([]);
+    const [error, setError] = useState(null);
 
     const idAdd = 'Add';
     const idTable = 'table'
     const idEdit = 'Edit';
     const idAddButton = 'Button';
+    const idCredits = 'Credits';
 
     const OpenAddModal = () => {
         setAddModalVisible(true);
@@ -47,6 +53,22 @@ const SongsTable = ({ songs }) => {
         setSelectedSongId(null);
     }
 
+    const getCredits = async (songId) => {
+        try {
+            const response = await axios.get(`/songs/${songId}/credits`);
+            setCredits(response.data);
+        } catch (error) {
+            setError(error.response);
+            console.error(error);
+        }
+    }
+    console.log("credits:", credits);
+
+    const OpenCredits = (songId) => {
+        getCredits(songId);
+        setCreditsTableVisible(true);
+    }
+
     const RemoveTags = (string) => {
         if (!string) return "";
         return string.replace(/<[^>]*>/g, ' ');
@@ -74,8 +96,13 @@ const SongsTable = ({ songs }) => {
             date: date,
             button: (
                 <div>
+                    <CTooltip content="Ver créditos" placement="bottom">
+                        <CButton onClick={() => OpenCredits(song.id)} variant='outline' color='secondary'>
+                            <CIcon icon={cilDescription}></CIcon>
+                        </CButton>
+                    </CTooltip>
                     <CTooltip content="Editar" placement="bottom">
-                        <CButton onClick={() => OpenEditModal(song.id)} variant='outline' color='warning'>
+                        <CButton onClick={() => OpenEditModal(song.id)}  className='tableButtons' variant='outline' color='warning'>
                             <CIcon icon={cilPencil}></CIcon>
                         </CButton>
                     </CTooltip>
@@ -134,7 +161,7 @@ const SongsTable = ({ songs }) => {
     let HeaderGroups = headerGroups.map((headerGroup) => (
         <CTableRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
-                <CTableHeaderCell className='tableFormat' {...column.getHeaderProps()}>
+                <CTableHeaderCell className='tableSongs' {...column.getHeaderProps()}>
                     {column.render("Header")}
                 </CTableHeaderCell>
             ))}
@@ -146,7 +173,7 @@ const SongsTable = ({ songs }) => {
         return (
             <CTableRow {...row.getRowProps()}>
                 {row.cells.map((cell) => (
-                    <CTableDataCell className='tableFormat' {...cell.getCellProps()}>
+                    <CTableDataCell className='tableSongs' {...cell.getCellProps()}>
                         {cell.render("Cell")}
                     </CTableDataCell>
                 ))}
@@ -194,6 +221,13 @@ const SongsTable = ({ songs }) => {
                 CloseModal={CloseDeleteModal}
                 itemId={selectedSongId}
                 type='songs'
+            />
+            <CreditsTable 
+                credits={credits}
+                songId={selectedSongId}
+                idTable={idTable}
+                idButton={idAddButton}
+                idCredits={idCredits}
             />
         </div>
         

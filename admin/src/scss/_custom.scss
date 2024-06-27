@@ -37,6 +37,15 @@ caption {
     width: 1rem !important;
 }
 
+.tableSongs {
+    max-width: 10rem;
+    word-break: break-word;
+}
+
+.tableSongs:last-child {
+    width: 10rem !important;
+}
+
 .editorContainer {
     height: 18rem;
     overflow: scroll;
