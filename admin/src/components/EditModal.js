@@ -20,6 +20,7 @@ const EditModal = ({ visible, CloseModal, type, idEdit, idTable, idButton, idCar
         } else if (type === 'users') {
             document.getElementById(idEdit).style.display = showEdit ? 'block' : 'none';
             document.getElementById(idCard).style.display = showEdit ? 'none' : 'block';
+            document.getElementById(idButton).style.display = showEdit ? 'none' : 'block';
         } else if (type === 'albums') {
             document.getElementById(idEdit).style.display = showEdit ? 'block' : 'none';
             document.getElementById(idTable).style.display = showEdit ? 'none' : 'block';

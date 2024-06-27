@@ -11,8 +11,9 @@ import { useNavigate } from "react-router-dom";
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  let navigate = useNavigate();
+  const idAddButton = 'Button';
 
   const handleRegisterUser = () => {
     navigate("/register");
@@ -41,9 +42,10 @@ const Users = () => {
           <div className="container-lg px-4">
             <div className="row">
               <div className="col-12">
-                <UserCards users={users} />
+                <UserCards users={users} idButton={idAddButton} />
                 <div className="buttons gap-2 justify-content-md-end">
                   <CButton
+                    id={idAddButton}
                     onClick={() => handleRegisterUser()}
                     variant="outline"
                     color="success"
