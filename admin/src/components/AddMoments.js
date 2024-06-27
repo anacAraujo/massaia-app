@@ -1,4 +1,3 @@
-// TODO adicionar opção de ficheiro
 import { CButton } from "@coreui/react";
 import CIcon from '@coreui/icons-react';
 import { cilArrowLeft } from '@coreui/icons';
