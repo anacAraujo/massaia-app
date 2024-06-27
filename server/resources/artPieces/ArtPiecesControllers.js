@@ -4,7 +4,7 @@ import {
   songIddSchema,
   addArtPieceSchema,
   updateArtPieceSchema,
-} from "./ArtPiecesSchemas.js";
+} from "./artPiecesSchemas.js";
 
 export const getArtPieces = async (req, res, next) => {
   try {
@@ -33,7 +33,8 @@ export const getArtPiece = async (req, res, next) => {
   try {
     const params = await idSchema.validateAsync(req.params);
 
-    const query = "SELECT ap.*, au.name AS author_name, s.album_id AS album_id, s.name AS song_name FROM massaia.art_pieces ap JOIN massaia.authors au ON ap.author_id=au.id JOIN massaia.songs s ON ap.song_id=s.id WHERE ap.id = ?";
+    const query =
+      "SELECT ap.*, au.name AS author_name, s.album_id AS album_id, s.name AS song_name FROM massaia.art_pieces ap JOIN massaia.authors au ON ap.author_id=au.id JOIN massaia.songs s ON ap.song_id=s.id WHERE ap.id = ?";
 
     const [results] = await db.execute(query, [params.id]);
 
@@ -73,7 +74,7 @@ export const updateArtPiece = async (req, res, next) => {
   try {
     const params = await updateArtPieceSchema.validateAsync({
       ...req.body,
-      id: req.params.id
+      id: req.params.id,
     });
 
     const { song_id, author_id, image, date, id } = params;
@@ -81,13 +82,7 @@ export const updateArtPiece = async (req, res, next) => {
     const query =
       "UPDATE art_pieces SET `song_id` = ?, `author_id` = ?, `image` = ?, `date` = ? WHERE `id`= ?";
 
-      const queryParams = [
-        song_id,
-        author_id,
-        image,
-        date,
-        id,
-      ];
+    const queryParams = [song_id, author_id, image, date, id];
 
     const [results] = await db.execute(query, queryParams);
 

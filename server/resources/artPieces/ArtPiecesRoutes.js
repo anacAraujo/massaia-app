@@ -5,7 +5,7 @@ import {
   addArtPiece,
   updateArtPiece,
   deleteArtPiece,
-} from "./ArtPiecesControllers.js";
+} from "./artPiecesControllers.js";
 import { authMiddleware } from "../../middlewares/auth.js";
 
 const router = express.Router();

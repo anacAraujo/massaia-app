@@ -1,6 +1,6 @@
 import { db } from "../../db/db.js";
 import bcrypt from "bcryptjs";
-import { idSchema, updateUserSchema } from "./UsersSchemas.js";
+import { idSchema, updateUserSchema } from "./usersSchemas.js";
 
 export const getUsers = async (req, res, next) => {
   try {
@@ -60,7 +60,7 @@ export const updateUser = async (req, res, next) => {
   try {
     const params = await updateUserSchema.validateAsync({
       ...req.body,
-      id: req.params.id
+      id: req.params.id,
     });
 
     const { email, password, newPassword, id } = params;
