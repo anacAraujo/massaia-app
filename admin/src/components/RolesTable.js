@@ -17,11 +17,11 @@ const RolesTable = ({ roles }) => {
 
     const OpenAddModal = () => {
         setAddModalVisible(true);
-      };
+    };
     
-      const CloseAddModal = () => {
+    const CloseAddModal = () => {
         setAddModalVisible(false);
-      };
+    };
 
     const OpenDeleteModal = (roleId) => {
         console.log("Opening delete modal for artPieceId:", roleId);
