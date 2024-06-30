@@ -5,7 +5,7 @@ import {
   albumIddSchema,
   addSongSchema,
   updateSongSchema,
-  creditsSchema
+  creditsSchema,
 } from "./songsSchemas.js";
 
 export async function getSongs(req, res, next) {
@@ -58,10 +58,10 @@ export async function getCredits(req, res, next) {
   try {
     const params = await idSchema.validateAsync(req.params);
 
-    let query = `SELECT credits.songs_id, credits.authors_id, credits.roles_id, a.name AS authors_name, r.name AS role_name FROM massaia.songs_has_authors_has_roles credits 
-                  JOIN massaia.authors a ON massaia.a.id = massaia.credits.authors_id 
-                  JOIN massaia.roles r ON massaia.r.id = massaia.credits.roles_id
-                WHERE massaia.credits.songs_id = ?;`;
+    let query = `SELECT credits.songs_id, credits.authors_id, credits.roles_id, a.name AS authors_name, r.name AS role_name FROM songs_has_authors_has_roles credits 
+                  JOIN authors a ON a.id = credits.authors_id 
+                  JOIN roles r ON r.id = credits.roles_id
+                WHERE credits.songs_id = ?;`;
 
     const [results] = await db.execute(query, [params.id]);
 
@@ -75,7 +75,7 @@ export async function getCredits(req, res, next) {
           acc[role_name] = {
             songs_id: songs_id,
             roles_id: roles_id,
-            authors: []
+            authors: [],
           };
         }
         acc[role_name].authors.push({ authors_name, authors_id });
@@ -88,7 +88,7 @@ export async function getCredits(req, res, next) {
       role: role_name,
       roles_id: groupedResults[role_name].roles_id,
       songs_id: groupedResults[role_name].songs_id,
-      authors: groupedResults[role_name].authors
+      authors: groupedResults[role_name].authors,
     }));
 
     res.status(200).json(formattedResponse);
@@ -127,32 +127,27 @@ export const addCredits = async (req, res, next) => {
   try {
     const params = await creditsSchema.validateAsync(req.body);
 
-    const query = 
-      `INSERT INTO massaia.songs_has_authors_has_roles (roles_id, songs_id, authors_id) VALUES (?, ?, ?)`;
+    const query = `INSERT INTO songs_has_authors_has_roles (roles_id, songs_id, authors_id) VALUES (?, ?, ?)`;
 
-    const queryParams = [
-      params.roles_id,
-      params.songs_id,
-      params.authors_id
-    ]; 
+    const queryParams = [params.roles_id, params.songs_id, params.authors_id];
 
     const [results] = await db.execute(query, queryParams);
 
     return res.status(200).json({ message: "Credits added!" });
-
   } catch (error) {
     next(error);
   }
-}
+};
 
 export const updateSong = async (req, res, next) => {
   try {
     const params = await updateSongSchema.validateAsync({
       ...req.body,
-      id: req.params.id
+      id: req.params.id,
     });
 
-    const { album_id, name, position, lyrics, audio, video, image, date, id } = params;
+    const { album_id, name, position, lyrics, audio, video, image, date, id } =
+      params;
 
     const query =
       "UPDATE songs SET `album_id` = ?, `name` = ?, `position` = ?, `lyrics` = ?, `audio` = ?, `video` = ?, `image` = ?, `date` = ? WHERE `id`= ?";
@@ -200,18 +195,13 @@ export const deleteCredits = async (req, res, next) => {
   try {
     const params = await creditsSchema.validateAsync(req.params);
 
-    const query = 
-      `DELETE FROM massaia.songs_has_authors_has_roles WHERE roles_id = ? AND songs_id = ? AND authors_id = ?`;
+    const query = `DELETE FROM songs_has_authors_has_roles WHERE roles_id = ? AND songs_id = ? AND authors_id = ?`;
 
-    const queryParams = [
-      params.roles_id,
-      params.songs_id,
-      params.authors_id
-    ]
+    const queryParams = [params.roles_id, params.songs_id, params.authors_id];
 
     await db.execute(query, queryParams);
     return res.status(200).json({ message: "Credits has been deleted." });
   } catch (error) {
     next(error);
   }
-}
+};
