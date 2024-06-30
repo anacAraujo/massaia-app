@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from '../lib/AxiosConfig'
 import { useNavigate } from 'react-router-dom';
 
-const DeleteModal = ({ visible, CloseModal, itemId, type }) => {
+const DeleteModal = ({ visible, CloseModal, itemId, type, roleId, songId, authorId }) => {
     const [error, setError] = useState(null);
     const navigate = useNavigate()
     console.log("type: ", type, "id into deleteModal: ", itemId);
@@ -32,12 +32,15 @@ const DeleteModal = ({ visible, CloseModal, itemId, type }) => {
             case 'roles':
                 endpoint = `/roles/${itemId}`;
                 break
+            case 'credits':
+                endpoint = `songs/${songId}/credits/${authorId}/${roleId}`;
+                break
             default:
                 return;
         }
 
         try {
-            if (itemId) {
+            if (itemId || (songId && authorId && roleId)) {
               await axios.delete(endpoint);  
               navigate('/');
             }

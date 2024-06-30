@@ -4,8 +4,9 @@ import AddMoments from './AddMoments'
 import AddArtPieces from './AddArtPieces'
 import AddAuthors from './AddAuthors'
 import AddRoles from './AddRoles'
+import AddCredits from './AddCredits'
 
-const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton}) => {
+const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton, songId}) => {
 
     const ChangeVisibility = (showEdit) => {
         document.getElementById(idAdd).style.display = showEdit ? 'block' : 'none';
@@ -30,6 +31,8 @@ const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton}) => {
                 return <AddAuthors />;
             case 'roles':
                 return <AddRoles />
+            case 'credits':
+                return <AddCredits songId={songId} />
             default:
                 return null;
         }

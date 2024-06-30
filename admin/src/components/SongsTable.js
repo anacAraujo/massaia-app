@@ -7,13 +7,13 @@ import CIcon from '@coreui/icons-react'
 import { cilPencil, cilTrash, cilPlus, cilDescription } from '@coreui/icons'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell, CButton, CTooltip  } from '@coreui/react'
 import axios from '../lib/AxiosConfig'
-import CreditsTable from './CreditsTable';
+import CreditsModal from './CreditsModal';
 
 const SongsTable = ({ songs }) => {
     const [addModalVisible, setAddModalVisible] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
-    const [creditsTableVisible, setCreditsTableVisible] = useState(false);
+    const [creditsModalVisible, setCreditsModalVisible] = useState(false);
     const [selectedSongId, setSelectedSongId] = useState(null);
     const [credits, setCredits] = useState([]);
     const [error, setError] = useState(null);
@@ -53,20 +53,14 @@ const SongsTable = ({ songs }) => {
         setSelectedSongId(null);
     }
 
-    const getCredits = async (songId) => {
-        try {
-            const response = await axios.get(`/songs/${songId}/credits`);
-            setCredits(response.data);
-        } catch (error) {
-            setError(error.response);
-            console.error(error);
-        }
+    const OpenCreditsModal = (songId) => {
+        console.log("Opening credits for songId:", songId);
+        setSelectedSongId(songId);
+        setCreditsModalVisible(true);
     }
-    console.log("credits:", credits);
 
-    const OpenCredits = (songId) => {
-        getCredits(songId);
-        setCreditsTableVisible(true);
+    const CloseCreditsModal = () => {
+        setCreditsModalVisible(false);
     }
 
     const RemoveTags = (string) => {
@@ -97,7 +91,7 @@ const SongsTable = ({ songs }) => {
             button: (
                 <div>
                     <CTooltip content="Ver créditos" placement="bottom">
-                        <CButton onClick={() => OpenCredits(song.id)} variant='outline' color='secondary'>
+                        <CButton onClick={() => OpenCreditsModal(song.id)} variant='outline' color='info'>
                             <CIcon icon={cilDescription}></CIcon>
                         </CButton>
                     </CTooltip>
@@ -222,12 +216,13 @@ const SongsTable = ({ songs }) => {
                 itemId={selectedSongId}
                 type='songs'
             />
-            <CreditsTable 
-                credits={credits}
+            <CreditsModal 
+                visible={creditsModalVisible}
+                CloseModal={CloseCreditsModal}
                 songId={selectedSongId}
                 idTable={idTable}
-                idButton={idAddButton}
                 idCredits={idCredits}
+                idButton={idAddButton}
             />
         </div>
         
