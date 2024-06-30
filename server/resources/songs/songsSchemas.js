@@ -10,6 +10,10 @@ const video = Joi.string().allow(null);
 const image = Joi.string().allow(null);
 const date = Joi.date().allow(null);
 
+const songs_id = Joi.number().integer().positive().required();
+const roles_id = Joi.number().integer().positive().required();
+const authors_id = Joi.number().integer().positive().required();
+
 export const idSchema = Joi.object({
   id: id.optional(),
 });
@@ -40,3 +44,10 @@ export const updateSongSchema = Joi.object({
   image: image,
   date: date.optional(),
 });
+
+export const creditsSchema = Joi.object({
+  roles_id: roles_id,
+  songs_id: songs_id,
+  authors_id: authors_id,
+});
+
