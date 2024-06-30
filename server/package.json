@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
+    "start": "node --env-file=.env index.js",
     "dev": "nodemon --env-file=.env index.js | pino-pretty -i hostname,req.headers,req.remoteAddress,req.remotePort,res.headers,log\\.domain\\.corp/foo"
   },
   "author": "",
@@ -21,6 +21,7 @@
     "pino-http": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "pino-pretty": "^11.2.1"
   }
 }
