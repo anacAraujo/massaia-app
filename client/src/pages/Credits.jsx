@@ -31,13 +31,12 @@ export default function Credits({ songId }) {
 
         <div className="credits-roles-authors">
           {credits.map((credit, index) => {
-            const role = Object.keys(credit)[0];
-            const authors = credit[role];
+            const { role, authors } = credit;
 
             return (
               <span key={index}>
                 <span className="role"> {role} </span>
-                {authors.join(", ")}
+                {authors.map((author) => author.authors_name).join(", ")}
               </span>
             );
           })}
