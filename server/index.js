@@ -64,7 +64,7 @@ app.use("/api/moments", momentsRoutes);
 app.use("/api/roles", rolesRoutes);
 
 app.use(function (req, res, next) {
-  res.status(404).json({ message: "Not found" });
+  res.status(404).json({ message: "Route not found!", url: req.url });
 });
 
 app.use(errorHandlerMiddleware);
