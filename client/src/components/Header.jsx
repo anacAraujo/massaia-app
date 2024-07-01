@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    //TODO use media queries
     <div className="menu-geral">
       <Link to="/">
         <h1 className="menu-massaia">MASSAIÁ</h1>
