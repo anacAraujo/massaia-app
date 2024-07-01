@@ -122,7 +122,7 @@ const ContentAboutTable = ({ contentAbout }) => {
     return (
         <div>
             <div style={{ maxHeight: rows.length > 5 ? '30rem' : 'auto', overflowY: rows.length > 5 ? 'scroll' : 'auto' }}>
-                <CTable id={idTable} {...getTableProps} align='middle' responsive captionTop='Tabelas dos Conteúdos-Sobre'>
+                <CTable id={idTable} {...getTableProps} align='middle' responsive captionTop='Tabelas dos Conteúdos-Sobre Projeto'>
                     <CTableHead>
                         {HeaderGroups}
                     </CTableHead>

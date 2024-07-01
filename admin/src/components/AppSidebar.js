@@ -89,7 +89,7 @@ const AppSidebar = () => {
             </CNavItem>
             <CNavItem>
               <Link className="nav-link" to="/conteudos/sobre">
-                Sobre
+                Sobre Projeto
               </Link>
             </CNavItem>
           </CNavGroup>
