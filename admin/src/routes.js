@@ -9,6 +9,8 @@ import ArtPieces from './pages/ArtPieces'
 import Moments from './pages/Moments'
 import Artists from './pages/Artists'
 import Roles from './pages/Roles'
+import ContentAuthors from './pages/ContentAuthors'
+import ContentAbout from './pages/ContentAbout'
 
 const AppRoutes = () => {
     return (
@@ -24,6 +26,8 @@ const AppRoutes = () => {
                 <Route path="/momentos" element={<Moments />}/>
                 <Route path="/artistas" element={<Artists />}/>
                 <Route path="/cargos" element={<Roles />}/>
+                <Route path="/conteudos/autores" element={<ContentAuthors />}/>
+                <Route path="/conteudos/sobre" element={<ContentAbout />}/>
             </Routes>
         </BrowserRouter>
     )

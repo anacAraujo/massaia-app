@@ -33,7 +33,10 @@ const DeleteModal = ({ visible, CloseModal, itemId, type, roleId, songId, author
                 endpoint = `/roles/${itemId}`;
                 break
             case 'credits':
-                endpoint = `songs/${songId}/credits/${authorId}/${roleId}`;
+                endpoint = `/songs/${songId}/credits/${authorId}/${roleId}`;
+                break
+            case 'contentsAbout':
+                endpoint = `/contents/${itemId}`;
                 break
             default:
                 return;
