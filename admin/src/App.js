@@ -1,14 +1,17 @@
 import './scss/style.scss'
+import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './routes';
 import { AuthContextProvider } from './context/AuthContext';
 
 
 function App() {
   return (
-    <AuthContextProvider>
-      <AppRoutes>
-      </AppRoutes>
-    </AuthContextProvider>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <AppRoutes>
+        </AppRoutes>
+      </AuthContextProvider>
+    </BrowserRouter>   
   );
 }
 
