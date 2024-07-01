@@ -25,7 +25,7 @@ a {
 
   .menu-container {
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     background-color: white;
     position: absolute;
     top: 0;
