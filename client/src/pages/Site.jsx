@@ -44,15 +44,9 @@ export default function Site() {
       </div>
       <p className="site-description">
         Este site foi desenvolvido no contexto do projeto final da licenciatura
-        Multimédia e Tecnologias da Comunicação, da Universidade de Aveiro.
-        Durante a realização deste projeto, foram aplicadas e aprimoradas
-        diversas competências adquiridas ao longo do percurso académico. Entre
-        estas competências, destacam-se o desenvolvimento de websites dinâmicos
-        utilizando frameworks modernas, a implementação de design responsivo
-        para garantir a acessibilidade em múltiplos dispositivos, e a integração
-        de sistemas de gestão de bases de dados. Este projeto consolidou o
-        conhecimento técnico e promoveu o trabalho em equipa e a capacidade de
-        resolução de problemas complexos.
+        em Multimédia e Tecnologias da Comunicação, da Universidade de Aveiro,
+        no ano letivo 2023/2024. O trabalho foi orientado pela docente Maria
+        João Antunes.
       </p>
     </>
   );
