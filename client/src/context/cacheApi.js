@@ -8,8 +8,14 @@ export function CacheApiProvider({ children }) {
   const [songsById, setSongsById] = useState({});
 
   const [artPiecesBySong, setArtPiecesBySong] = useState({});
+
   const [moments, setMoments] = useState([]);
+
   const [authors, setAuthors] = useState([]);
+
+  const [authorsContent, setAuthorsContent] = useState({});
+
+  const [projectContent, setProjectContent] = useState({});
 
   async function initSongsInfo() {
     if (Object.keys(songsByAlbum).length > 0) {
@@ -101,6 +107,34 @@ export function CacheApiProvider({ children }) {
     }
   }
 
+  async function initContent() {
+    if (authorsContent.length > 0 && projectContent.length > 0) {
+      return { projectContent, authorsContent };
+    }
+
+    try {
+      const res = await axios.get(`/contents`);
+
+      let projectContentObj = {};
+      let authorsContentObj = {};
+
+      for (const content of res.data) {
+        if (content.id === 1 || content.id === 2) {
+          authorsContentObj[content.id] = content;
+        } else {
+          projectContentObj[content.topic] = content.text;
+        }
+      }
+
+      setProjectContent(projectContentObj);
+      setAuthorsContent(authorsContentObj);
+
+      return res.data;
+    } catch (err) {
+      console.error("Error getting contents ", err);
+    }
+  }
+
   return (
     <CacheApi.Provider
       value={{
@@ -113,6 +147,9 @@ export function CacheApiProvider({ children }) {
         initMoments,
         authors,
         initAuthors,
+        projectContent,
+        authorsContent,
+        initContent,
       }}
     >
       {children}
