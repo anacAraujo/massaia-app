@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import DOMPurify from "dompurify";
 
 import { CurrentState } from "../context/currentState";
 import { CacheApi } from "../context/cacheApi";
@@ -36,8 +37,9 @@ export default function Project() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  console.log("projectContent: ", projectContent);
-  console.log("songsByAlbum: ", songsByAlbum);
+
+  const sanitizedContent = DOMPurify.sanitize(projectContent[selectedKey]);
+
   return (
     <>
       <Header />
@@ -88,7 +90,10 @@ export default function Project() {
           </div>
         )}
         <div className="project-info">
-          {projectContent[selectedKey]}
+          <div
+            className="sanitized-content"
+            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+          />
           <br />
           <br />
           <br />

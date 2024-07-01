@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
+import DOMPurify from "dompurify";
+
 import { CacheApi } from "../context/cacheApi.js";
 import { CurrentState } from "../context/currentState.js";
 import Header from "../components/Header";
@@ -48,6 +50,10 @@ export default function Authors() {
 
   const getAuthors = authors.slice(0, 2);
 
+  const sanitizedAuthorInfo1 = DOMPurify.sanitize(authorsContent[1]?.text);
+
+  const sanitizedAuthorInfo2 = DOMPurify.sanitize(authorsContent[2]?.text);
+
   return (
     <div className="authors-container">
       <div className="header-container">
@@ -79,9 +85,10 @@ export default function Authors() {
                     ) : (
                       <h3>Helena Caspurro</h3>
                     )}
-                    <p className={infoTextExcedingSize ? "overflow" : ""}>
-                      {authorsContent[1].text}
-                    </p>
+                    <div
+                      className={infoTextExcedingSize ? "overflow" : ""}
+                      dangerouslySetInnerHTML={{ __html: sanitizedAuthorInfo1 }}
+                    />
                     <button onClick={toggleHelenaInfo}>
                       <img src="../assets/icons/exit.svg" alt="exit" />
                     </button>
@@ -100,9 +107,10 @@ export default function Authors() {
                         Almeida
                       </h3>
                     )}
-                    <p className={infoTextExcedingSize ? "overflow" : ""}>
-                      {authorsContent[2].text}
-                    </p>
+                    <div
+                      className={infoTextExcedingSize ? "overflow" : ""}
+                      dangerouslySetInnerHTML={{ __html: sanitizedAuthorInfo2 }}
+                    />
                     <button onClick={togglePedroInfo}>
                       <img src="../assets/icons/exit.svg" alt="exit" />
                     </button>
