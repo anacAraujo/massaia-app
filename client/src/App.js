@@ -8,6 +8,7 @@ import Authors from "./pages/Authors";
 import Artists from "./pages/Artists";
 import Project from "./pages/Project";
 import Site from "./pages/Site";
+import NotFound from "./pages/NotFound";
 import { CurrentStateProvider } from "./context/currentState";
 import { CacheApiProvider } from "./context/cacheApi";
 
@@ -18,18 +19,16 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/">
-              <Route index element={<Home></Home>}></Route>
-              <Route path="temas/:songId" element={<Home></Home>}></Route>
-              <Route path="menu" element={<Menu></Menu>}></Route>
-              <Route
-                path="galeria/:songId"
-                element={<Gallery></Gallery>}
-              ></Route>
-              <Route path="projeto" element={<Project></Project>}></Route>
-              <Route path="autores" element={<Authors></Authors>}></Route>
-              <Route path="artistas" element={<Artists></Artists>}></Route>
-              <Route path="site" element={<Site></Site>}></Route>
-              <Route path="momentos" element={<Moments></Moments>}></Route>
+              <Route index element={<Home />} />
+              <Route path="temas/:songId" element={<Home />} />
+              <Route path="menu" element={<Menu />} />
+              <Route path="galeria/:songId" element={<Gallery />} />
+              <Route path="projeto" element={<Project />} />
+              <Route path="autores" element={<Authors />} />
+              <Route path="artistas" element={<Artists />} />
+              <Route path="site" element={<Site />} />
+              <Route path="momentos" element={<Moments />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
