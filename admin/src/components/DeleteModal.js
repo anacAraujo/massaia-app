@@ -44,7 +44,8 @@ const DeleteModal = ({ visible, CloseModal, itemId, type, roleId, songId, author
 
         try {
             if (itemId || (songId && authorId && roleId)) {
-              await axios.delete(endpoint);  
+              await axios.delete(endpoint);
+              alert('Operação completada com sucesso!');
               navigate('/');
             }
         } catch (error) {

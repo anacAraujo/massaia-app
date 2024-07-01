@@ -160,6 +160,7 @@ const AddSongs = () => {
         try {
             await axios.post(`/songs/`, body);
             console.log('Sucesso!!!');
+            alert('Operação completada com sucesso!');
             navigate('/');
         } catch (error) {
             setError(error.response);

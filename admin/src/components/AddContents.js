@@ -61,6 +61,7 @@ const AddContent = () => {
         try {
             await axios.post(`/contents/`, body);
             console.log('Sucesso!!!');
+            alert('Operação completada com sucesso!');
             navigate('/');
         } catch (error) {
             setError(error.response);

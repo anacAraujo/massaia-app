@@ -84,6 +84,7 @@ const EditUsers = ({ userId, userData }) => {
             if (userId) {
                 await axios.put(`/users/${userId}`, body);
                 console.log('Sucesso!!!');
+                alert('Operação completada com sucesso!');
                 navigate('/');
             }
         } catch (error) {

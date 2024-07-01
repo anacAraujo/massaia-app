@@ -113,6 +113,7 @@ const EditSongs = ({ authorId, authorData }) => {
       if (authorId) {
         await axios.put(`/artists/${authorId}`, body);
         console.log("Sucesso!!!");
+        alert('Operação completada com sucesso!');
         navigate("/");
       }
     } catch (error) {

@@ -55,6 +55,7 @@ const AddRoles = () => {
     try {
       await axios.post(`/roles/`, body);
       console.log("Sucesso!!!");
+      alert('Operação completada com sucesso!');
       navigate("/");
     } catch (error) {
       setError(error.response);

@@ -146,6 +146,7 @@ const EditArtPieces = ({ artPieceId, artPieceData }) => {
             if (artPieceId) {
                 await axios.put(`/art_pieces/${artPieceId}`, body);
                 console.log('Sucesso!!!');
+                alert('Operação completada com sucesso!');
                 navigate('/');
             }
         } catch (error) {

@@ -103,6 +103,7 @@ const EditAlbums = ({ albumId, albumData }) => {
             if (albumId) {
                 await axios.put(`/albums/${albumId}`, body); 
                 console.log('Sucesso!!!');
+                alert('Operação completada com sucesso!');
                 navigate('/');
             }
         } catch (error) {
