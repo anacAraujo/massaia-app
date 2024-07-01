@@ -67,7 +67,6 @@ export default function Home() {
 
   function handleDropdownClick() {
     setShowingDropdownOptions(!showingDropdownOptions);
-    console.log("inside handleDropdownClick", showingDropdownOptions);
   }
 
   function handleCreditsClick() {
@@ -102,14 +101,14 @@ export default function Home() {
       } else {
         handleUserStateChange(USER_STATES.SONG_MENU);
       }
-      console.log("Mouse is moving");
+      // console.log("Mouse is moving");
     };
 
     const handleMouseStop = () => {
-      console.log("Mouse stopped moving");
+      //  console.log("Mouse stopped moving");
       timeoutId = setTimeout(() => {
         handleUserStateChange(USER_STATES.VIEWING_SONG);
-        console.log("setTimeout: Timer viewing song after stop");
+        //console.log("setTimeout: Timer viewing song after stop");
       }, 2000);
     };
 
@@ -117,11 +116,11 @@ export default function Home() {
       userState === USER_STATES.SONG_MENU ||
       userState === USER_STATES.VIEWING_SONG
     ) {
-      console.log("inside useEffect SONG_MENU or VIEWING_SONG");
+      //  console.log("inside useEffect SONG_MENU or VIEWING_SONG");
       timeoutId = setTimeout(() => {
         setShowingDropdownOptions(false);
         handleUserStateChange(USER_STATES.VIEWING_SONG);
-        console.log("setTimeout: Timer viewing song");
+        // console.log("setTimeout: Timer viewing song");
       }, 2000);
 
       let mouseStopTimeout;
