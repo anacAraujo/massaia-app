@@ -131,6 +131,7 @@ const EditMoments = ({ momentId, momentData }) => {
             if (momentId) {
                 await axios.put(`/moments/${momentId}`, body);
                 console.log('Sucesso!!!');
+                alert('Operação completada com sucesso!');
                 navigate('/');
             }
         } catch (error) {

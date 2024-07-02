@@ -215,6 +215,7 @@ const EditSongs = ({ songId, songData }) => {
       if (songId) {
         await axios.put(`/songs/${songId}`, body);
         console.log("Sucesso!!!");
+        alert('Operação completada com sucesso!');
         navigate("/");
       }
     } catch (error) {

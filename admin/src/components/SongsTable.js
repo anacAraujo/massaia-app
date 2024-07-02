@@ -6,7 +6,6 @@ import DeleteModal from '../components/DeleteModal';
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilTrash, cilPlus, cilDescription } from '@coreui/icons'
 import { CTable, CTableHead, CTableRow, CTableHeaderCell, CTableBody, CTableDataCell, CButton, CTooltip  } from '@coreui/react'
-import axios from '../lib/AxiosConfig'
 import CreditsModal from './CreditsModal';
 
 const SongsTable = ({ songs }) => {

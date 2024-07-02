@@ -125,6 +125,7 @@ const AddArtPieces = () => {
     try {
       await axios.post(`/art_pieces/`, body);
       console.log("Sucesso!!!");
+      alert('Operação completada com sucesso!');
       navigate("/");
     } catch (error) {
       setError(error.response);

@@ -16,7 +16,6 @@ export const getContents = async (req, res, next) => {
     }
 
     res.status(200).json(results);
-    console.log(results);
   } catch (error) {
     next(error);
   }

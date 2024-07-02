@@ -18,6 +18,7 @@
     "classnames": "^2.5.1",
     "core-js": "^3.37.0",
     "joi": "^17.13.1",
+    "jwt-decode": "^4.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-datepicker": "^6.9.0",

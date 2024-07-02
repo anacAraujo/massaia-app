@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -7,6 +7,8 @@ import {
   CSidebarHeader,
   CSidebarNav,
   CNavTitle,
+  CNavGroup,
+  CNavItem
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import {
@@ -15,13 +17,16 @@ import {
   cilHistory,
   cilWallpaper,
   cilPeople,
-  cilClipboard
+  cilClipboard,
+  cilFolderOpen
 } from "@coreui/icons";
 
 const AppSidebar = () => {
   const dispatch = useDispatch();
   const unfoldable = useSelector((state) => state.sidebarUnfoldable);
   const sidebarShow = useSelector((state) => state.sidebarShow);
+
+  const [contentVisible, setContentVisible] = useState(false);
 
   return (
     <CSidebar
@@ -68,6 +73,26 @@ const AppSidebar = () => {
             <CIcon className="nav-icon" icon={cilClipboard}></CIcon>
             Cargos
           </Link>
+          <CNavGroup
+            toggler={
+              <div className="d-flex align-items-center" onClick={() => setContentVisible(!contentVisible)}>
+                <CIcon className="nav-icon" icon={cilFolderOpen} />
+                <span className="ml-2">Conteúdos</span>
+              </div>
+            }
+            visible={contentVisible}
+          >
+            <CNavItem>
+              <Link className="nav-link" to="/conteudos/autores">
+                Autores
+              </Link>
+            </CNavItem>
+            <CNavItem>
+              <Link className="nav-link" to="/conteudos/sobre">
+                Sobre Projeto
+              </Link>
+            </CNavItem>
+          </CNavGroup>
         </div>
       </CSidebarNav>
     </CSidebar>
@@ -75,3 +100,5 @@ const AppSidebar = () => {
 };
 
 export default AppSidebar;
+
+

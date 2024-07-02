@@ -5,6 +5,7 @@ import AddArtPieces from './AddArtPieces'
 import AddAuthors from './AddAuthors'
 import AddRoles from './AddRoles'
 import AddCredits from './AddCredits'
+import AddContent from './AddContents'
 
 const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton, songId}) => {
 
@@ -33,6 +34,8 @@ const AddModal = ({ visible, CloseModal, type, idAdd, idTable, idButton, songId}
                 return <AddRoles />
             case 'credits':
                 return <AddCredits songId={songId} />
+            case 'contentsAbout':
+                return <AddContent />
             default:
                 return null;
         }

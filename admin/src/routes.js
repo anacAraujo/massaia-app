@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -9,23 +9,25 @@ import ArtPieces from './pages/ArtPieces'
 import Moments from './pages/Moments'
 import Artists from './pages/Artists'
 import Roles from './pages/Roles'
+import ContentAuthors from './pages/ContentAuthors'
+import ContentAbout from './pages/ContentAbout'
 
 const AppRoutes = () => {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Homepage />}/>
-                <Route path="/login" element={<Login />}/>
-                <Route path="/register" element={<Register />}/>
-                <Route path="/utilizadores" element={<Users />}/>
-                <Route path="/albuns" element={<Albums />}/>
-                <Route path="/musicas" element={<Songs />}/>
-                <Route path="/obras" element={<ArtPieces />}/>
-                <Route path="/momentos" element={<Moments />}/>
-                <Route path="/artistas" element={<Artists />}/>
-                <Route path="/cargos" element={<Roles />}/>
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/utilizadores" element={<Users />} />
+            <Route path="/albuns" element={<Albums />} />
+            <Route path="/musicas" element={<Songs />} />
+            <Route path="/obras" element={<ArtPieces />} />
+            <Route path="/momentos" element={<Moments />} />
+            <Route path="/artistas" element={<Artists />} />
+            <Route path="/cargos" element={<Roles />} />
+            <Route path="/conteudos/autores" element={<ContentAuthors />} />
+            <Route path="/conteudos/sobre" element={<ContentAbout />} />
+        </Routes>
     )
 }
 export default AppRoutes;

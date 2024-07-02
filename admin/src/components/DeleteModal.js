@@ -33,7 +33,10 @@ const DeleteModal = ({ visible, CloseModal, itemId, type, roleId, songId, author
                 endpoint = `/roles/${itemId}`;
                 break
             case 'credits':
-                endpoint = `songs/${songId}/credits/${authorId}/${roleId}`;
+                endpoint = `/songs/${songId}/credits/${authorId}/${roleId}`;
+                break
+            case 'contentsAbout':
+                endpoint = `/contents/${itemId}`;
                 break
             default:
                 return;
@@ -41,7 +44,8 @@ const DeleteModal = ({ visible, CloseModal, itemId, type, roleId, songId, author
 
         try {
             if (itemId || (songId && authorId && roleId)) {
-              await axios.delete(endpoint);  
+              await axios.delete(endpoint);
+              alert('Operação completada com sucesso!');
               navigate('/');
             }
         } catch (error) {

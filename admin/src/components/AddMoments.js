@@ -120,6 +120,7 @@ const AddMoments = () => {
         try {
             await axios.post(`/moments/`, body);
             console.log('Sucesso!!!');
+            alert('Operação completada com sucesso!');
             navigate('/');
         } catch (error) {
             setError(error.response);
