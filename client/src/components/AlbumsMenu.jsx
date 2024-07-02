@@ -46,6 +46,9 @@ export function AlbumsMenu({ songsInfo }) {
                   handleChangeCurrentSong(song.id);
                 }}
               />
+              <p>
+                {song.position}. {song.name}
+              </p>
             </div>
           ))}
         </div>
