@@ -11,11 +11,9 @@ export function LandingPage() {
         <p>espaços da voz, do som e do olhar</p>
         <div className="content">
           <img src="../assets/images/massaiaintro1.png" alt="Massaiá" />
-          <img src="../assets/images/massaiaintro2.png" alt="Massaiá" />
-
-          <img src="../assets/images/massaiaintro3.png" alt="Massaiá" />
-
-          <img src="../assets/images/massaiaintro4.png" alt="Massaiá" />
+          <img className="img1" src="../assets/images/massaiaintro2.png" alt="Massaiá" />
+          <img className="img2" src="../assets/images/massaiaintro3.png" alt="Massaiá" />
+          <img className="img3" src="../assets/images/massaiaintro4.png" alt="Massaiá" />
         </div>
       </div>
       <div className="construction-notice">

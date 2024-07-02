@@ -133,8 +133,48 @@
 
     img {
       display: block;
-      width: 60vw;
+      width: 80%;
       height: auto;
+      position: relative;
     }
+
+    img.img1 {
+      animation: img1 3s;
+    }
+
+    img.img2 {
+      animation: img2 3s;
+    }
+
+    img.img3 {
+      animation: img3 3s;
+    }
+  } 
+}
+
+@keyframes img1 {
+  0% {
+    left: -100vw
+  }
+  100% {
+    left: 0
+  }
+}
+
+@keyframes img2 {
+  0% {
+    right: -100vw
+  }
+  100% {
+    right: 0
+  }
+}
+
+@keyframes img3 {
+  0% {
+    left: -100vw
+  }
+  100% {
+    left: 0
   }
 }
