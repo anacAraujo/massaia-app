@@ -7,6 +7,7 @@ import "../styles/notFound.css";
 
 function NotFound({ safariAgent }) {
   let screenWidth = window.innerWidth;
+  console.log("page safariAgent: ", safariAgent);
 
   return (
     <div>

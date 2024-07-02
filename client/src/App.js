@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -19,17 +19,19 @@ function App() {
 
   if (chromeAgent && safariAgent) safariAgent = false;
 
+  let screenWidth = window.innerWidth;
+
   console.log("safariAgent: ", safariAgent);
-  if (safariAgent) {
-    return <Navigate to="/notfound" replace />;
-  }
 
   return (
     <CacheApiProvider>
       <CurrentStateProvider>
-        <Routes>
-          <Route path="/">
-            <Route index element={<Home />} />
+        <BrowserRouter>
+          {safariAgent && screenWidth >= 769 && (
+            <Navigate to="/notfound" replace />
+          )}
+          <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="temas/:songId" element={<Home />} />
             <Route path="menu" element={<Menu />} />
             <Route path="galeria/:songId" element={<Gallery />} />
@@ -38,9 +40,13 @@ function App() {
             <Route path="artistas" element={<Artists />} />
             <Route path="site" element={<Site />} />
             <Route path="momentos" element={<Moments />} />
+            <Route
+              path="notfound"
+              element={<NotFound safariAgent={safariAgent} />}
+            />
             <Route path="*" element={<NotFound safariAgent={safariAgent} />} />
-          </Route>
-        </Routes>
+          </Routes>
+        </BrowserRouter>
       </CurrentStateProvider>
     </CacheApiProvider>
   );
