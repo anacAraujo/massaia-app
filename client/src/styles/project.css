@@ -1,6 +1,6 @@
 @media only screen and (min-width: 0px) {
   .project-container {
-    margin-top: 10vh;
+    margin-top: 12vh;
   }
 
   .project-video {
@@ -49,11 +49,13 @@
 
   .project-info {
     padding: 2rem;
-    p {
-      font-family: "AkzidGroLigOsF";
-      font-size: 18px;
-    }
 
+    .sanitized-content {
+      p {
+        font-family: "AkzidGroLigOsF";
+        font-size: 18px;
+      }
+    }
     a {
       text-decoration: none;
       color: black;
@@ -99,9 +101,11 @@
     margin: 2rem;
     padding: 0 45% 0 0;
 
-    p {
-      margin: 0;
-      font-size: 20px;
+    .sanitized-content {
+      p {
+        margin: 0;
+        font-size: 16px;
+      }
     }
 
     .logos {

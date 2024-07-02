@@ -11,7 +11,7 @@ import artPiecesRoutes from "./resources/artPieces/artPiecesRoutes.js";
 import usersRoutes from "./resources/users/usersRoutes.js";
 import momentsRoutes from "./resources/moments/momentsRoutes.js";
 import rolesRoutes from "./resources/roles/rolesRoutes.js";
-import contentRoutes from "./resources/contents/contentsRoutes.js"
+import contentRoutes from "./resources/contents/contentsRoutes.js";
 import { errorHandlerMiddleware } from "./middlewares/errorHandler.js";
 
 const port = process.env.PORT || 3000;

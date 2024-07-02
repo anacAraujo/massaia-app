@@ -43,8 +43,7 @@ export const addContent = async (req, res, next) => {
   try {
     const params = await addContentSchema.validateAsync(req.body);
 
-    const query =
-      "INSERT INTO contents(`topic`, `text`) VALUES (?, ?)";
+    const query = "INSERT INTO contents(`topic`, `text`) VALUES (?, ?)";
 
     const queryParams = [params.topic, params.text];
 
@@ -60,19 +59,14 @@ export const updateContent = async (req, res, next) => {
   try {
     const params = await updateContentSchema.validateAsync({
       ...req.body,
-      id: req.params.id
+      id: req.params.id,
     });
 
     const { topic, text, id } = params;
 
-    const query =
-      "UPDATE contents SET `topic` = ?, `text` = ? WHERE `id`= ?";
+    const query = "UPDATE contents SET `topic` = ?, `text` = ? WHERE `id`= ?";
 
-    const queryParams = [
-      topic,
-      text,
-      id,
-    ];
+    const queryParams = [topic, text, id];
 
     const [results] = await db.execute(query, queryParams);
 
@@ -100,4 +94,3 @@ export const deleteContent = async (req, res, next) => {
     next(error);
   }
 };
-

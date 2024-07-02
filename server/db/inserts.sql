@@ -123,6 +123,11 @@ INSERT INTO `songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`)
 INSERT INTO `songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('12', '1', '1');
 INSERT INTO `songs_has_authors_has_roles` (`roles_id`, `songs_id`, `authors_id`) VALUES ('12', '1', '2');
 
+INSERT INTO `massaia`.`contents` (`id`, `topic`, `text`) VALUES ('1', 'author_1_helena', 'Natural do Porto, onde reside, é Professora Auxiliar da');
+INSERT INTO `massaia`.`contents` (`id`, `topic`, `text`) VALUES ('2', 'author_2_pedro', 'Pedro Carvalho de Almeida (Ph.D, FRSA) é Designer de comunicação, Professor Auxiliar no Departamento de Comunicação e Arte da Universidade de Aveiro, investigador no Instituto de Investigação em Design, Media e Cultura (ID+), e Fellow da Royal Society of Arts no Reino Unido. ');
+INSERT INTO `massaia`.`contents` (`id`, `topic`, `text`) VALUES ('3', 'Massaiá', 'Massaiá, uma palavra inventada por Helena Caspurro para simbolizar um canto de prece à vida, intitula o álbum musical, duplo, em desenvolvimento, da cantautora e pianista. O tema foi originalmente composto e interpretado para piano por Orange Sandalwood, que o editou com o mesmo nome, em The Mirror Inside [1] (2021), no formato piano solo que deu origem à canção deste projeto. A versão cantada pela voz da autora do seu poema, estreando-se no Vol. 1 do disco, foi gravada com o seu compositor e pianista. Massaiá dá continuidade ao estudo criativo, interpretativo e editorial que tem desenvolvido como pianista e cantautora em torno da Canção, e que se materializou em três obras editadas: Mulher Avestruz (2003), Colapsopira (2009) e Paluí (2013).');
+INSERT INTO `massaia`.`contents` (`id`, `topic`, `text`) VALUES ('4', 'Espaços do Som', 'Num mundo desafiado pela força da imagem e do próprio processo inventivo, a partir de Massaiá, exploram-se possibilidades de diálogo entre música, artes visuais e plásticas, vídeo e multimédia. São objetivos deste projeto de criação artística a procura de trajetórias holísticas de contemplação e intensificação de sentidos, e, deste modo, da própria identidade (i)material daquela obra musical em construção. O estudo da metodologia criativa e colaborativa, onde participam artistas, docentes e alunos de design e de comunicação do DeCA, constitui, ainda, o alcance pedagógico do projeto. Vídeos, livro, site, espetáculo e exposição, materializando e cruzando as dimensões digital e física, visual e sonora, em exploração, são os resultados artísticos que se esperam editar e divulgar. Através destes, viabilizar experiências multissensoriais e imersivas de significação estética. ');
+INSERT INTO `massaia`.`contents` (`id`, `topic`, `text`) VALUES ('5', 'O Livro', 'Lorem ipsum dolor sit amet. Aut sint fugiat rem minima voluptas aut galisum temporibus ex dolorem assumenda ut consequatur aperiam. Sit repudiandae amet et perferendis quibusdam est repudiandae quidem non dolores accusantium vel corrupti adipisci qui fuga nostrum. Et erro asperiores ut dicta veritatis et quaerat quis aut quos esse a itaque inventore.');
 
 UPDATE `songs` SET `video` = 'massaia.mp4' WHERE (`id` = '1');
 UPDATE `songs` SET `image` = 'Capa-Massaia-Voli.jpg' WHERE (`id` = '1');
@@ -212,7 +217,7 @@ UPDATE `authors` SET `title` = 'Criação, desenho e colagem ' WHERE (`id` = '37
 UPDATE `authors` SET `title` = 'Criação, pintura ' WHERE (`id` = '38');
 UPDATE `authors` SET `title` = 'Criação e interpretação musical ' WHERE (`id` = '39');
 UPDATE `authors` SET `title` = 'Intérprete, guitarra acústica ' WHERE (`id` = '41');
-UPDATE `authors` SET `title` = 'Intérprete, guitarras ' WHERE (`id` = '42');
+UPDATE `authors` SET `title` = 'Intérprete, guitarusersras ' WHERE (`id` = '42');
 UPDATE `authors` SET `title` = 'Criação, pintura ' WHERE (`id` = '43');
 UPDATE `authors` SET `image` = 'Alvaro-Sousa.png' WHERE (`id` = '44');
 

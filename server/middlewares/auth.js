@@ -9,7 +9,6 @@ export async function authMiddleware(req, res, next) {
   }
 
   try {
-    // TODO add expire when generating the token
     const verify = util.promisify(jwt.verify);
 
     const secret = process.env.JWT_SECRET;

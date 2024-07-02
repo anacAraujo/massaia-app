@@ -28,7 +28,7 @@ export function CurrentStateProvider({ children }) {
       return;
     }
     setUserState(newUserState);
-    console.log(`Changing state to: ${newUserState}`);
+    //console.log(`Changing state to: ${newUserState}`);
   }
 
   async function setCurrentSongById(songId) {
@@ -36,7 +36,7 @@ export function CurrentStateProvider({ children }) {
     const resSongsById = songsInfo.songsById;
     const song = resSongsById[songId];
 
-    console.log("Setting current song by ID to: ", song);
+    // console.log("Setting current song by ID to: ", song);
     setCurrentSong(song);
 
     if (userState === USER_STATES.LOADING_PAGE) {
@@ -49,7 +49,7 @@ export function CurrentStateProvider({ children }) {
     const resSongsByAlbum = songsInfo.songsByAlbum;
     const song = resSongsByAlbum[albumId][0];
 
-    console.log("Setting current song by album to: ", song);
+    //console.log("Setting current song by album to: ", song);
     setCurrentSong(song);
 
     if (userState === USER_STATES.LOADING_PAGE) {

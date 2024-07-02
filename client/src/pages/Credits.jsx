@@ -6,7 +6,6 @@ import "../styles/credits.css";
 
 export default function Credits({ songId }) {
   const [credits, setCredits] = useState([]);
-  console.log("songId: ", songId);
 
   useEffect(() => {
     const fetchData = async () => {
