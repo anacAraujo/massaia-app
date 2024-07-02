@@ -69,7 +69,7 @@
       flex-direction: column;
 
       img {
-        width: 40vw;
+        width: 35vw;
         height: auto;
         margin: 2rem;
       }
@@ -113,7 +113,7 @@
       justify-content: flex-start;
 
       img {
-        height: 8vh;
+        height: 6vh;
         width: auto;
         margin: 2rem 2rem 0 0;
       }
