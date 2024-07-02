@@ -74,6 +74,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    div {
+      overflow-y: scroll;
+      max-height: 30vh;
+    }
   }
 
   .authors-info h3 {
@@ -87,9 +92,6 @@ body {
   .authors-info p {
     font-family: "AkzidGroLigOsF";
     font-size: 16px;
-    overflow-y: auto;
-    scrollbar-width: none;
-    max-height: calc(40vh - 100px);
     width: 100%;
     margin-top: 1vh;
   }
@@ -220,6 +222,9 @@ body {
     margin-top: 10vh;
     width: 50%;
     padding: 2rem;
+    div {
+      max-height: 60vh;
+    }
   }
 
   .authors-info.pedro {
@@ -229,5 +234,10 @@ body {
     margin-top: 10vh;
     width: 50%;
     padding: 2rem;
+    overflow: hidden;
+
+    div {
+      max-height: 60vh;
+    }
   }
 }

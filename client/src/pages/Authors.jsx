@@ -80,11 +80,8 @@ export default function Authors() {
                     className={`authors-info ${showHelenaInfo ? "helena" : ""}`}
                     ref={showHelenaInfo ? infoTextRef : null}
                   >
-                    {mobile ? (
-                      <h3>Maria Helena Ribeiro da Silva Caspurro</h3>
-                    ) : (
-                      <h3>Helena Caspurro</h3>
-                    )}
+                    <h3>Helena Caspurro</h3>
+
                     <div
                       className={infoTextExcedingSize ? "overflow" : ""}
                       dangerouslySetInnerHTML={{ __html: sanitizedAuthorInfo1 }}
