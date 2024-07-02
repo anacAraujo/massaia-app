@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -13,25 +13,34 @@ import { CurrentStateProvider } from "./context/currentState";
 import { CacheApiProvider } from "./context/cacheApi";
 
 function App() {
+  let userAgentString = navigator.userAgent;
+  let safariAgent = userAgentString.indexOf("Safari") > -1;
+  let chromeAgent = userAgentString.indexOf("Chrome") > -1;
+
+  if (chromeAgent && safariAgent) safariAgent = false;
+
+  console.log("safariAgent: ", safariAgent);
+  if (safariAgent) {
+    return <Navigate to="/notfound" replace />;
+  }
+
   return (
     <CacheApiProvider>
       <CurrentStateProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/">
-              <Route index element={<Home />} />
-              <Route path="temas/:songId" element={<Home />} />
-              <Route path="menu" element={<Menu />} />
-              <Route path="galeria/:songId" element={<Gallery />} />
-              <Route path="projeto" element={<Project />} />
-              <Route path="autores" element={<Authors />} />
-              <Route path="artistas" element={<Artists />} />
-              <Route path="site" element={<Site />} />
-              <Route path="momentos" element={<Moments />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route index element={<Home />} />
+            <Route path="temas/:songId" element={<Home />} />
+            <Route path="menu" element={<Menu />} />
+            <Route path="galeria/:songId" element={<Gallery />} />
+            <Route path="projeto" element={<Project />} />
+            <Route path="autores" element={<Authors />} />
+            <Route path="artistas" element={<Artists />} />
+            <Route path="site" element={<Site />} />
+            <Route path="momentos" element={<Moments />} />
+            <Route path="*" element={<NotFound safariAgent={safariAgent} />} />
+          </Route>
+        </Routes>
       </CurrentStateProvider>
     </CacheApiProvider>
   );
